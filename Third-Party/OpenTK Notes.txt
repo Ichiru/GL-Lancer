@@ -1,0 +1,3 @@
+This is a custom made version of OpenTK with GLES support and the Compute namespace removed.
+It also features a few bugfixes for the Mac and Linux Platform.
+This is -not- an official OpenTK release
