@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Linq;
 
 namespace GLLancer
 {
@@ -112,6 +113,7 @@ namespace GLLancer
 		}
 		#endregion
 
+		#region Text Reading Methods
 		void LoadText (Stream stream)
 		{
 			using (var reader = new StreamReader(stream)) {
@@ -182,6 +184,79 @@ namespace GLLancer
 			} else {
 				valuetype = IniValueType.String;
 				data = val;
+			}
+		}
+		#endregion
+	
+		public IniSection[] GetSections (string name, bool case_sensitive)
+		{
+			if (!case_sensitive) {
+				string nameLower = name.ToLower ();
+				var results = from s in Sections where s.Name.ToLower () == nameLower select s;
+				return results.ToArray ();
+			} else {
+				var results = from s in Sections where s.Name == name select s;
+				return results.ToArray ();
+			}
+		}
+		/// <summary>
+		/// Query an object from the File
+		/// </summary>
+		/// <param name='query'>
+		/// The query used
+		/// The format is the section, followed by the entry, and then the value index each separated by forward slashes
+		/// Example: WinCamera/fovx/0
+		/// You can also specify which section and value indexes you want by putting # and the number after the section/entry's name
+		/// Example: WinCamera#0/fovx#0/0
+		/// 		 WinCamera#1/fovx/0
+		/// </param>
+		/// <param name='case_sensitive'>
+		/// Specifies whether or not the name lookups are case sensitive
+		/// </param>
+		public object Query(string query, bool case_sensitive)
+		{
+			string[] split = query.Split ('/');
+			//first split should be section
+			object current = null;
+			string value;
+			int number;
+			for(int i = 0; i < split.Length;i++)
+			{
+				switch(i)
+				{
+				case 0:
+					ParseQueryPart (split[i],out value, out number);
+					IniSection[] sections = GetSections (value,case_sensitive);
+					if(number != -1)
+						current = sections[number];
+					else
+						current = sections[0];
+					break;
+				case 1:
+					ParseQueryPart (split[i],out value, out number);
+					IniEntry[] entries = ((IniSection)current).GetEntries (value,case_sensitive);
+					if(number != -1)
+						current = entries[number];
+					else
+						current = entries[0];
+					break;
+				case 2:
+					number = int.Parse (split[i]);
+					current = ((IniEntry)current).Values[number];
+					return current;
+				}
+			}
+			return current;
+		}
+		void ParseQueryPart (string part, out string value, out int number)
+		{
+			if (part.Contains ("#")) {
+				string[] split = part.Split ('#');
+				value = split [0];
+				number = int.Parse (split [1]);
+			} else {
+				value = part;
+				number = -1;
 			}
 		}
 	}

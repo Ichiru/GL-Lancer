@@ -2,6 +2,7 @@
 //See LICENSE for licensing information
 using System;
 using System.Collections.Generic;
+using System.Linq;
 namespace GLLancer
 {
 	/// <summary>
@@ -14,7 +15,7 @@ namespace GLLancer
 		public IniEntry (string name)
 		{
 			Name = name;
-			Values = new List<IniValue>();
+			Values = new List<IniValue> ();
 		}
 	}
 }
