@@ -6,7 +6,9 @@ namespace GLLancer
 	{
 		public static void Main (string[] args)
 		{
-            //Testing commit!
+			using (var window = new TestWindow()) {
+				window.Run ();
+			}
 		}
 	}
 }

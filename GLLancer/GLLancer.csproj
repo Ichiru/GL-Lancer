@@ -33,6 +33,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="OpenTK">
+      <HintPath>..\Third-Party\OpenTK.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -46,6 +49,7 @@
     <Compile Include="Utf\UtfTreeNode.cs" />
     <Compile Include="Utf\UtfNode.cs" />
     <Compile Include="Utf\UtfLeafNode.cs" />
+    <Compile Include="TestWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -57,6 +57,7 @@ namespace GLLancer
 			reader.BaseStream.Seek (offset,SeekOrigin.Begin);
 			int peerOffset = reader.ReadInt32();
 			string name = GetString (strings,reader.ReadInt32 ());
+			return null; //fix compiler issues for now. Definitely replace
 		}
 		string GetString (string strings, int index)
 		{
