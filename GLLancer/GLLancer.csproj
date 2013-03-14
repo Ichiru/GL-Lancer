@@ -36,6 +36,14 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Ini\IniFile.cs" />
+    <Compile Include="Ini\IniEntry.cs" />
+    <Compile Include="Ini\IniSection.cs" />
+    <Compile Include="Ini\IniValueType.cs" />
+    <Compile Include="Ini\IniValue.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Ini\" />
+  </ItemGroup>
 </Project>
