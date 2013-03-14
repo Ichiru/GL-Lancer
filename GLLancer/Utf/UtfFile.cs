@@ -9,7 +9,7 @@ namespace GLLancer
 	public class UtfFile
 	{
 		const int VERSION = 257;
-
+		public UtfTreeNode Root { get; private set; }
 		public UtfFile (string filename)
 		{
 			byte[] treeBlock;
@@ -49,14 +49,41 @@ namespace GLLancer
 				reader.Read (dataBlock, 0, dataSize);
 			}
 			using (var reader = new BinaryReader(new MemoryStream(treeBlock))) {
-
+				Root = (UtfTreeNode)ReadNode (reader,0,strings,dataBlock);
 			}
 		}
 		UtfNode ReadNode (BinaryReader reader, int offset, string strings, byte[] dataBlock)
 		{
-			reader.BaseStream.Seek (offset,SeekOrigin.Begin);
-			int peerOffset = reader.ReadInt32();
-			string name = GetString (strings,reader.ReadInt32 ());
+			reader.BaseStream.Seek (offset, SeekOrigin.Begin);
+			int peerOffset = reader.ReadInt32 ();
+			string name = GetString (strings, reader.ReadInt32 ());
+			int flags = reader.ReadInt32 ();
+			if ((flags & 0x10) == 0x10) { //Tree Node
+				var node = new UtfTreeNode(name,peerOffset);
+				reader.BaseStream.Seek (sizeof(int),SeekOrigin.Current);
+				int childOffset = reader.ReadInt32 ();
+				int next = childOffset;
+				do {
+					var child = ReadNode (reader,next,strings,dataBlock);
+					node.Children.Add (child);
+					next = child.PeerOffset;
+				} while(next > 0);
+				return node;
+			} else if ((flags & 0x80) == 0x80) { //Leaf Node
+				var node = new UtfLeafNode(name,peerOffset);
+				reader.BaseStream.Seek (sizeof(int),SeekOrigin.Current);
+				int dataOffset = reader.ReadInt32 ();
+				reader.BaseStream.Seek (sizeof(int),SeekOrigin.Current);
+				int size = reader.ReadInt32 ();
+				byte[] data = new byte[size];
+				if(size != 0)
+				{
+					Array.Copy (dataBlock,dataOffset,data,0,size);
+				}
+				node.SetData (data);
+				int size2 = reader.ReadInt32 (); //I suppose something should be done with this
+				return node;
+			}
 			return null; //fix compiler issues for now. Definitely replace
 		}
 		string GetString (string strings, int index)
