@@ -21,12 +21,12 @@ namespace GLLancer
 
 		public IniFile (string filename)
 		{
-			Sections = new List<IniSection>();
+			Sections = new List<IniSection> ();
 			using (var stream = File.OpenRead (filename)) {
 				//read in the first 4 bytes of the file. If it equals "BINI" then it is a BINI file
 				byte[] magic_buffer = new byte[4];
 				stream.Read (magic_buffer, 0, 4);
-				if (BitConverter.ToUInt32 (magic_buffer,0) == MAGIC) {
+				if (BitConverter.ToUInt32 (magic_buffer, 0) == MAGIC) {
 					//Read in Binary mode
 					LoadBinary (stream);
 				} else {
@@ -115,7 +115,73 @@ namespace GLLancer
 		void LoadText (Stream stream)
 		{
 			using (var reader = new StreamReader(stream)) {
+				IniSection currentSection = null;
+				while (!reader.EndOfStream) {
+					string s = reader.ReadLine ().Trim ();
+					int comment_index = s.IndexOf (';');
+					if (comment_index != -1)
+						s = s.Substring (0, comment_index);
+					if (string.IsNullOrEmpty (s) || string.IsNullOrWhiteSpace (s))
+						continue;
+					if (s.StartsWith ("[") && s.EndsWith ("]")) {
+						if (currentSection != null)
+							Sections.Add (currentSection);
+						string sectionName = s.Substring (1, s.Length - 2);
+						currentSection = new IniSection (sectionName);
+					} else {
+						if (currentSection == null)
+							throw new Exception ("Broken Ini");
+						if (!s.Contains ("="))
+							continue;
+						string[] split = s.Split ('=');
+						string val = split[1].Trim ();
+						var entry = new IniEntry (split [0].Trim ());
+						IniValueType valuetype;
+						object data;
+						if (val.Contains (",")) {
+							string[] values = val.Split (',');
+							for (int i = 0; i < values.Length; i++) {
+								val = values [i].Trim ();
+								ParseValue (val, out valuetype, out data);
+								if(valuetype == IniValueType.Float)
+								{ //Floats are only grouped with floats
+									entry.Values.Clear ();
+									for (int j = 0; j < values.Length;j++)
+									{
+										val = values[j].Trim ();
+										valuetype = IniValueType.Float;
+										data = float.Parse (val);
+										entry.Values.Add (new IniValue(valuetype,data));
+									}
+									break;
+								}
+								entry.Values.Add (new IniValue(valuetype,data));
+							}
+						currentSection.Entries.Add (entry);
+						} else {
+							ParseValue (val,out valuetype,out data);
+							entry.Values.Add (new IniValue (valuetype, data));
+							currentSection.Entries.Add (entry);
+						}
 
+					}
+				}
+			}
+		}
+
+		void ParseValue (string val, out IniValueType valuetype, out object data)
+		{
+			int i;
+			float f;
+			if (int.TryParse (val, out i)) {
+				valuetype = IniValueType.Integer;
+				data = i;
+			} else if (float.TryParse (val, out f)) {
+				valuetype = IniValueType.Float;
+				data = f;
+			} else {
+				valuetype = IniValueType.String;
+				data = val;
 			}
 		}
 	}
