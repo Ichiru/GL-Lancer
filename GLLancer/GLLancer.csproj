@@ -42,9 +42,14 @@
     <Compile Include="Ini\IniSection.cs" />
     <Compile Include="Ini\IniValueType.cs" />
     <Compile Include="Ini\IniValue.cs" />
+    <Compile Include="Utf\UtfFile.cs" />
+    <Compile Include="Utf\UtfTreeNode.cs" />
+    <Compile Include="Utf\UtfNode.cs" />
+    <Compile Include="Utf\UtfLeafNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Ini\" />
+    <Folder Include="Utf\" />
   </ItemGroup>
 </Project>
