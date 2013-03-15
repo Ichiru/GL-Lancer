@@ -21,17 +21,17 @@ namespace GLLancer
 				byte[] magic = reader.ReadBytes (4);
 				if (Encoding.ASCII.GetString (magic) != "UTF ")
 					throw new Exception ("Not a UTF file");
-				if (reader.ReadUInt32 () != VERSION)
+				if (reader.ReadInt32 () != VERSION)
 					throw new Exception ("UTF Version not recognised");
-				int treeOffset = reader.ReadUInt32 ();
-				int treeSize = reader.ReadUInt32 ();
+				int treeOffset = reader.ReadInt32 ();
+				int treeSize = reader.ReadInt32 ();
 				reader.BaseStream.Seek (2 * sizeof(int), SeekOrigin.Current);
 				//string table
-				int stringsOffset = reader.ReadUInt32 ();
-				int stringsSize = reader.ReadUInt32 ();
+				int stringsOffset = reader.ReadInt32 ();
+				int stringsSize = reader.ReadInt32 ();
 				reader.BaseStream.Seek (sizeof(int), SeekOrigin.Current);
 				//data table
-				int dataOffset = reader.ReadUInt32 ();
+				int dataOffset = reader.ReadInt32 ();
 
 				//read the tree block
 				treeBlock = new byte[treeSize];
@@ -58,13 +58,13 @@ namespace GLLancer
 		UtfNode ReadNode (BinaryReader reader, int offset, string strings, byte[] dataBlock)
 		{
 			reader.BaseStream.Seek (offset, SeekOrigin.Begin);
-			int peerOffset = reader.ReadUInt32 ();
-			string name = GetString (strings, reader.ReadUInt32 ());
-			int flags = reader.ReadUInt32 ();
+			int peerOffset = reader.ReadInt32 ();
+			string name = GetString (strings, reader.ReadInt32 ());
+			int flags = reader.ReadInt32 ();
 			if ((flags & 0x10) == 0x10) { //Tree Node
 				var node = new UtfTreeNode(name,peerOffset);
 				reader.BaseStream.Seek (sizeof(int),SeekOrigin.Current);
-				int childOffset = reader.ReadUInt32 ();
+				int childOffset = reader.ReadInt32 ();
 				int next = childOffset;
 				do {
 					var child = ReadNode (reader,next,strings,dataBlock);
@@ -75,16 +75,16 @@ namespace GLLancer
 			} else if ((flags & 0x80) == 0x80) { //Leaf Node
 				var node = new UtfLeafNode(name,peerOffset);
 				reader.BaseStream.Seek (sizeof(int),SeekOrigin.Current);
-				int dataOffset = reader.ReadUInt32 ();
+				int dataOffset = reader.ReadInt32 ();
 				reader.BaseStream.Seek (sizeof(int),SeekOrigin.Current);
-				int size = reader.ReadUInt32 ();
+				int size = reader.ReadInt32 ();
 				byte[] data = new byte[size];
 				if(size != 0)
 				{
 					Array.Copy (dataBlock,dataOffset,data,0,size);
 				}
 				node.SetData (data);
-				int size2 = reader.ReadUInt32 (); //I suppose something should be done with this
+				int size2 = reader.ReadInt32 (); //I suppose something should be done with this
 				return node;
 			}
 			return null; //fix compiler issues for now. Definitely replace
