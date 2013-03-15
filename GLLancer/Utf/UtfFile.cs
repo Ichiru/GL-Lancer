@@ -10,6 +10,8 @@ namespace GLLancer
 	{
 		const int VERSION = 257;
 		public UtfTreeNode Root { get; private set; }
+
+
 		public UtfFile (string filename)
 		{
 			byte[] treeBlock;
@@ -40,6 +42,7 @@ namespace GLLancer
 				byte[] stringsBuffer = new byte[stringsSize];
 				reader.BaseStream.Seek (stringsOffset, SeekOrigin.Begin);
 				reader.Read (stringsBuffer, 0, stringsSize);
+				//encoding.unicode?
 				strings = Encoding.ASCII.GetString (stringsBuffer);
 
 				//read the data block
