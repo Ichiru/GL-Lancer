@@ -50,12 +50,10 @@
     <Compile Include="Utf\UtfNode.cs" />
     <Compile Include="Utf\UtfLeafNode.cs" />
     <Compile Include="TestWindow.cs" />
-    <Compile Include="Graphics\TGALoader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Ini\" />
     <Folder Include="Utf\" />
-    <Folder Include="Graphics\" />
   </ItemGroup>
 </Project>
