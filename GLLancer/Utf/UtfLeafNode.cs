@@ -1,7 +1,8 @@
 //Copyright (C) Ichiru 2013
 //See LICENSE for licensing information
 using System;
-
+using OpenTK;
+using OpenTK.Graphics;
 namespace GLLancer
 {
 	public class UtfLeafNode : UtfNode
@@ -13,6 +14,11 @@ namespace GLLancer
 					return BitConverter.ToInt32 (data,0);
 				else
 					return null;
+			}
+		}
+		public byte[] ByteArray {
+			get {
+				return data;
 			}
 		}
 		public int[] Int32Array {
@@ -50,6 +56,28 @@ namespace GLLancer
 					}
 					return array;
 				}
+			}
+		}
+		public Vector3? Vector3 {
+			get {
+				if(data.Length == 12)
+				{
+					float[] array = SingleArray;
+					return new Vector3(array[0],array[1],array[2]);
+				}
+				else
+					return null;
+			}
+		}
+		public Color4? Color {
+			get {
+				if(data.Length == 12)
+				{
+					float[] array = SingleArray;
+					return new Color4(array[0],array[1],array[2],1f);
+				}
+				else
+					return null;
 			}
 		}
 		public UtfLeafNode (string name, int peerOffset) : base(name,peerOffset)
