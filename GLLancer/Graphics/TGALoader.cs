@@ -42,6 +42,8 @@ namespace GLLancer
 						byte[] data = reader.ReadBytes(width * height * 4);
 						int id = GL.GenTexture();
 						GL.BindTexture (TextureTarget.Texture2D,id);
+						GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
+            			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
 						GL.TexImage2D (TextureTarget.Texture2D,0,PixelInternalFormat.Rgba,
 						               width,height,0,PixelFormat.Bgra,PixelType.UnsignedByte,data);
 						return id;
@@ -51,6 +53,8 @@ namespace GLLancer
 						byte[] data = reader.ReadBytes (width * height * 3);
 						int id = GL.GenTexture ();
 						GL.BindTexture (TextureTarget.Texture2D,id);
+						GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
+            			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
 						GL.TexImage2D (TextureTarget.Texture2D,0,PixelInternalFormat.Rgb,
 						               width,height,0,PixelFormat.Bgr,PixelType.UnsignedByte,data);
 						return id;
@@ -75,6 +79,8 @@ namespace GLLancer
 						}
 						int id = GL.GenTexture ();
 						GL.BindTexture (TextureTarget.Texture2D,id);
+						GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
+            			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
 						GL.TexImage2D (TextureTarget.Texture2D,0,PixelInternalFormat.Rgba,
 						               width,height,0,PixelFormat.Bgra,PixelType.UnsignedByte,data);
 						return id;
