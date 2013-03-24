@@ -102,13 +102,15 @@ public class AsynchronousSocketListener {
 			// Check for end-of-file tag. If it is not there, read 
 			// more data.
 			content = state.sb.ToString();
-			if (content.IndexOf("<EOF>") > -1) {
+			if (content.IndexOf("EOF") > -1) {
 				// All the data has been read from the 
 				// client. Display it on the console.
 				Console.WriteLine("Read {0} bytes from socket. \n Data : {1}",
 				                  content.Length, content );
 				// Echo the data back to the client.
 				Send(handler, "Bye");
+			} else if (content.IndexOf("HELLO") > -1) {
+				Send(handler, "EHLO");
 			} else {
 				// Not all data received. Get more.
 				handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
@@ -122,10 +124,16 @@ public class AsynchronousSocketListener {
 		byte[] byteData = Encoding.ASCII.GetBytes(data);
 		
 		// Begin sending the data to the remote device.
+
+		if (data == "Bye") {
+			handler.BeginSend(byteData, 0, byteData.Length, 0,
+			                  new AsyncCallback(SendCloseCallback), handler);
+		} else {
 		handler.BeginSend(byteData, 0, byteData.Length, 0,
 		                  new AsyncCallback(SendCallback), handler);
+		}
 	}
-	
+
 	private static void SendCallback(IAsyncResult ar) {
 		try {
 			// Retrieve the socket from the state object.
@@ -133,16 +141,37 @@ public class AsynchronousSocketListener {
 			
 			// Complete sending the data to the remote device.
 			int bytesSent = handler.EndSend(ar);
-			Console.WriteLine("Sent {0} bytes to client.", bytesSent);
-			
-			handler.Shutdown(SocketShutdown.Both);
-			handler.Close();
-			
+			Console.WriteLine("Read {0} bytes from socket.", bytesSent);
+
+			StateObject state = new StateObject();
+			state.workSocket = handler;
+			handler.BeginReceive( state.buffer, 0, StateObject.BufferSize, 0,
+			                     new AsyncCallback(ReadCallback), state);
+
+
 		} catch (Exception e) {
 			Console.WriteLine(e.ToString());
 		}
 	}
-	
+
+	private static void SendCloseCallback(IAsyncResult ar) {
+		try {
+			// Retrieve the socket from the state object.
+			Socket handler = (Socket) ar.AsyncState;
+			
+			// Complete sending the data to the remote device.
+			int bytesSent = handler.EndSend(ar);
+			Console.WriteLine("Read {0} bytes from socket and dropped.", bytesSent);
+			handler.Shutdown(SocketShutdown.Both);
+			handler.Close();
+
+		} catch (Exception e) {
+			Console.WriteLine(e.ToString());
+		}
+	}
+
+
+
 	
 	public static int Main(String[] args) {
 		StartListening();
