@@ -38,4 +38,10 @@
     <Compile Include="Main.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\LancerCommon\LancerCommon.csproj">
+      <Project>{6C1DD1DA-686B-499B-9ED1-D43FD3655205}</Project>
+      <Name>LancerCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

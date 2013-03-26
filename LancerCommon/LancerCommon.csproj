@@ -2,15 +2,15 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1CB5C306-1D52-4182-9A43-829D2CFB48E6}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>GLLancer</RootNamespace>
-    <AssemblyName>GLLancer</AssemblyName>
+    <ProjectGuid>{6C1DD1DA-686B-499B-9ED1-D43FD3655205}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>LancerCommon</RootNamespace>
+    <AssemblyName>LancerCommon</AssemblyName>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -18,39 +18,38 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-    <Externalconsole>true</Externalconsole>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-    <Externalconsole>true</Externalconsole>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="OpenTK">
       <HintPath>..\Third-Party\OpenTK.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="TestWindow.cs" />
-    <Compile Include="Graphics\TGALoader.cs" />
+    <Compile Include="Ini\IniFile.cs" />
+    <Compile Include="Ini\IniEntry.cs" />
+    <Compile Include="Ini\IniSection.cs" />
+    <Compile Include="Ini\IniValueType.cs" />
+    <Compile Include="Ini\IniValue.cs" />
+    <Compile Include="Utf\UtfFile.cs" />
+    <Compile Include="Utf\UtfTreeNode.cs" />
+    <Compile Include="Utf\UtfNode.cs" />
+    <Compile Include="Utf\UtfLeafNode.cs" />
+    <Compile Include="VMesh\VMeshData.cs" />
+    <Compile Include="VMesh\D3DFVF.cs" />
+    <Compile Include="VMesh\TMeshHeader.cs" />
+    <Compile Include="VMesh\TTriangle.cs" />
+    <Compile Include="VMesh\TVertex.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Graphics\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LancerCommon\LancerCommon.csproj">
-      <Project>{6C1DD1DA-686B-499B-9ED1-D43FD3655205}</Project>
-      <Name>LancerCommon</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

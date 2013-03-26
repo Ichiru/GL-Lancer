@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLLancer", "GLLancer\GLLanc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LServer", "LServer\LServer.csproj", "{43EAED2E-1769-431F-982E-E1C8E11F44CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LancerCommon", "LancerCommon\LancerCommon.csproj", "{6C1DD1DA-686B-499B-9ED1-D43FD3655205}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -25,6 +27,10 @@ Global
 		{43EAED2E-1769-431F-982E-E1C8E11F44CB}.Debug|x86.Build.0 = Debug|x86
 		{43EAED2E-1769-431F-982E-E1C8E11F44CB}.Release|x86.ActiveCfg = Release|x86
 		{43EAED2E-1769-431F-982E-E1C8E11F44CB}.Release|x86.Build.0 = Release|x86
+		{6C1DD1DA-686B-499B-9ED1-D43FD3655205}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6C1DD1DA-686B-499B-9ED1-D43FD3655205}.Debug|x86.Build.0 = Debug|Any CPU
+		{6C1DD1DA-686B-499B-9ED1-D43FD3655205}.Release|x86.ActiveCfg = Release|Any CPU
+		{6C1DD1DA-686B-499B-9ED1-D43FD3655205}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection

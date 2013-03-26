@@ -18,7 +18,7 @@ namespace GLLancer
 
 		public VMeshData (UtfLeafNode leaf)
 		{
-			using(var reader = new BinaryReader(new MemoryStream(leaf)))
+			using(var reader = new BinaryReader(new MemoryStream(leaf.ByteArray)))
 			{
 				MeshType = reader.ReadUInt32 ();
 				SurfaceType = reader.ReadUInt32 ();
@@ -35,8 +35,8 @@ namespace GLLancer
 				default:
 					throw new Exception("Unhandled FVF Format: " + FlexibleVertexFormat.ToString ());
 				}
-				int triangleStartOffset = reader.ReadUInt32();
-				int vertexBaseOffset = reader.ReadUInt32 ();
+				int triangleStartOffset = reader.ReadInt32();
+				int vertexBaseOffset = reader.ReadInt32 ();
 				for(int i = 0; i < NumMeshes;i++)
 				{
 					TMeshHeader item = new TMeshHeader();
