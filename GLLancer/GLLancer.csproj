@@ -42,6 +42,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="TestWindow.cs" />
+    <Compile Include="Shader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -49,5 +50,26 @@
       <Project>{6C1DD1DA-686B-499B-9ED1-D43FD3655205}</Project>
       <Name>LancerCommon</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Shaders\" />
+    <Folder Include="Shaders\includes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\includes\light.fragh">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Shaders\includes\basicposition.fragh">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Shaders\quadtexture_vs.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Shaders\quadtexture.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Shaders\quadtexture_fs.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

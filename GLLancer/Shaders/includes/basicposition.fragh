@@ -1,0 +1,14 @@
+//
+// Function declarations
+//
+
+vec4 PositionPS( in vec4 xlat_var_input );
+
+//
+// Function definitions
+//
+
+vec4 PositionPS( in vec4 xlat_var_input ) {
+
+    return vec4( (vec3( 1.00000, 0.000000, 0.000000) * vec3( AmbientColor)), 1.00000);
+}

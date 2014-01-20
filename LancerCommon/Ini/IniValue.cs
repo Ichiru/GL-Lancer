@@ -13,6 +13,14 @@ namespace GLLancer
 			ValueType = valueType;
 			Data = data;
 		}
+		public static implicit operator string (IniValue i)
+		{
+			if (i.ValueType == IniValueType.String) {
+				return (string)i.Data;
+			} else {
+				return i.Data.ToString ();
+			}
+		}
 	}
 }
 

@@ -168,7 +168,10 @@ namespace GLLancer
 
 					}
 				}
+				if (currentSection != null)
+					Sections.Add (currentSection);
 			}
+
 		}
 
 		void ParseValue (string val, out IniValueType valuetype, out object data)
