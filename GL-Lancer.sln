@@ -35,6 +35,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = LServer\LServer.csproj
+		StartupItem = GLLancer\GLLancer.csproj
 	EndGlobalSection
 EndGlobal

@@ -1,18 +1,26 @@
 using System;
 using OpenTK;
-using OpenTK.Input;
+using OpenTK.Graphics.OpenGL;
+using OpenTK.Graphics;
 namespace GLLancer
 {
 	public class TestWindow : GameWindow
 	{
 		public TestWindow () : base(640,480)
 		{
-			KeyPress += HandleKeyPress;
+
 		}
 
-		void HandleKeyPress (object sender, KeyPressEventArgs e)
+		protected override void OnLoad (EventArgs e)
 		{
-			Console.Write (e.KeyChar);
+			GL.ClearColor (Color4.Black);
+			base.OnLoad (e);
+		}
+		protected override void OnRenderFrame (FrameEventArgs e)
+		{
+			GL.Clear (ClearBufferMask.ColorBufferBit);
+			SwapBuffers ();
+			base.OnRenderFrame (e);
 		}
 
 	}

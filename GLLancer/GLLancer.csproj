@@ -36,6 +36,7 @@
     <Reference Include="OpenTK">
       <HintPath>..\Third-Party\OpenTK.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />

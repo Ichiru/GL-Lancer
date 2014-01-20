@@ -1,3 +1,150 @@
-This is a custom made version of OpenTK with GLES support and the Compute namespace removed.
-It also features a few bugfixes for the Mac and Linux Platform.
-This is -not- an official OpenTK release
+The Open Toolkit 1.1 (commit no. 15231d4c73d237d282a3aed9c9a52bef740ef77d)
+22 November 2013
+
+
+
+[Overview]
+
+This is a beta release for OpenTK 1.1
+
+New in OpenTK 1.1:
+- support for OpenGL 4.4 and OpenGL ES 3.0
+- strongly-typed enums for OpenGL ES 2.0 and 3.0
+- inline documentation for all OpenGL and OpenGL ES core functions
+- a new SDL2 backend for improved platform compatibility
+- a greatly expanded math library
+- numerous bugfixes for Mac OS X, Windows 8 and Linux
+- ANGLE support for Windows systems without OpenGL drivers
+- Support for Retina / high-DPI monitors
+
+All users are strongly encouraged to upgrade to OpenTK 1.1
+
+
+Visit http://www.opentk.com for the latest news and information on the Open Toolkit library
+
+Download the source code at https://github.com/opentk/opentk
+
+
+
+[Resolved issues]
+
+Please refer to the following pages:
+- https://github.com/opentk/opentk/issues/closed
+- http://www.opentk.com/project/issues/opentk?sort=desc&order=Last+updated&text=&versions=1357%2C1395&states=2%2C7&submitted=&assigned=&participated=&form_token=a33a92f28934981edc50bea360f01762&form_id=project_issue_query
+
+
+
+[Known issues]
+
+- [all] The size of OpenTK.dll can be reduced.
+
+- [all] GamePad API throws NotImplementedException.
+
+- [all] Keyboard API exposes ushort parameter.
+
+- [SDL] does not support ChangeResolution API.
+
+- [SDL] does not support multiple keyboards/mice.
+
+- [SDL] does not support GLControl.
+
+- [Mac/Carbon] does not support Retina resolutions. Please use the SDL backend instead.
+
+
+
+[Report an issue]
+If you encounter an issue, please report it at:
+https://github.com/opentk/opentk/issues
+
+Highest priority will be given to regressions from OpenTK 1.0
+
+
+
+[API compatibility]
+
+The vast majority of projects will be able to upgrade to OpenTK 1.1 without any modifications. However, due to updates in the official OpenGL specification and due to bugfixes in the binding generator, a number of OpenGL signatures have changed between OpenTK 1.0 and 1.1.
+
+Modified signatures have been marked with the [Obsolete] attribute. A warning message will be generated with instructions on a suggested replacement.
+
+In a small number of cases, using the original signature would lead to incorrect results or a crash. These cases will generate a compiler error now. If you use any of the following signatures, please apply the suggested modification:
+
+Namespace OpenTK.Graphics.OpenGL
+Change signature:
+- GL.MultiDrawArrays (“out” -> “ref”)
+- GL.Amd.DeletePerfMonitors (“out” -> “ref”)
+
+Change signature (may cause crash):
+- GL.Apple.ObjectPurgeable (returns “AppleObjectPurgeable” instead of “IntPtr”)
+- GL.Ext.SeparableFilter2D
+- GL.Ibm.EdgeFlagPointerList (“bool[]” -> “bool*[]”)
+- GL.NV.TransformFeedbackVaryings (“string[]” -> “int[]”)
+
+Change return type:
+- GL.WaitSync (returns “WaitSyncFlags” instead of “ArbSync”)
+
+
+Namespace OpenTK.Graphics.ES11
+Change return type:
+- GL.GetError (“ErrorCode” instead of “All”)
+
+Change “ref” parameters to “out”:
+- GL.GenBuffers
+- GL.GenTextures
+- GL.GetBoolean
+- GL.GetBufferParameter
+- GL.GetClipPlane
+- GL.GetClipPlanex
+- GL.GetFixed
+- GL.GetFloat
+- GL.GetInteger
+- GL.GetLight
+- GL.GetLightx
+- GL.GetMaterial
+- GL.GetMaterialx
+- GL.GetTexEnv
+- GL.GetTexEnvx
+- GL.GetTexParameter
+- GL.GetTexParameterx
+- GL.Oes.GenFramebuffers
+- GL.Oes.GetClipPlane
+- GL.Oes.GetClipPlanex
+- GL.Oes.GetFixed
+- GL.Oes.GetFramebufferAttachmentParameter
+- GL.Oes.GetLightx
+- GL.Oes.GetMaterialx
+- GL.Oes.GetRenderbufferParameter
+- GL.Oes.GetTexEnvx
+- GL.Oes.GetTexGen
+- GL.Oes.GetTexGenx
+- GL.Oes.GetTexParameterx
+- GL.Oes.QueryMatrixx
+- GL.NV.GenFences
+- GL.NV.GetFence
+
+Change namespace:
+- GL.ClipPlanefIMG -> GL.Img.ClipPlane
+- GL.DisableDriverControlQCOM -> GL.Qcom.DisableDriverControl
+
+
+Namespace OpenTK.Graphics.ES20.GL
+Change signature (may cause crash):
+- GL.NV.GetFence now takes three parameters instead of two
+
+Change “ref” parameters to “out”:
+- GL.GetActiveAttrib
+- GL.GetActiveUniform
+- GL.GetAttachedShaders
+- GL.GetProgramInfoLog
+- GL.GetShaderInfoLog
+- GL.GetShaderSource
+- GL.Amd.GetPerfMonitorCounterData
+- GL.Amd.GetPerfMonitorCounters
+- GL.Amd.GetPerfMonitorCounterString
+- GL.Amd.GetPerfMonitorGroup
+- GL.Amd.GetPerfMonitorGroupString
+- GL.Amd.SelectPerfMonitorCounters
+
+Change namespace:
+- GL.DisableDriverControlQCOM -> GL.Qcom.DisableDriverControl
+- GL.GetDriverControlsQCOM -> GL.Qcom.GetDriverControls
+- GL.GetDriverControlStringQCOM -> GL.Qcom.GetDriverControlString
