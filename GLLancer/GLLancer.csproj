@@ -42,12 +42,8 @@
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="TestWindow.cs" />
-    <Compile Include="Graphics\TGALoader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Graphics\" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LancerCommon\LancerCommon.csproj">
       <Project>{6C1DD1DA-686B-499B-9ED1-D43FD3655205}</Project>

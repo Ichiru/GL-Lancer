@@ -50,6 +50,7 @@
     <Compile Include="VMesh\TMeshHeader.cs" />
     <Compile Include="VMesh\TTriangle.cs" />
     <Compile Include="VMesh\TVertex.cs" />
+    <Compile Include="Graphics\TGALoader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
