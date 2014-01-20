@@ -11,7 +11,10 @@ namespace GLLancer
 		const int VERSION = 257;
 		public UtfTreeNode Root { get; private set; }
 
-
+		public UtfFile (UtfTreeNode root)
+		{
+			Root = root;
+		}
 		public UtfFile (string filename)
 		{
 			byte[] treeBlock;

@@ -1,25 +1,26 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="LancerCommon/VMesh/VMeshData.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="LancerCommon/VMesh/VmsFile.cs">
     <Files>
-      <File FileName="GLLancer/Main.cs" Line="1" Column="1" />
-      <File FileName="GLLancer/TestWindow.cs" Line="18" Column="4" />
-      <File FileName="LancerCommon/VMesh/TTriangle.cs" Line="1" Column="1" />
-      <File FileName="LancerCommon/VMesh/VMeshData.cs" Line="16" Column="6" />
+      <File FileName="GLLancer/TestWindow.cs" Line="12" Column="4" />
+      <File FileName="LancerCommon/VMesh/VMeshData.cs" Line="1" Column="1" />
+      <File FileName="GLLancer/Main.cs" Line="15" Column="19" />
+      <File FileName="LancerCommon/VMesh/VmsFile.cs" Line="5" Column="32" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Solution Items" expanded="True" />
           <Node name="GLLancer" expanded="True">
-            <Node name="References" expanded="True" />
-          </Node>
-          <Node name="LancerCommon" expanded="True">
-            <Node name="Ini" expanded="True" />
-            <Node name="Utf" expanded="True" />
-            <Node name="VMesh" expanded="True">
-              <Node name="VMeshData.cs" selected="True" />
+            <Node name="Shaders" expanded="True">
+              <Node name="includes" expanded="True" />
             </Node>
+          </Node>
+          <Node name="LancerCommon" expanded="True" selected="True">
+            <Node name="References" expanded="True" />
+            <Node name="Graphics" expanded="True" />
+            <Node name="Ini" expanded="True" />
+            <Node name="VMesh" expanded="True" />
           </Node>
           <Node name="LServer" expanded="True" />
         </State>

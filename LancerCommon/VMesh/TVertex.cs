@@ -1,7 +1,8 @@
 using System;
-
+using System.Runtime.InteropServices;
 namespace GLLancer
 {
+	[StructLayout(LayoutKind.Sequential)]
 	public struct TVertex
 	{
 		public D3DFVF FVF;

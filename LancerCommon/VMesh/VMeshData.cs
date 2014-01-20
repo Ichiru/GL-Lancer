@@ -10,22 +10,21 @@ namespace GLLancer
 		public ushort NumMeshes;
 		public ushort NumVertices;
 		public D3DFVF FlexibleVertexFormat;
-		public ushort NumRefVertices;
+		public ushort NumIndices;
 
 		public List<TMeshHeader> Meshes = new List<TMeshHeader>();
-		public List<TTriangle> Triangles = new List<TTriangle>();
 		public List<TVertex> Vertices = new List<TVertex>();
-
+		public ushort[] Indices;
 		public VMeshData (UtfLeafNode leaf)
 		{
 			using(var reader = new BinaryReader(new MemoryStream(leaf.ByteArray)))
 			{
-				MeshType = reader.ReadUInt32 ();
-				SurfaceType = reader.ReadUInt32 ();
-				NumMeshes = reader.ReadUInt16 ();
-				NumRefVertices = reader.ReadUInt16 ();
-				FlexibleVertexFormat = (D3DFVF)reader.ReadUInt16 ();
-				NumVertices = reader.ReadUInt16 ();
+				MeshType = reader.ReadUInt32();
+				SurfaceType = reader.ReadUInt32();
+				NumMeshes = reader.ReadUInt16();
+				NumIndices = reader.ReadUInt16();
+				FlexibleVertexFormat = (D3DFVF)reader.ReadUInt16();
+				NumVertices = reader.ReadUInt16();
 				switch(FlexibleVertexFormat)
 				{
 				case D3DFVF.XYZ | D3DFVF.Normal:
@@ -35,39 +34,33 @@ namespace GLLancer
 				default:
 					throw new Exception("Unhandled FVF Format: " + FlexibleVertexFormat.ToString ());
 				}
-				int triangleStartOffset = reader.ReadInt32();
-				int vertexBaseOffset = reader.ReadInt32 ();
+				int triangleStartOffset = 0;
 				for(int i = 0; i < NumMeshes;i++)
 				{
 					TMeshHeader item = new TMeshHeader();
-					item.MaterialCrc = reader.ReadUInt32 ();
-					item.StartVertex = reader.ReadUInt16 ();
-					item.EndVertex = reader.ReadUInt16 ();
-					item.NumRefVertices = reader.ReadUInt16 ();
-					item.Padding = reader.ReadUInt16 ();
+					item.MaterialCrc = reader.ReadUInt32();
+					item.StartVertex = reader.ReadUInt16();
+					item.EndVertex = reader.ReadUInt16();
+					item.NumRefVertices = reader.ReadUInt16();
+					item.Padding = reader.ReadUInt16();
 					item.TriangleStart = triangleStartOffset;
 					triangleStartOffset += item.NumRefVertices;
-					item.BaseVertex = vertexBaseOffset;
-					vertexBaseOffset += item.EndVertex - item.StartVertex + 1;
+					Console.WriteLine (triangleStartOffset);
 					Meshes.Add (item);
 				}
-				int num_triangles = NumRefVertices / 3;
-				for(int i = 0; i < num_triangles;i++)
-				{
-					TTriangle item = new TTriangle();
-					item.Vertex1 = reader.ReadUInt16();
-					item.Vertex2 = reader.ReadUInt16 ();
-					item.Vertex3 = reader.ReadUInt16 ();
-					Triangles.Add (item);
-				}
+				Indices = new ushort[NumIndices];
+				for (int i = 0; i < NumIndices; i++) Indices[i] = reader.ReadUInt16();
 				try {
 					for(int i = 0; i < NumVertices;i++)
 					{
 						TVertex item = new TVertex();
 						item.FVF = FlexibleVertexFormat;
-						item.X = reader.ReadSingle ();
-						item.Y = reader.ReadSingle ();
-						item.Z = reader.ReadSingle ();
+						if((FlexibleVertexFormat & D3DFVF.XYZ) == D3DFVF.XYZ)
+						{
+							item.X = reader.ReadSingle ();
+							item.Y = reader.ReadSingle ();
+							item.Z = reader.ReadSingle ();
+						}
 						if((FlexibleVertexFormat & D3DFVF.Normal) == D3DFVF.Normal)
 						{
 							item.NormalX = reader.ReadSingle ();
@@ -92,7 +85,7 @@ namespace GLLancer
 						}
 						Vertices.Add (item);
 					}
-				} catch (Exception ex) {
+				} catch (Exception) {
 					throw new Exception("Header has more vertices than data");
 				}
 			}
