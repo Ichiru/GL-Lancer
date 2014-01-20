@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EA2B65BD-27A6-4709-B5CB-93159BED246F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FLApi</RootNamespace>
+    <AssemblyName>FlApi</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DocumentationFile>..\Release\FlApi.XML</DocumentationFile>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\Third-Party\MonoGame-SDL2\MonoGame.Framework\bin\SDL2\Release\MonoGame.Framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Camera.cs" />
+    <Compile Include="Cameras.cs" />
+    <Compile Include="Characters\Accessory.cs" />
+    <Compile Include="Characters\Bodypart.cs" />
+    <Compile Include="Characters\BodypartsIni.cs" />
+    <Compile Include="Characters\Costume.cs" />
+    <Compile Include="Characters\CostumesIni.cs" />
+    <Compile Include="DataEventArgs.cs" />
+    <Compile Include="DataIniFile.cs" />
+    <Compile Include="PetalDbIni.cs" />
+    <Compile Include="Universe\NamedObject.cs" />
+    <Compile Include="Utf\Anm\AnmFile.cs" />
+    <Compile Include="Utf\Anm\Channel.cs" />
+    <Compile Include="Utf\Anm\Frame.cs" />
+    <Compile Include="Utf\Anm\Script.cs" />
+    <Compile Include="Utf\Cmp\CmpFile.cs" />
+    <Compile Include="Utf\AbstractConstruct.cs" />
+    <Compile Include="Utf\ConstructCollection.cs" />
+    <Compile Include="Utf\FixConstruct.cs" />
+    <Compile Include="Utf\Cmp\FixedHardpoint.cs" />
+    <Compile Include="Utf\Cmp\Hardpoint.cs" />
+    <Compile Include="Utf\Cmp\ModelFile.cs" />
+    <Compile Include="Utf\Cmp\Part.cs" />
+    <Compile Include="Utf\LooseConstruct.cs" />
+    <Compile Include="Utf\PrisConstruct.cs" />
+    <Compile Include="Utf\RevConstruct.cs" />
+    <Compile Include="Utf\Cmp\RevoluteHardpoint.cs" />
+    <Compile Include="Utf\SphereConstruct.cs" />
+    <Compile Include="Utf\Cmp\VMeshRef.cs" />
+    <Compile Include="FreelancerIni.cs" />
+    <Compile Include="Utf\Dfm\Bone.cs" />
+    <Compile Include="Utf\Dfm\DfmFile.cs" />
+    <Compile Include="Equipment\AbstractEquipment.cs" />
+    <Compile Include="Equipment\Equip.cs" />
+    <Compile Include="Equipment\EquipmentIni.cs" />
+    <Compile Include="Equipment\Light.cs" />
+    <Compile Include="IDrawable.cs" />
+    <Compile Include="ILibFile.cs" />
+    <Compile Include="Utf\Dfm\FaceGroup.cs" />
+    <Compile Include="Utf\Dfm\Mesh.cs" />
+    <Compile Include="Utf\Dfm\Part.cs" />
+    <Compile Include="Utf\Mat\DDSLib.cs" />
+    <Compile Include="Utf\Mat\Material.cs" />
+    <Compile Include="Utf\Mat\Materials\AbstractDcDtAc.cs" />
+    <Compile Include="Utf\Mat\Materials\AbstractDcDtAcFlip.cs" />
+    <Compile Include="Utf\Mat\Materials\AbstractDcDtAcFlipDmTwo.cs" />
+    <Compile Include="Utf\Mat\Materials\AbstractDcDtAcFlipTile.cs" />
+    <Compile Include="Utf\Mat\Materials\AtmosphereMaterial.cs" />
+    <Compile Include="Utf\Mat\Materials\DcDt.cs" />
+    <Compile Include="Utf\Mat\Materials\DcDtBt.cs" />
+    <Compile Include="Utf\Mat\Materials\DcDtBtOcOt.cs" />
+    <Compile Include="Utf\Mat\Materials\DcDtEc.cs" />
+    <Compile Include="Utf\Mat\Materials\DcDtEcOcOt.cs" />
+    <Compile Include="Utf\Mat\Materials\DcDtEt.cs" />
+    <Compile Include="Utf\Mat\Materials\DcDtOcOt.cs" />
+    <Compile Include="Utf\Mat\Materials\DetailMap2Dm1Msk2PassMaterial.cs" />
+    <Compile Include="Utf\Mat\Materials\DetailMapMaterial.cs" />
+    <Compile Include="Utf\Mat\Materials\IllumDetailMapMaterial.cs" />
+    <Compile Include="Utf\Mat\Materials\Masked2DetailMapMaterial.cs" />
+    <Compile Include="Utf\Mat\Materials\Nebula.cs" />
+    <Compile Include="Utf\Mat\Materials\NullMaterial.cs" />
+    <Compile Include="Utf\Mat\MatFile.cs" />
+    <Compile Include="Utf\Mat\SphFile.cs" />
+    <Compile Include="Utf\Mat\TextureData.cs" />
+    <Compile Include="Utf\Mat\TGALib.cs" />
+    <Compile Include="Utf\Mat\TxmFile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Solar\AirlockGate.cs" />
+    <Compile Include="Solar\CollisionGroup.cs" />
+    <Compile Include="Solar\DestroyableDepot.cs" />
+    <Compile Include="Solar\DockingRing.cs" />
+    <Compile Include="Solar\JumpGate.cs" />
+    <Compile Include="Solar\JumpHole.cs" />
+    <Compile Include="Solar\Loadout.cs" />
+    <Compile Include="Solar\LoadoutsIni.cs" />
+    <Compile Include="Solar\MissionSattelite.cs" />
+    <Compile Include="Solar\NonTargetable.cs" />
+    <Compile Include="Solar\Planet.cs" />
+    <Compile Include="Solar\Sattelite.cs" />
+    <Compile Include="Archetype.cs" />
+    <Compile Include="Solar\SolararchIni.cs" />
+    <Compile Include="Solar\Star.cs" />
+    <Compile Include="Solar\StararchIni.cs" />
+    <Compile Include="Solar\Station.cs" />
+    <Compile Include="Solar\Sun.cs" />
+    <Compile Include="Solar\TradelaneRing.cs" />
+    <Compile Include="Solar\Waypoint.cs" />
+    <Compile Include="Solar\WeaponsPlatform.cs" />
+    <Compile Include="Universe\SystemPart.cs" />
+    <Compile Include="Universe\AsteroidBillboards.cs" />
+    <Compile Include="Universe\AsteroidField.cs" />
+    <Compile Include="Universe\Band.cs" />
+    <Compile Include="Universe\Base.cs" />
+    <Compile Include="Universe\Asteroid.cs" />
+    <Compile Include="Universe\DynamicAsteroids.cs" />
+    <Compile Include="Universe\Encounter.cs" />
+    <Compile Include="Universe\EncounterParameter.cs" />
+    <Compile Include="Universe\ExclusionZone.cs" />
+    <Compile Include="Universe\Field.cs" />
+    <Compile Include="Universe\JumpReference.cs" />
+    <Compile Include="Universe\LightSource.cs" />
+    <Compile Include="Universe\LightType.cs" />
+    <Compile Include="Universe\LootableZone.cs" />
+    <Compile Include="Universe\Nebula.cs" />
+    <Compile Include="Universe\NebulaLight.cs" />
+    <Compile Include="Universe\ZoneShape.cs" />
+    <Compile Include="Universe\SystemObject.cs" />
+    <Compile Include="Universe\Room.cs" />
+    <Compile Include="Universe\StarSystem.cs" />
+    <Compile Include="Universe\TexturePanels.cs" />
+    <Compile Include="Universe\UniverseIni.cs" />
+    <Compile Include="Universe\UniverseElement.cs" />
+    <Compile Include="Universe\Zone.cs" />
+    <Compile Include="Universe\ZoneReference.cs" />
+    <Compile Include="Utf\Vms\D3DFVF.cs" />
+    <Compile Include="Utf\Vms\TMeshHeader.cs" />
+    <Compile Include="Utf\Vms\Vertices\VertexPosition.cs" />
+    <Compile Include="Utf\Vms\Vertices\VertexPositionNormal.cs" />
+    <Compile Include="Utf\Vms\Vertices\VertexPositionNormalDiffuseTexture.cs" />
+    <Compile Include="Utf\Vms\Vertices\VertexPositionNormalDiffuseTextureTwo.cs" />
+    <Compile Include="Utf\Vms\Vertices\VertexPositionNormalTextureTangentBinormal.cs" />
+    <Compile Include="Utf\Vms\Vertices\VertexPositionNormalTextureTwo.cs" />
+    <Compile Include="Utf\Vms\VMeshData.cs" />
+    <Compile Include="Utf\Vms\VmsFile.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\FLParser\FLParser.csproj">
+      <Project>{C7A198FE-D725-420F-B04E-0484E12AACF4}</Project>
+      <Name>FLParser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RenderTools\RenderTools.csproj">
+      <Project>{84C04335-CC8F-4895-82F2-48AC39097623}</Project>
+      <Name>RenderTools</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

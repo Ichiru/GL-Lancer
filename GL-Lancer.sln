@@ -9,9 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLLancer", "GLLancer\GLLancer.csproj", "{1CB5C306-1D52-4182-9A43-829D2CFB48E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LServer", "LServer\LServer.csproj", "{43EAED2E-1769-431F-982E-E1C8E11F44CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FLApi", "FLApi\FLApi.csproj", "{EA2B65BD-27A6-4709-B5CB-93159BED246F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LancerCommon", "LancerCommon\LancerCommon.csproj", "{6C1DD1DA-686B-499B-9ED1-D43FD3655205}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FLParser", "FLParser\FLParser.csproj", "{C7A198FE-D725-420F-B04E-0484E12AACF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderTools", "RenderTools\RenderTools.csproj", "{84C04335-CC8F-4895-82F2-48AC39097623}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,14 +25,18 @@ Global
 		{1CB5C306-1D52-4182-9A43-829D2CFB48E6}.Debug|x86.Build.0 = Debug|x86
 		{1CB5C306-1D52-4182-9A43-829D2CFB48E6}.Release|x86.ActiveCfg = Release|x86
 		{1CB5C306-1D52-4182-9A43-829D2CFB48E6}.Release|x86.Build.0 = Release|x86
-		{43EAED2E-1769-431F-982E-E1C8E11F44CB}.Debug|x86.ActiveCfg = Debug|x86
-		{43EAED2E-1769-431F-982E-E1C8E11F44CB}.Debug|x86.Build.0 = Debug|x86
-		{43EAED2E-1769-431F-982E-E1C8E11F44CB}.Release|x86.ActiveCfg = Release|x86
-		{43EAED2E-1769-431F-982E-E1C8E11F44CB}.Release|x86.Build.0 = Release|x86
-		{6C1DD1DA-686B-499B-9ED1-D43FD3655205}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6C1DD1DA-686B-499B-9ED1-D43FD3655205}.Debug|x86.Build.0 = Debug|Any CPU
-		{6C1DD1DA-686B-499B-9ED1-D43FD3655205}.Release|x86.ActiveCfg = Release|Any CPU
-		{6C1DD1DA-686B-499B-9ED1-D43FD3655205}.Release|x86.Build.0 = Release|Any CPU
+		{84C04335-CC8F-4895-82F2-48AC39097623}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{84C04335-CC8F-4895-82F2-48AC39097623}.Debug|x86.Build.0 = Debug|Any CPU
+		{84C04335-CC8F-4895-82F2-48AC39097623}.Release|x86.ActiveCfg = Release|Any CPU
+		{84C04335-CC8F-4895-82F2-48AC39097623}.Release|x86.Build.0 = Release|Any CPU
+		{C7A198FE-D725-420F-B04E-0484E12AACF4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C7A198FE-D725-420F-B04E-0484E12AACF4}.Debug|x86.Build.0 = Debug|Any CPU
+		{C7A198FE-D725-420F-B04E-0484E12AACF4}.Release|x86.ActiveCfg = Release|Any CPU
+		{C7A198FE-D725-420F-B04E-0484E12AACF4}.Release|x86.Build.0 = Release|Any CPU
+		{EA2B65BD-27A6-4709-B5CB-93159BED246F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EA2B65BD-27A6-4709-B5CB-93159BED246F}.Debug|x86.Build.0 = Debug|Any CPU
+		{EA2B65BD-27A6-4709-B5CB-93159BED246F}.Release|x86.ActiveCfg = Release|Any CPU
+		{EA2B65BD-27A6-4709-B5CB-93159BED246F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection

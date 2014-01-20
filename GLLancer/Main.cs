@@ -11,12 +11,9 @@ namespace GLLancer
 		{
 			FreelancerDirectory = Console.ReadLine ();
 			AssemblyDirectory = Path.GetDirectoryName (Assembly.GetExecutingAssembly ().Location);
-			var s = new Shader ("quadtexture");
-			var mesh = new CmpFile (Path.Combine (FreelancerDirectory, "DATA/SHIPS/ORDER/OR_ELITE/or_elite.cmp"));
-			Console.WriteLine ();
-			/*using (var window = new TestWindow()) {
-				window.Run ();
-			}*/
+			using (var game = new MainGame()) {
+				game.Run ();
+			}
 		}
 	}
 }
