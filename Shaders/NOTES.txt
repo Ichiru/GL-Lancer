@@ -1,0 +1,1 @@
+Shaders can't use structs or MGCB crashes
