@@ -3,4 +3,4 @@
 	url = https://github.com/flibitijibibo/MonoGame.git
 [submodule "Third-Party/MGCB"]
 	path = Third-Party/MGCB
-	url = git@github.com:Ichiru/mgcb-binaries.git
+	url = https://github.com/Ichiru/mgcb-binaries.git
