@@ -1,0 +1,3 @@
+[submodule "Third-Party/MonoGame-SDL2"]
+	path = Third-Party/MonoGame-SDL2
+	url = https://github.com/flibitijibibo/MonoGame.git
