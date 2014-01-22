@@ -2,15 +2,21 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="GLLancer/MainGame.cs">
     <Files>
-      <File FileName="GLLancer/MainGame.cs" Line="34" Column="27" />
+      <File FileName="GLLancer/MainGame.cs" Line="32" Column="44" />
+      <File FileName="GLLancer/Main.cs" Line="12" Column="6" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True">
-          <Node name="Solution Items" expanded="True" />
+        <State expanded="True">
           <Node name="FLApi" expanded="True" />
-          <Node name="FLParser" expanded="True" />
-          <Node name="GLLancer" expanded="True" />
+          <Node name="FLParser" expanded="True">
+            <Node name="References" expanded="True" />
+          </Node>
+          <Node name="GLLancer" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="effects" expanded="True" />
+            </Node>
+          </Node>
         </State>
       </Pad>
       <Pad Id="ClassPad">

@@ -9,7 +9,7 @@ namespace GLLancer
 		public static string AssemblyDirectory;
 		public static void Main (string[] args)
 		{
-			FreelancerDirectory = Console.ReadLine ();
+			//FreelancerDirectory = Console.ReadLine ();
 			AssemblyDirectory = Path.GetDirectoryName (Assembly.GetExecutingAssembly ().Location);
 			using (var game = new MainGame()) {
 				game.Run ();

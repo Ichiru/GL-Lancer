@@ -26,7 +26,7 @@ namespace GLLancer
 		}
 		protected override void LoadContent ()
 		{
-
+			var efx = Content.Load<Effect> ("effects/Planet");
 			base.LoadContent ();
 		}
 		protected override void Update (GameTime gameTime)
