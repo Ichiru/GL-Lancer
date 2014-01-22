@@ -69,6 +69,8 @@
     <Compile Include="Ini\Section.cs" />
     <Compile Include="Ini\IValue.cs" />
     <Compile Include="Ini\IniValueType.cs" />
+    <Compile Include="Dll\IDllProvider.cs" />
+    <Compile Include="Dll\Win32DllProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -81,4 +83,16 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Dll\" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <DotNetNamingPolicy DirectoryNamespaceAssociation="PrefixedHierarchical" ResourceNamePolicy="FileFormatDefault" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
 </Project>
