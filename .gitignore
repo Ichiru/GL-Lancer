@@ -3,3 +3,6 @@ obj/
 [Bb]in/
 [Dd]ebug/
 [Rr]elease/
+# Files
+*.suo
+*.userprefs

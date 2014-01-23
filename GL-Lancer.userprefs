@@ -1,26 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FLParser/DllFile.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ShaderCompiler/Program.cs">
     <Files>
-      <File FileName="GLLancer/MainGame.cs" Line="32" Column="44" />
       <File FileName="GLLancer/Main.cs" Line="1" Column="1" />
-      <File FileName="FLParser/DllFile.cs" Line="25" Column="1" />
+      <File FileName="GLLancer/MainGame.cs" Line="4" Column="40" />
+      <File FileName="ShaderCompiler/Program.cs" Line="14" Column="5" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="FLApi" expanded="True" />
-          <Node name="FLParser" expanded="True">
-            <Node name="Dll" expanded="True" />
-            <Node name="Utf" expanded="True" />
-            <Node name="DllFile.cs" selected="True" />
-          </Node>
-          <Node name="GLLancer" expanded="True">
-            <Node name="References" expanded="True" />
-            <Node name="Assets" expanded="True">
-              <Node name="effects" expanded="True" />
+          <Node name="Tools" expanded="True">
+            <Node name="ShaderCompiler" expanded="True">
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
+          <Node name="GLLancer" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">

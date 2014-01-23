@@ -4,18 +4,14 @@ float4x4 Projection;
 
 float3 Dc = 1;
 
-float4 VertexShaderFunction(in float4 input : POSITION0)
+void VertexShaderFunction(in float4 input : POSITION0, out float4 output : POSITION0)
 {
-    float4 output;
-
     float4 worldPosition = mul(input, World);
     float4 viewPosition = mul(worldPosition, View);
     output = mul(viewPosition, Projection);
-
-    return output;
 }
 
-float4 PixelShaderFunction(float4 input) : COLOR0
+float4 PixelShaderFunction(in float4 input : POSITION0) : COLOR0
 {
     return float4(Dc, 1);
 }
