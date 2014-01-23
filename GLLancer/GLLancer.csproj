@@ -53,4 +53,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FLParser\FLParser.csproj">
+      <Project>{C7A198FE-D725-420F-B04E-0484E12AACF4}</Project>
+      <Name>FLParser</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

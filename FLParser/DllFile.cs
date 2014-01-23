@@ -35,7 +35,10 @@ namespace FLParser
 				throw new ArgumentNullException("path");
 			if (!File.Exists (path))
 				throw new FileNotFoundException ("path");
-			provider = new Win32DllProvider (path);
+			if (Platform.RunningOS == OS.Windows)
+				provider = new Win32DllProvider (path);
+			else
+				provider = new ManagedDllProvider (path);
         }
 
 		[CLSCompliant(false)]

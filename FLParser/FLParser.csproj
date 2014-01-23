@@ -12,7 +12,6 @@
     <AssemblyName>FLParser</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +43,7 @@
     <Reference Include="MonoGame.Framework">
       <HintPath>..\Third-Party\MonoGame-SDL2\MonoGame.Framework\bin\SDL2\Release\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ByteLen.cs" />
@@ -71,6 +71,16 @@
     <Compile Include="Ini\IniValueType.cs" />
     <Compile Include="Dll\IDllProvider.cs" />
     <Compile Include="Dll\Win32DllProvider.cs" />
+    <Compile Include="Dll\ManagedDllProvider.cs" />
+    <Compile Include="Dll\Structs\IMAGE_DOS_HEADER.cs" />
+    <Compile Include="Dll\Structs\IMAGE_DATA_DIRECTORY.cs" />
+    <Compile Include="Dll\Structs\IMAGE_OPTIONAL_HEADER32.cs" />
+    <Compile Include="Dll\Structs\IMAGE_FILE_HEADER.cs" />
+    <Compile Include="Dll\Structs\IMAGE_SECTION_HEADER.cs" />
+    <Compile Include="BinaryReaderExtensions.cs" />
+    <Compile Include="Platform.cs" />
+    <Compile Include="Dll\Structs\IMAGE_RESOURCE_DIRECTORY.cs" />
+    <Compile Include="Dll\Structs\IMAGE_RESOURCE_DIRECTORY_ENTRY.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -85,6 +95,7 @@
   -->
   <ItemGroup>
     <Folder Include="Dll\" />
+    <Folder Include="Dll\Structs\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

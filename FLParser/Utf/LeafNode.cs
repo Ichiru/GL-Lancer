@@ -63,6 +63,7 @@ namespace FLParser.Utf
             }
         }
 
+		[CLSCompliant(false)]
         public ushort? UInt16Data
         {
             get
@@ -72,6 +73,7 @@ namespace FLParser.Utf
             }
         }
 
+		[CLSCompliant(false)]
         public ushort[] UInt16ArrayData
         {
             get

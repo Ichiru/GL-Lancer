@@ -84,7 +84,6 @@ namespace FLParser.Dll
 			return stringTable[resourceId];
 		}
 
-		[CLSCompliant(false)]
 		public XmlDocument GetXml(ushort resourceId)
 		{
 			if (!xmlData.ContainsKey(resourceId))

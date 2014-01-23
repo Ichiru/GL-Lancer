@@ -1,20 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ShaderCompiler/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FLParser/Dll/ManagedDllProvider.cs">
     <Files>
-      <File FileName="GLLancer/Main.cs" Line="1" Column="1" />
-      <File FileName="GLLancer/MainGame.cs" Line="4" Column="40" />
-      <File FileName="ShaderCompiler/Program.cs" Line="14" Column="5" />
+      <File FileName="FLParser/Dll/Structs/IMAGE_OPTIONAL_HEADER32.cs" Line="6" Column="2" />
+      <File FileName="FLParser/BinaryReaderExtensions.cs" Line="15" Column="37" />
+      <File FileName="GLLancer/Main.cs" Line="11" Column="4" />
+      <File FileName="FLParser/Dll/ManagedDllProvider.cs" Line="4" Column="18" />
+      <File FileName="FLParser/Dll/Win32DllProvider.cs" Line="56" Column="23" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Tools" expanded="True">
-            <Node name="ShaderCompiler" expanded="True">
-              <Node name="Program.cs" selected="True" />
-            </Node>
+          <Node name="FLParser" expanded="True" selected="True" />
+          <Node name="GLLancer" expanded="True">
+            <Node name="References" expanded="True" />
           </Node>
-          <Node name="GLLancer" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
