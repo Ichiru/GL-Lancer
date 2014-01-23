@@ -5,7 +5,6 @@ namespace FLParser.Dll.Structs
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
 	struct IMAGE_FILE_HEADER 
 	{
-		public uint Magic;
 		public ushort Machine;
 		public ushort NumberOfSections;
 		public uint TimeDateStamp;

@@ -74,13 +74,14 @@
     <Compile Include="Dll\ManagedDllProvider.cs" />
     <Compile Include="Dll\Structs\IMAGE_DOS_HEADER.cs" />
     <Compile Include="Dll\Structs\IMAGE_DATA_DIRECTORY.cs" />
-    <Compile Include="Dll\Structs\IMAGE_OPTIONAL_HEADER32.cs" />
     <Compile Include="Dll\Structs\IMAGE_FILE_HEADER.cs" />
     <Compile Include="Dll\Structs\IMAGE_SECTION_HEADER.cs" />
     <Compile Include="BinaryReaderExtensions.cs" />
     <Compile Include="Platform.cs" />
     <Compile Include="Dll\Structs\IMAGE_RESOURCE_DIRECTORY.cs" />
     <Compile Include="Dll\Structs\IMAGE_RESOURCE_DIRECTORY_ENTRY.cs" />
+    <Compile Include="Dll\Structs\IMAGE_RESOURCE_DATA_ENTRY.cs" />
+    <Compile Include="Dll\Structs\IMAGE_OPTIONAL_HEADER.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

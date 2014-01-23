@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 namespace FLParser.Dll.Structs
 {
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
-	struct IMAGE_OPTIONAL_HEADER32 
+	struct IMAGE_OPTIONAL_HEADER
 	{
 		public ushort Magic;
 		public byte MajorLinkerVersion;

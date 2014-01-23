@@ -1,20 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FLParser/Dll/ManagedDllProvider.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GLLancer/Main.cs">
     <Files>
-      <File FileName="FLParser/Dll/Structs/IMAGE_OPTIONAL_HEADER32.cs" Line="6" Column="2" />
-      <File FileName="FLParser/BinaryReaderExtensions.cs" Line="15" Column="37" />
-      <File FileName="GLLancer/Main.cs" Line="11" Column="4" />
-      <File FileName="FLParser/Dll/ManagedDllProvider.cs" Line="4" Column="18" />
-      <File FileName="FLParser/Dll/Win32DllProvider.cs" Line="56" Column="23" />
+      <File FileName="GLLancer/Main.cs" Line="9" Column="1" />
+      <File FileName="FLParser/Dll/ManagedDllProvider.cs" Line="70" Column="6" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="FLParser" expanded="True" selected="True" />
-          <Node name="GLLancer" expanded="True">
-            <Node name="References" expanded="True" />
-          </Node>
+          <Node name="Tools" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
@@ -26,7 +20,9 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/home/callum/src/GL-Lancer/GLLancer/Main.cs" line="19" column="27" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
