@@ -183,10 +183,10 @@ namespace FLApi.Utf.Mat
 
                     for (int i = 0; i < 9; i++)
                     {
-                        effect.Parameters["Lights"].Elements[i].StructureMembers["Pos"].SetValue(i < lights.Count ? lights[i].Pos.Value : Vector3.Zero);
-                        effect.Parameters["Lights"].Elements[i].StructureMembers["Color"].SetValue(i < lights.Count ? lights[i].Color.Value.ToVector4() : Vector4.Zero);
-                        effect.Parameters["Lights"].Elements[i].StructureMembers["Range"].SetValue(i < lights.Count ? lights[i].Range.Value : 0);
-                        effect.Parameters["Lights"].Elements[i].StructureMembers["Attenuation"].SetValue(i < lights.Count ? lights[i].Attenuation ?? new Vector3(1, 0, 0) : Vector3.Zero);
+                        effect.Parameters["LightsPos"].Elements[i].SetValue(i < lights.Count ? lights[i].Pos.Value : Vector3.Zero);
+                        effect.Parameters["LightsColor"].Elements[i].SetValue(i < lights.Count ? lights[i].Color.Value.ToVector4() : Vector4.Zero);
+                        effect.Parameters["LightsRange"].Elements[i].SetValue(i < lights.Count ? lights[i].Range.Value : 0);
+                        effect.Parameters["LightsAttenuation"].Elements[i].SetValue(i < lights.Count ? lights[i].Attenuation ?? new Vector3(1, 0, 0) : Vector3.Zero);
                     }
                 }
 

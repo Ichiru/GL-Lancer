@@ -43,10 +43,17 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="DebugUtils.cs" />
+    <Compile Include="FLRenderer\ModelRenderer.cs" />
+    <Compile Include="FLRenderer\ObjectRenderer.cs" />
+    <Compile Include="FLRenderer\PlanetRenderer.cs" />
+    <Compile Include="FLRenderer\SunRenderer.cs" />
+    <Compile Include="FLRenderer\SystemRenderer.cs" />
+    <Compile Include="FLRenderer\ZoneRenderer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Assets\" />
+    <Folder Include="FLRenderer\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effects\Planet.fxg">
@@ -57,6 +64,14 @@
     <ProjectReference Include="..\FLParser\FLParser.csproj">
       <Project>{C7A198FE-D725-420F-B04E-0484E12AACF4}</Project>
       <Name>FLParser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RenderTools\RenderTools.csproj">
+      <Project>{84C04335-CC8F-4895-82F2-48AC39097623}</Project>
+      <Name>RenderTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FLApi\FLApi.csproj">
+      <Project>{EA2B65BD-27A6-4709-B5CB-93159BED246F}</Project>
+      <Name>FLApi</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
