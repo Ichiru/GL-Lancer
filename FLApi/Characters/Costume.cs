@@ -93,27 +93,27 @@ namespace FLApi.Characters
                 {
                     case "nickname":
                         if (e.Count != 1) throw new Exception("Invalid number of values in " + s.Name + " Entry " + e.Name + ": " + e.Count);
-                        if (Nickname != null) throw new Exception("Duplicate " + e.Name + " Entry in " + s.Name);
+                        //if (Nickname != null) throw new Exception("Duplicate " + e.Name + " Entry in " + s.Name);
                         Nickname = e[0].ToString();
                         break;
                     case "head":
                         if (e.Count != 1) throw new Exception("Invalid number of values in " + s.Name + " Entry " + e.Name + ": " + e.Count);
-                        if (headName != null) throw new Exception("Duplicate " + e.Name + " Entry in " + s.Name);
+                        //if (headName != null) throw new Exception("Duplicate " + e.Name + " Entry in " + s.Name);
                         headName = e[0].ToString();
                         break;
                     case "body":
                         if (e.Count != 1) throw new Exception("Invalid number of values in " + s.Name + " Entry " + e.Name + ": " + e.Count);
-                        if (bodyName != null) throw new Exception("Duplicate " + e.Name + " Entry in " + s.Name);
+                        //if (bodyName != null) throw new Exception("Duplicate " + e.Name + " Entry in " + s.Name);
                         bodyName = e[0].ToString();
                         break;
                     case "righthand":
                         if (e.Count != 1) throw new Exception("Invalid number of values in " + s.Name + " Entry " + e.Name + ": " + e.Count);
-                        if (rightHandName != null) throw new Exception("Duplicate " + e.Name + " Entry in " + s.Name);
+                        //if (rightHandName != null) throw new Exception("Duplicate " + e.Name + " Entry in " + s.Name);
                         rightHandName = e[0].ToString();
                         break;
                     case "lefthand":
                         if (e.Count != 1) throw new Exception("Invalid number of values in " + s.Name + " Entry " + e.Name + ": " + e.Count);
-                        if (leftHandName != null) throw new Exception("Duplicate " + e.Name + " Entry in " + s.Name);
+                        //if (leftHandName != null) throw new Exception("Duplicate " + e.Name + " Entry in " + s.Name);
                         leftHandName = e[0].ToString();
                         break;
                     default: throw new Exception("Invalid Entry in " + s.Name + ": " + e.Name);

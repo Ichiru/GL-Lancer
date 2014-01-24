@@ -1,9 +1,29 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="GLLancer/Main.cs">
+    <Files>
+      <File FileName="FLApi/FreelancerIni.cs" Line="57" Column="10" />
+      <File FileName="FLParser/FileFinder.cs" Line="19" Column="32" />
+      <File FileName="GLLancer/Main.cs" Line="3" Column="25" />
+      <File FileName="FLParser/Dll/ManagedDllProvider.cs" Line="127" Column="66" />
+      <File FileName="FLApi/Solar/Planet.cs" Line="13" Column="56" />
+      <File FileName="FLParser/Ini/IniFile.cs" Line="40" Column="64" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" />
+        <State expanded="True">
+          <Node name="FLApi" expanded="True">
+            <Node name="Characters" expanded="True" />
+            <Node name="Solar" expanded="True" />
+          </Node>
+          <Node name="FLParser" expanded="True">
+            <Node name="Dll" expanded="True" />
+            <Node name="Ini" expanded="True" />
+          </Node>
+          <Node name="GLLancer" expanded="True">
+            <Node name="Main.cs" selected="True" />
+          </Node>
+        </State>
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />

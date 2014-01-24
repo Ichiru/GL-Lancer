@@ -33,8 +33,7 @@ namespace FLParser
         {
             if (path == null) 
 				throw new ArgumentNullException("path");
-			if (!File.Exists (path))
-				throw new FileNotFoundException ("path");
+			path = FileFinder.GetFile (path);
 			if (Platform.RunningOS == OS.Windows)
 				provider = new Win32DllProvider (path);
 			else

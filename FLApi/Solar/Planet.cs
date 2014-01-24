@@ -47,8 +47,9 @@ namespace FLApi.Solar
                             if (HitPts != null) throw new Exception("Duplicate " + e.Name + " Entry in " + section.Name);
                             HitPts = e[0].ToSingle();
                             break;
-                        default:
-                            throw new Exception("Invalid Entry in " + section.Name + ": " + e.Name);
+					default:
+                            //throw new Exception("Invalid Entry in " + section.Name + ": " + e.Name);
+						break;
                     }
             }
         }

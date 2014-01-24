@@ -37,7 +37,7 @@ namespace FLParser.Ini
 
             List<Section> sections = new List<Section>();
 
-            using (Stream stream = File.OpenRead(path))
+            using (Stream stream = File.OpenRead(FileFinder.GetFile(path)))
             {
                 byte[] buffer = new byte[ByteLen.FileTag];
                 stream.Read(buffer, 0, ByteLen.FileTag);

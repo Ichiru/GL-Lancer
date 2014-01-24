@@ -37,7 +37,8 @@ namespace FLApi
 {
     public class FreelancerIni : IniFile
     {
-        public static string RegistryPath = Registry.GetValue("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Microsoft Games\\Freelancer\\1.0", "AppPath", null) as string;
+		//TODO: Enable in Windows builds
+        //public static string RegistryPath = Registry.GetValue("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Microsoft Games\\Freelancer\\1.0", "AppPath", null) as string;
 
         public string ExePath { get; private set; }
         public string DataPath { get; private set; }
@@ -59,7 +60,8 @@ namespace FLApi
             Loadouts = new LoadoutsIni();
             Equipment = new EquipmentIni();
 
-            ExePath = path + "\\EXE\\";
+			FileFinder.Initialize (path);
+            ExePath = Path.Combine(path,"EXE") + Path.DirectorySeparatorChar;
 
             foreach (Section s in parseFile(ExePath + "freelancer.ini"))
             {
@@ -70,10 +72,12 @@ namespace FLApi
                         {
                             switch (e.Name.ToLowerInvariant())
                             {
-                                case "data path":
-                                    if (e.Count != 1) throw new Exception("Invalid number of values in " + s.Name + " Entry " + e.Name + ": " + e.Count);
-                                    if (DataPath != null) throw new Exception("Duplicate " + e.Name + " Entry in " + s.Name);
-                                    DataPath = ExePath + e[0].ToString() + "\\";
+						case "data path":
+							if (e.Count != 1)
+								throw new Exception ("Invalid number of values in " + s.Name + " Entry " + e.Name + ": " + e.Count);
+							if (DataPath != null)
+								throw new Exception ("Duplicate " + e.Name + " Entry in " + s.Name);
+							DataPath = ExePath + e [0].ToString () + Path.DirectorySeparatorChar;
                                     break;
                             }
                         }

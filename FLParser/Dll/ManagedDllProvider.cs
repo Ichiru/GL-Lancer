@@ -139,11 +139,13 @@ namespace FLParser.Dll
 
 		public XmlDocument GetXml (ushort resourceId)
 		{
+			return null;
 			return infocardTable[(int)resourceId];
 		}
 
 		public string GetString (ushort resourceId)
 		{
+			return "";
 			return stringTable[(int)resourceId];
 		}
 	}
