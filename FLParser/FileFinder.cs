@@ -21,6 +21,8 @@ namespace FLParser
 			if (!File.Exists (filename)) {
 				var path = Path.GetFullPath (filename.Replace('\\',Path.DirectorySeparatorChar)).ToUpper ();
 				var c = properCase;
+				if (!properCase.ContainsKey (path))
+					throw new FileNotFoundException ();
 				return properCase [path];
 			} else {
 				return filename;

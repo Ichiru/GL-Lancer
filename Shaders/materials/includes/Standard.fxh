@@ -31,31 +31,29 @@ float4 PositionVS(float4 input : POSITION0) : POSITION0
 
 // ------ PositionNormal -----------------------------------------------------------
 
-struct PositionNormalIn
-{
-    float4 Position : POSITION0;
-	float3 Normal : NORMAL0;
-};
+//struct PositionNormalIn
+//{
+//   float4 Position : POSITION0;
+//	float3 Normal : NORMAL0;
+//};
 
-struct PositionNormalOut
-{
-    float4 Position : POSITION0;
-	float3 Normal : TEXCOORD0;
-	float3 WorldPosition : TEXCOORD1;
-};
+//struct PositionNormalOut
+//{
+    //float4 Position : POSITION0;
+	//float3 Normal : TEXCOORD0;
+	//float3 WorldPosition : TEXCOORD1;
+//};
 
-PositionNormalOut PositionNormalVS(PositionNormalIn input)
+void PositionNormalVS(in float4 inputPosition : POSITION0, in float4 inNormal : NORMAL0,
+								   out float4 outPosition : POSITION0, out float3 outNormal: TEXCOORD0,
+								   out float4 outWorldPosition: TEXCOORD1)
 {
-    PositionNormalOut output;
-
-    float4 worldPosition = mul(input.Position, World);
+    float4 worldPosition = mul(inputPosition, World);
     float4 viewPosition = mul(worldPosition, View);
-    output.Position = mul(viewPosition, Projection);
+    outPosition = mul(viewPosition, Projection);
 
-	output.Normal = mul(input.Normal, World);
-	output.WorldPosition = worldPosition;
-	
-	return output;
+	outNormal = mul(inputNormal, World);
+	outWorldPosition = worldPosition;
 }
 
 

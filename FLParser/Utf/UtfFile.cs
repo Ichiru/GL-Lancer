@@ -30,12 +30,12 @@ namespace FLParser.Utf
         protected static IntermediateNode parseFile(string path)
         {
             if (path == null) throw new ArgumentNullException("path");
-
+			var foundPath = FileFinder.GetFile (path);
             byte[] nodeBlock;
             string stringBlock;
             byte[] dataBlock;
 
-            using (BinaryReader reader = new BinaryReader(File.OpenRead(path)))
+            using (BinaryReader reader = new BinaryReader(File.OpenRead(foundPath)))
             {
                 byte[] buffer = new byte[ByteLen.FileTag];
                 reader.Read(buffer, 0, ByteLen.FileTag);

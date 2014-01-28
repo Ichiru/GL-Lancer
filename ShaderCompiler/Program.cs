@@ -7,7 +7,7 @@ namespace ShaderCompiler
 	{
 		public static void Main (string[] args)
 		{
-			foreach (var f in Directory.GetFiles("Shaders", "*.fx")) {
+			foreach (var f in Directory.GetFiles("Shaders", "*.fx", SearchOption.AllDirectories)) {
 				string dirPath = Path.ChangeExtension (@"GLLancer\Assets\effects" + f.Replace ("Shaders", ""), ".fxg");
 				var info = new ProcessStartInfo(@"Third-Party\2MGFX\2MGFX.exe","\"" + f + "\" \"" + dirPath + "\"");
 				info.UseShellExecute = false;
