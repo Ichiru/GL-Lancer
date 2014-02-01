@@ -156,6 +156,7 @@ namespace FLApi.Utf.Mat
             }
 
             effect = content.Load<Effect>("effects/materials/" + type);
+			Console.WriteLine (type);
             effect.Parameters["Projection"].SetValue(camera.Projection);
         }
 
@@ -169,7 +170,8 @@ namespace FLApi.Utf.Mat
             if (effect != null)
             {
                 effect.Parameters["View"].SetValue(camera.View);
-                effect.Parameters["CameraPosition"].SetValue(camera.Position);
+                //effect.Parameters["CameraPosition"].SetValue(camera.Position);
+				effect.SetParameter ("CameraPosition", camera.Position);
             }
         }
 
@@ -190,7 +192,8 @@ namespace FLApi.Utf.Mat
                     }
                 }
 
-                effect.Parameters["AmbientColor"].SetValue(ambient.ToVector4());
+                //effect.Parameters["AmbientColor"].SetValue(ambient.ToVector4());
+				effect.SetParameter ("AmbientColor", ambient.ToVector4 ());
                 effect.Parameters["World"].SetValue(world);
                 if (Dt == null) effect.Parameters["Dt"].SetValue(nullTexture);
                 else effect.Parameters["Dt"].SetValue(Dt.Texture);

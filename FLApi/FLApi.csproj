@@ -170,6 +170,7 @@
     <Compile Include="Utf\Vms\VmsFile.cs" />
     <Compile Include="Solar\MissionSatellite.cs" />
     <Compile Include="Solar\Satellite.cs" />
+    <Compile Include="Utf\Mat\EffectExtensions.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

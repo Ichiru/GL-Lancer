@@ -47,7 +47,7 @@ namespace FLApi.Utf.Mat
         private Quad quad;
         private Ellipsoid sphere;
         private Effect planetEffect;
-        private RenderTargetCube planetTexture;
+        private TextureCube planetTexture;
         private bool ready, updatePlanetTexture;
 
         private ILibFile materialLibrary;
@@ -143,36 +143,45 @@ namespace FLApi.Utf.Mat
         private void drawPlanetTexture()
         {
             // Generate TextureCube for planet
-            planetTexture = new RenderTargetCube(device, 512, true, SurfaceFormat.Color, DepthFormat.None);
+            planetTexture = new TextureCube(device, 512, true, SurfaceFormat.Color);
+			var renderTarget = new RenderTarget2D (device, 512, 512);
             device.SetVertexBuffer(quad.VertexBuffer);
             device.Indices = Quad.IndexBuffer;
-
-            device.SetRenderTarget(planetTexture, CubeMapFace.PositiveZ);
+			Color[] data = new Color[512 * 512];
+			device.SetRenderTarget (renderTarget);
+            //device.SetRenderTarget(planetTexture, CubeMapFace.PositiveZ);
             device.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
             SideMaterials[0].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix.Identity);
-
-            device.SetRenderTarget(planetTexture, CubeMapFace.PositiveX);
+			renderTarget.GetData<Color> (data);
+			planetTexture.SetData<Color> (CubeMapFace.PositiveZ, data);
+            //device.SetRenderTarget(planetTexture, CubeMapFace.PositiveX);
             device.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
             SideMaterials[1].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix.Identity);
-
-            device.SetRenderTarget(planetTexture, CubeMapFace.NegativeZ);
+			renderTarget.GetData<Color> (data);
+			planetTexture.SetData<Color> (CubeMapFace.PositiveX, data);
+            //device.SetRenderTarget(planetTexture, CubeMapFace.NegativeZ);
             device.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
             SideMaterials[2].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix.Identity);
-
-            device.SetRenderTarget(planetTexture, CubeMapFace.NegativeX);
+			renderTarget.GetData<Color> (data);
+			planetTexture.SetData<Color> (CubeMapFace.NegativeZ, data);
+            //device.SetRenderTarget(planetTexture, CubeMapFace.NegativeX);
             device.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
             SideMaterials[3].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix.Identity);
-
-            device.SetRenderTarget(planetTexture, CubeMapFace.PositiveY);
+			renderTarget.GetData<Color> (data);
+			planetTexture.SetData<Color> (CubeMapFace.NegativeX, data);
+            //device.SetRenderTarget(planetTexture, CubeMapFace.PositiveY);
             device.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
             SideMaterials[4].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix.Identity);
-
-            device.SetRenderTarget(planetTexture, CubeMapFace.NegativeY);
+			renderTarget.GetData<Color> (data);
+			planetTexture.SetData<Color> (CubeMapFace.PositiveY, data);
+            //device.SetRenderTarget(planetTexture, CubeMapFace.NegativeY);
             device.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
             SideMaterials[5].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix.Identity);
+			renderTarget.GetData<Color> (data);
+			planetTexture.SetData<Color> (CubeMapFace.NegativeY, data);
 
             device.SetRenderTarget(null);
-
+			renderTarget.Dispose ();
             updatePlanetTexture = false;
         }
 
@@ -185,17 +194,17 @@ namespace FLApi.Utf.Mat
                 // Draw planet
                 device.SetVertexBuffer(sphere.VertexBuffer);
                 device.Indices = sphere.IndexBuffer;
-
+				lights = null;
                 if (lights != null)
                 {
                     planetEffect.Parameters["LightCount"].SetValue(lights.Count);
 
                     for (int i = 0; i < 9; i++)
                     {
-                        planetEffect.Parameters["Lights"].Elements[i].StructureMembers["Pos"].SetValue(i < lights.Count ? lights[i].Pos.Value : Vector3.Zero);
-                        planetEffect.Parameters["Lights"].Elements[i].StructureMembers["Color"].SetValue(i < lights.Count ? lights[i].Color.Value.ToVector4() : Vector4.Zero);
-                        planetEffect.Parameters["Lights"].Elements[i].StructureMembers["Range"].SetValue(i < lights.Count ? lights[i].Range.Value : 0);
-                        planetEffect.Parameters["Lights"].Elements[i].StructureMembers["Attenuation"].SetValue(i < lights.Count ? lights[i].Attenuation ?? new Vector3(1, 0, 0) : Vector3.Zero);
+						planetEffect.Parameters["LightsPos"].Elements[i].SetValue(i < lights.Count ? lights[i].Pos.Value : Vector3.Zero);
+						planetEffect.Parameters["LightsColor"].Elements[i].SetValue(i < lights.Count ? lights[i].Color.Value.ToVector4() : Vector4.Zero);
+						planetEffect.Parameters["LightsRange"].Elements[i].SetValue(i < lights.Count ? lights[i].Range.Value : 0);
+						planetEffect.Parameters["LightsAttenuation"].Elements[i].SetValue(i < lights.Count ? lights[i].Attenuation ?? new Vector3(1, 0, 0) : Vector3.Zero);
                     }
                 }
 

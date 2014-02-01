@@ -8,35 +8,39 @@ namespace GLLancer
 	public class MainGame : Game
 	{
 		GraphicsDeviceManager graphics;
-		Matrix World, View, Projection;
+		FLRenderer.Main starchart;
 		public MainGame ()
 		{
 			graphics = new GraphicsDeviceManager (this);
 			graphics.PreferredBackBufferWidth = 800;
 			graphics.PreferredBackBufferHeight = 600;
 			Content.RootDirectory = "Assets";
-
+			starchart = new FLRenderer.Main (MainClass.FLIni);
 		}
 		protected override void Initialize ()
 		{
-			World = Matrix.Identity;
-			View = Matrix.CreateLookAt(new Vector3(3,13,0),Vector3.Zero,Vector3.Up);
-			Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, GraphicsDevice.Viewport.AspectRatio, 1, 20);
+			starchart.Initialize (GraphicsDevice, Content);
+			starchart.DeviceReset ();
+			starchart.Camera.Free = true;
 			base.Initialize ();
 		}
 		protected override void LoadContent ()
 		{
-			var efx = Content.Load<Effect> ("effects/Planet");
+			starchart.LoadContent ();
+			starchart.SystemMap.StarSystem = MainClass.FLIni.Universe.FindSystem ("Li01");
 			base.LoadContent ();
 		}
 		protected override void Update (GameTime gameTime)
 		{
+			if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+				this.Exit();
+			starchart.Update (gameTime.ElapsedGameTime);
 			base.Update (gameTime);
 		}
 		protected override void Draw (GameTime gameTime)
 		{
 			GraphicsDevice.Clear (Color.Black);
-
+			starchart.Draw ();
 			base.Draw (gameTime);
 		}
 	}

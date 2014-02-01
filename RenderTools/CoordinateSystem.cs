@@ -61,7 +61,7 @@ namespace RenderTools
             effect.World = Matrix.Identity;
             effect.VertexColorEnabled = true;
 
-            uiFont = content.Load<SpriteFont>("fonts/AgencyFB");
+            uiFont = content.Load<SpriteFont>("fonts/LiberationSans");
 
             SetUpVertices(-Vector3.One, Vector3.One, new Vector3(.1f));
         }

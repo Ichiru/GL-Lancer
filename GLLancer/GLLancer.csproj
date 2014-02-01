@@ -49,12 +49,14 @@
     <Compile Include="FLRenderer\SunRenderer.cs" />
     <Compile Include="FLRenderer\SystemRenderer.cs" />
     <Compile Include="FLRenderer\ZoneRenderer.cs" />
+    <Compile Include="FLRenderer\Main.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Assets\" />
     <Folder Include="FLRenderer\" />
     <Folder Include="Assets\effects\materials\" />
+    <Folder Include="Assets\fonts\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effects\Planet.fxg">
@@ -116,6 +118,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Assets\effects\materials\Nebula.fxg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\fonts\LiberationSans.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

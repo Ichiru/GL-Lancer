@@ -38,31 +38,30 @@ int FlipV;
 float TileRate;
 
 
-struct PositionTextureIn
-{
-    float4 Position : POSITION0;
-	float2 TextureCoordinate : TEXCOORD0;
-};
+//struct PositionTextureIn
+//{
+//    float4 Position : POSITION0;
+//	float2 TextureCoordinate : TEXCOORD0;
+//};
 
-struct PositionTextureOut
-{
-    float4 Position : POSITION0;
-	float2 TextureCoordinate : TEXCOORD0;
-};
+//struct PositionTextureOut
+//{
+//    float4 Position : POSITION0;
+//	float2 TextureCoordinate : TEXCOORD0;
+//};
 
-PositionTextureOut PositionTextureVS(PositionTextureIn input)
+void PositionTextureVS(in float4 inputPosition : POSITION0, in float2 inputTextureCoordinate : TEXCOORD0,
+									 out float4 outputPosition : POSITION0, out float2 outputTextureCoordinate: TEXCOORD0)
 {
-    PositionTextureOut output;
-
-    output.Position = input.Position;
-	output.TextureCoordinate = input.TextureCoordinate;
-	
-	return output;
+    float4 worldPosition = mul(inputPosition, World);
+    float4 viewPosition = mul(worldPosition, View);
+    outputPosition = mul(viewPosition, Projection);
+	outputTextureCoordinate = inputTextureCoordinate;
 }
 
-float4 PositionTexturePS(PositionTextureOut input) : COLOR0
+float4 PositionTexturePS(in float4 inputPosition : POSITION0, in float2 inputTextureCoordinate : TEXCOORD0) : COLOR0
 {
-	float2 texcoord = input.TextureCoordinate;
+	float2 texcoord = inputTextureCoordinate;
 	if (FlipU) texcoord.x = 1 - texcoord.x;
 	if (FlipV) texcoord.y = 1 - texcoord.y;
 	
