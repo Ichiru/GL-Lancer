@@ -18,15 +18,16 @@ sampler EtSampler =
 
 // ------ PositionNormalTexture -----------------------------------------------------------
 
-float4 PositionNormalTexturePS(PositionNormalTextureOut input) : COLOR0
+float4 PositionNormalTexturePS(in float4 inputPosition : POSITION0, in float3 inputNormal : TEXCOORD0,
+							   in float2 inputTextureCoordinate : TEXCOORD1, in float3 inputWorldPosition : TEXCOORD2) : COLOR0
 {
-	float4 dc = tex2D(DtSampler, input.TextureCoordinate);
+	float4 dc = tex2D(DtSampler, inputTextureCoordinate);
 	dc *= Dc;
 
-	float4 ec = tex2D(EtSampler, input.TextureCoordinate);
+	float4 ec = tex2D(EtSampler, inputTextureCoordinate);
 	ec *= Ec;
 
-	return light(ec, dc, input.WorldPosition, input.Normal);
+	return light(ec, dc, inputWorldPosition, inputNormal);
 }
 
 technique PositionNormalTexture
@@ -46,16 +47,18 @@ technique PositionNormalTexture
 
 // ------ PositionNormalTextureTwo -----------------------------------------------------------
 
-float4 PositionNormalTextureTwoPS(PositionNormalTextureTwoOut input) : COLOR0
+float4 PositionNormalTextureTwoPS(in float4 inputPosition : POSITION0, in float3 inputNormal : TEXCOORD0,
+								in float2 inputTextureCoordinate : TEXCOORD1, in float2 inputTextureCoordinateTwo : TEXCOORD2,
+								in float3 inputWorldPosition : TEXCOORD3) : COLOR0
 {
-	float4 dc = tex2D(DtSampler, input.TextureCoordinate);
+	float4 dc = tex2D(DtSampler, inputTextureCoordinate);
 	//dc *= tex2D(DtSampler, input.TextureCoordinateTwo);
 	dc *= Dc;
 
-	float4 ec = tex2D(EtSampler, input.TextureCoordinateTwo);
+	float4 ec = tex2D(EtSampler, inputTextureCoordinateTwo);
 	ec *= Ec;
 
-	return light(ec, dc, input.WorldPosition, input.Normal);
+	return light(ec, dc, inputWorldPosition, inputNormal);
 }
 
 technique PositionNormalTextureTwo
