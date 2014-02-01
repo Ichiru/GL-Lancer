@@ -60,9 +60,25 @@
     <None Include="Assets\effects\Planet.fxg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Assets\effects\QuadTexture.fxg" />
-    <None Include="Assets\effects\Wireframe.fxg" />
+    <None Include="Assets\effects\QuadTexture.fxg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\effects\Wireframe.fxg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Assets\effects\NOTES.txt" />
+    <None Include="Assets\effects\materials\AtmosphereMaterial.fxg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\effects\materials\DcDt.fxg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\effects\materials\DcDtBt.fxg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\effects\materials\DcDtOcOtTwo.fxg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FLParser\FLParser.csproj">
