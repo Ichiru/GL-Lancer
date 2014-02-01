@@ -40,7 +40,7 @@ namespace FLRenderer
 		//public SectorMap SectorMap { get; private set; }
 		public SystemRenderer SystemMap { get; private set; }
 		//public Hud Hud { get; private set; }
-		public CoordinateSystem CoordinateSystem { get; private set; }
+		//public CoordinateSystem CoordinateSystem { get; private set; }
 
 		public Main(FreelancerIni data)
 		{
@@ -57,7 +57,7 @@ namespace FLRenderer
 			//SectorMap = new SectorMap(this);
 			SystemMap = new SystemRenderer(GraphicsDevice, Content, Camera);
 			//Hud = new Hud(this);
-			CoordinateSystem = new CoordinateSystem(Camera, Content);
+			//CoordinateSystem = new CoordinateSystem(Camera, Content);
 		}
 
 		public void LoadContent()
@@ -66,8 +66,8 @@ namespace FLRenderer
 			SystemMap.LoadContent();
 			//Hud.LoadContent();
 
-			CoordinateSystem.LoadContent();
-			CoordinateSystem.SetUpVertices(new Vector3(-100000, -10000, -100000), new Vector3(100000, 10000, 100000), new Vector3(10000, 10000, 10000));
+			//CoordinateSystem.LoadContent();
+			//CoordinateSystem.SetUpVertices(new Vector3(-100000, -10000, -100000), new Vector3(100000, 10000, 100000), new Vector3(10000, 10000, 10000));
 		}
 
 		public void Update(TimeSpan elapsed)
@@ -78,7 +78,7 @@ namespace FLRenderer
 			Hud.Update(elapsed);
 			#endif
 
-			CoordinateSystem.Update();
+			//CoordinateSystem.Update();
 		}
 
 		public void DeviceReset()
@@ -93,7 +93,7 @@ namespace FLRenderer
 
 			GraphicsDevice.Clear(Color.Black);
 
-			CoordinateSystem.Draw();
+			//CoordinateSystem.Draw();
 			SystemMap.Draw();
 
 			//Hud.Draw();

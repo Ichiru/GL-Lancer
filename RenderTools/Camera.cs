@@ -22,7 +22,7 @@ namespace RenderTools
 {
     public class Camera
     {
-        private const float MOVE_SPEED = 1000;
+        private const float MOVE_SPEED = 400;
 
         public GraphicsDevice GraphicsDevice { get; private set; }
 
