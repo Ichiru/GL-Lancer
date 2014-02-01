@@ -10,6 +10,13 @@ Right now I need people who can do the following:
 * People who can dissect the various Freelancer file formats (.thn files aren't supported at all at the moment)
 * People who are good at maths etc. (for Physics)
 
+System requirements
+=========
+* Windows Vista+ / Recent Linux with SDL2 installed
+* A card capable of OpenGL 3.0 (most cards, make sure drivers are updated)
+* .NET Framework 4.0+ / Mono 2.10+
+* MonoDevelop 4+ / Non-express version of Visual Studio 2010 
+
 Credit
 =========
 
