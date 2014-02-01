@@ -6,9 +6,9 @@ float Oc;
 
 // ------ PositionTexture -----------------------------------------------------------
 
-float4 PositionTexturePS(in float4 inputPosition : POSITION0, in float2 inputTextureCoordinate : TEXCOORD0) : COLOR0
+float4 PositionTexturePS(PositionTextureOut input) : COLOR0
 {
-	float4 result = tex2D(DtSampler, inputTextureCoordinate);
+	float4 result = tex2D(DtSampler, input.TextureCoordinate);
 	result.rgb *= Ec * Oc;
 	result.rgb += Dc;
 
@@ -33,11 +33,10 @@ technique PositionTexture
 
 // ------ PositionDiffuseTexture -----------------------------------------------------------
 
-float4 PositionDiffuseTexturePS(in float4 inputPosition : POSITION0, in float4 inputDiffuse : COLOR0,
-							    in float2 inputTextureCoordinate : TEXCOORD0) : COLOR0
+float4 PositionDiffuseTexturePS(PositionDiffuseTextureOut input) : COLOR0
 {
-	float4 result = tex2D(DtSampler, inputTextureCoordinate);
-	result.rgb *= Ec * Oc * inputDiffuse;
+	float4 result = tex2D(DtSampler, input.TextureCoordinate);
+	result.rgb *= Ec * Oc * input.Diffuse;
 	result.rgb += Dc;
 
 	return result;

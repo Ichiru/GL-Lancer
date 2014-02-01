@@ -26,9 +26,9 @@ technique Position
 
 // ------ PositionNormal -----------------------------------------------------------
 
-float4 PositionNormalPixelShaderFunction(in float4 inputPosition : POSITION0, in float3 inputNormal: TEXCOORD0, in float3 inputWorldPosition: TEXCOORD1) : COLOR0
+float4 PositionNormalPixelShaderFunction(PositionNormalOut input) : COLOR0
 {
-	return light(0, Dc, inputWorldPosition, inputNormal);
+	return light(0, Dc, input.WorldPosition, input.Normal);
 }
 
 technique PositionNormal
@@ -48,9 +48,9 @@ technique PositionNormal
 
 // ------ PositionTexture -----------------------------------------------------------
 
-float4 PositionTexturePixelShaderFunction(in float4 inputPosition : POSITION0, in float2 inputTextureCoordinate : TEXCOORD) : COLOR0
+float4 PositionTexturePixelShaderFunction(PositionTextureOut input) : COLOR0
 {
-	float4 dc = tex2D(DtSampler, inputTextureCoordinate);
+	float4 dc = tex2D(DtSampler, input.TextureCoordinate);
 	dc *= Dc * AmbientColor;
 	
 	return dc;
@@ -73,13 +73,12 @@ technique PositionTexture
 
 // ------ PositionNormalTexture -----------------------------------------------------------
 
-float4 PositionNormalTexturePixelShaderFunction(in float4 inputPosition : POSITION0, in float3 inputNormal : TEXCOORD0,
-							   in float2 inputTextureCoordinate : TEXCOORD1, in float3 inputWorldPosition : TEXCOORD2) : COLOR0
+float4 PositionNormalTexturePixelShaderFunction(PositionNormalTextureOut input) : COLOR0
 {
-	float4 dc = tex2D(DtSampler, inputTextureCoordinate);
+	float4 dc = tex2D(DtSampler, input.TextureCoordinate);
 	dc *= Dc;
 
-	return light(0, dc, inputWorldPosition, inputNormal);
+	return light(0, dc, input.WorldPosition, input.Normal);
 }
 
 technique PositionNormalTexture
@@ -99,15 +98,13 @@ technique PositionNormalTexture
 
 // ------ PositionNormalTextureTwo -----------------------------------------------------------
 
-float4 PositionNormalTextureTwoPixelShaderFunction(in float4 inputPosition : POSITION0, in float3 inputNormal : TEXCOORD0,
-								in float2 inputTextureCoordinate : TEXCOORD1, in float2 inputTextureCoordinateTwo : TEXCOORD2,
-								in float3 inputWorldPosition : TEXCOORD3) : COLOR0
+float4 PositionNormalTextureTwoPixelShaderFunction(PositionNormalTextureTwoOut input) : COLOR0
 {
-	float4 dc = tex2D(DtSampler, inputTextureCoordinate);
+	float4 dc = tex2D(DtSampler, input.TextureCoordinate);
 	//dc *= tex2D(DtSampler, input.TextureCoordinateTwo);
 	dc *= Dc;
 
-	return light(0, dc, inputWorldPosition, inputNormal);
+	return light(0, dc, input.WorldPosition, input.Normal);
 }
 
 technique PositionNormalTextureTwo
@@ -127,12 +124,11 @@ technique PositionNormalTextureTwo
 
 // ------ PositionDiffuseTexture -----------------------------------------------------------
 
-float4 PositionDiffuseTexturePixelShaderFunction(in float4 inputPosition : POSITION0, in float4 inputDiffuse : COLOR0,
-							    in float2 inputTextureCoordinate : TEXCOORD0) : COLOR0
+float4 PositionDiffuseTexturePixelShaderFunction(PositionDiffuseTextureOut input) : COLOR0
 {
-	float4 dc = tex2D(DtSampler, inputTextureCoordinate);
+	float4 dc = tex2D(DtSampler, input.TextureCoordinate);
 	dc *= Dc;
-	dc *= inputDiffuse;
+	dc *= input.Diffuse;
 
 	return dc;
 }

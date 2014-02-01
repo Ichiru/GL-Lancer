@@ -34,22 +34,41 @@ sampler PlanetSampler =
 	};
 
 
-void VertexShaderFunction(in float4 Position : POSITION0, in float2 TextureCoordinate : TEXCOORD0, out float4 OutPosition : POSITION0, out float3 OutTextureCoordinate : TEXCOORD0, out float3 OutNormal : TEXCOORD1, out float3 OutWorldPosition : TEXCOORD2)
+struct VertexShaderInput
 {
-    float4 worldPosition = mul(Position, World);
-    float4 viewPosition = mul(worldPosition, View);
-    OutPosition = mul(viewPosition, Projection);
+    float4 Position : POSITION0;
+	float2 TextureCoordinate : TEXCOORD0;
+};
 
-	OutTextureCoordinate = Position.xyz;
-	OutNormal = mul(normalize(Position.xyz), World);
-	OutWorldPosition = worldPosition.xyz;
+struct VertexShaderOutput
+{
+    float4 Position : POSITION0;
+	float3 TextureCoordinate : TEXCOORD0;
+	float3 Normal : TEXCOORD1;
+	float3 WorldPosition : TEXCOORD2;
+};
+
+
+VertexShaderOutput VertexShaderFunction(VertexShaderInput input)
+{
+    VertexShaderOutput output;
+
+    float4 worldPosition = mul(input.Position, World);
+    float4 viewPosition = mul(worldPosition, View);
+    output.Position = mul(viewPosition, Projection);
+
+	output.TextureCoordinate = input.Position.xyz;
+	output.Normal = mul(normalize(input.Position.xyz), World);
+	output.WorldPosition = worldPosition.xyz;
+
+    return output;
 }
 
-float4 PixelShaderFunction(in float4 Position : POSITION0, in float3 TextureCoordinate : TEXCOORD0, in float3 Normal : TEXCOORD1, in float3 WorldPosition : TEXCOORD2) : COLOR0
+float4 PixelShaderFunction(VertexShaderOutput input) : COLOR0
 {
-	float4 dc = texCUBE(PlanetSampler, TextureCoordinate);
+	float4 dc = texCUBE(PlanetSampler, input.TextureCoordinate);
 
-	return light(0, dc, WorldPosition, Normal);
+	return light(0, dc, input.WorldPosition, input.Normal);
 }
 
 technique Technique1

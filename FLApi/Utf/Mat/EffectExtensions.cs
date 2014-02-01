@@ -11,6 +11,12 @@ namespace FLApi.Utf.Mat
 			if (param != null)
 				param.SetValue (value);
 		}
+		public static void SetParameter(this Effect effect, string parameter, Matrix value)
+		{
+			var param = effect.Parameters [parameter];
+			if (param != null)
+				param.SetValue (value);
+		}
 		public static void SetParameter(this Effect effect, string parameter, Vector4 value)
 		{
 			var param = effect.Parameters [parameter];

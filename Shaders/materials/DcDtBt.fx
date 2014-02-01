@@ -16,14 +16,12 @@ sampler BtSampler =
 
 // ------ PositionNormalTextureTwo -----------------------------------------------------------
 
-float4 PositionNormalTextureTwoPS(in float4 inputPosition : POSITION0, in float3 inputNormal : TEXCOORD0,
-								in float2 inputTextureCoordinate : TEXCOORD1, in float2 inputTextureCoordinateTwo : TEXCOORD2,
-								in float3 inputWorldPosition : TEXCOORD3) : COLOR0
+float4 PositionNormalTextureTwoPS(PositionNormalTextureTwoOut input) : COLOR0
 {
-	float4 dc = tex2D(DtSampler, inputTextureCoordinate);
-	dc *= tex2D(BtSampler, inputTextureCoordinateTwo);
+	float4 dc = tex2D(DtSampler, input.TextureCoordinate);
+	dc *= tex2D(BtSampler, input.TextureCoordinateTwo);
 
-	return light(0, dc, inputWorldPosition, inputNormal);
+	return light(0, dc, input.WorldPosition, input.Normal);
 }
 
 technique PositionNormalTextureTwo

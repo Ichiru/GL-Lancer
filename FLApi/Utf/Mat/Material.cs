@@ -157,7 +157,8 @@ namespace FLApi.Utf.Mat
 
             effect = content.Load<Effect>("effects/materials/" + type);
 			Console.WriteLine (type);
-            effect.Parameters["Projection"].SetValue(camera.Projection);
+            //effect.Parameters["Projection"].SetValue(camera.Projection);
+			effect.SetParameter ("Projection", camera.Projection);
         }
 
         public void Resized()
@@ -194,7 +195,8 @@ namespace FLApi.Utf.Mat
 
                 //effect.Parameters["AmbientColor"].SetValue(ambient.ToVector4());
 				effect.SetParameter ("AmbientColor", ambient.ToVector4 ());
-                effect.Parameters["World"].SetValue(world);
+                //effect.Parameters["World"].SetValue(world);
+				effect.SetParameter ("World", world);
                 if (Dt == null) effect.Parameters["Dt"].SetValue(nullTexture);
                 else effect.Parameters["Dt"].SetValue(Dt.Texture);
 
