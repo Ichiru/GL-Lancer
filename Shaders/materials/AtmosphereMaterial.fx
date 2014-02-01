@@ -8,28 +8,30 @@ float Scale;
 
 // ------ PositionNormalTexture -----------------------------------------------------------
 
-PositionNormalTextureOut PositionTextureAtmosphereVS(PositionTextureIn input)
+void PositionTextureAtmosphereVS(in float4 inputPosition : POSITION0, in float3 inputNormal : NORMAL0,
+								 in float2 inputTextureCoordinate: TEXCOORD0, out float4 outputPosition : POSITION0,
+								 out float3 outputNormal : TEXCOORD0, out float2 outputTextureCoordinate : TEXCOORD1,
+								 out float3 outputWorldPosition : TEXCOORD2)
 {
-    PositionNormalTextureOut output;
 
-    float4 worldPosition = mul(input.Position, World);
+    float4 worldPosition = mul(inputPosition, World);
     float4 viewPosition = mul(worldPosition, View);
-    output.Position = mul(viewPosition, Projection);
+    outputPosition = mul(viewPosition, Projection);
 
-	output.Normal = mul(normalize(input.Position), World);
-	output.TextureCoordinate = input.TextureCoordinate;
-	output.WorldPosition = worldPosition;
+	outputNormal = mul(normalize(inputPosition), World);
+	outputTextureCoordinate = inputTextureCoordinate;
+	outputWorldPosition = worldPosition;
 	
-	return output;
 }
 
-float4 PositionTexturePS(PositionNormalTextureOut input) : COLOR0
+float4 PositionTexturePS(in float4 inputPosition : POSITION0, in float3 inputNormal : TEXCOORD0,
+					     in float2 inputTextureCoordinate : TEXCOORD1, in float3 inputWorldPosition : TEXCOORD2) : COLOR0
 {
-	float4 result = tex2D(DtSampler, input.TextureCoordinate);
+	float4 result = tex2D(DtSampler, inputTextureCoordinate);
 	result.rgb *= Dc * Ac;
 	result.a *= Alpha;
 
-	//float3 viewDirection = normalize(input.WorldPosition - CameraPosition);
+	//float3 viewDirection = normalize(inputWorldPosition - CameraPosition);
 	//float viewAngle = dot(-viewDirection, input.Normal);
 	//result *=  Fade - viewAngle;
 	

@@ -59,61 +59,56 @@ void PositionNormalVS(in float4 inputPosition : POSITION0, in float4 inNormal : 
 
 // ------ PositionTexture -----------------------------------------------------------
 
-struct PositionTextureIn
-{
-    float4 Position : POSITION0;
-	float2 TextureCoordinate : TEXCOORD0;
-};
+//struct PositionTextureIn
+//{
+//    float4 Position : POSITION0;
+//	float2 TextureCoordinate : TEXCOORD0;
+//};
 
-struct PositionTextureOut
-{
-    float4 Position : POSITION0;
-	float2 TextureCoordinate : TEXCOORD0;
-};
+//struct PositionTextureOut
+//{
+//    float4 Position : POSITION0;
+//	float2 TextureCoordinate : TEXCOORD0;
+//};
 
-PositionTextureOut PositionTextureVS(PositionTextureIn input)
+void PositionTextureVS(in float4 inputPosition : POSITION0, in float2 inputTextureCoordinate : TEXCOORD0,
+									 out float4 outputPosition : POSITION0, out float2 outTextureCoordinate: TEXCOORD0)
 {
-    PositionTextureOut output;
-
-    float4 worldPosition = mul(input.Position, World);
+    float4 worldPosition = mul(inputPosition, World);
     float4 viewPosition = mul(worldPosition, View);
-    output.Position = mul(viewPosition, Projection);
-
-	output.TextureCoordinate = input.TextureCoordinate;
-	
-	return output;
+    outputPosition = mul(viewPosition, Projection);
+	outputTextureCoordinate = inputTextureCoordinate;
 }
 
 // ------ PositionNormalTexture -----------------------------------------------------------
 
-struct PositionNormalTextureIn
-{
-    float4 Position : POSITION0;
-	float3 Normal : NORMAL0;
-	float2 TextureCoordinate : TEXCOORD0;
-};
+//struct PositionNormalTextureIn
+//{
+//    float4 Position : POSITION0;
+//	float3 Normal : NORMAL0;
+//	float2 TextureCoordinate : TEXCOORD0;
+//};
 
-struct PositionNormalTextureOut
-{
-    float4 Position : POSITION0;
-	float3 Normal : TEXCOORD0;
-	float2 TextureCoordinate : TEXCOORD1;
-	float3 WorldPosition : TEXCOORD2;
-};
+//struct PositionNormalTextureOut
+//{
+//    float4 Position : POSITION0;
+//	float3 Normal : TEXCOORD0;
+//	float2 TextureCoordinate : TEXCOORD1;
+//	float3 WorldPosition : TEXCOORD2;
+//};
 
-PositionNormalTextureOut PositionNormalTextureVS(PositionNormalTextureIn input)
+PositionNormalTextureOut PositionNormalTextureVS(in float4 inputPosition : POSITION0, in float3 inputNormal : NORMAL0,
+												 in float2 inputTextureCoordinate: TEXCOORD0, out float4 outputPosition : POSITION0,
+												 out float3 outputNormal : TEXCOORD0, out float2 outputTextureCoordinate : TEXCOORD1,
+												 out float3 outputWorldPosition : TEXCOORD2)
 {
-    PositionNormalTextureOut output;
-
-    float4 worldPosition = mul(input.Position, World);
+    float4 worldPosition = mul(inputPosition, World);
     float4 viewPosition = mul(worldPosition, View);
-    output.Position = mul(viewPosition, Projection);
+    outputPosition = mul(viewPosition, Projection);
 
-	output.Normal = mul(input.Normal, World);
-	output.TextureCoordinate = input.TextureCoordinate;
-	output.WorldPosition = worldPosition;
-	
-	return output;
+	outputNormal = mul(inputNormal, World);
+	outputTextureCoordinate = inputTextureCoordinate;
+	outputWorldPosition = worldPosition;
 }
 
 

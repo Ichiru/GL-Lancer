@@ -1,6 +1,6 @@
-float4 PositionTexturePS(PositionTextureOut input) : COLOR0
+float4 PositionTexturePS(in float4 inputPosition : POSITION0, in float2 inputTextureCoordinate : TEXCOORD0) : COLOR0
 {
-	float4 result = tex2D(DtSampler, input.TextureCoordinate);
+	float4 result = tex2D(DtSampler, inputTextureCoordinate);
 	result.rgb *= AmbientColor * float3(1, 0, 0);
 	
 	return result;

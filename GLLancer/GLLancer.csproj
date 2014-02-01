@@ -54,11 +54,15 @@
   <ItemGroup>
     <Folder Include="Assets\" />
     <Folder Include="FLRenderer\" />
+    <Folder Include="Assets\effects\materials\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effects\Planet.fxg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Assets\effects\QuadTexture.fxg" />
+    <None Include="Assets\effects\Wireframe.fxg" />
+    <None Include="Assets\effects\NOTES.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FLParser\FLParser.csproj">

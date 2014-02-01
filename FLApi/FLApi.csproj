@@ -121,10 +121,8 @@
     <Compile Include="Solar\JumpHole.cs" />
     <Compile Include="Solar\Loadout.cs" />
     <Compile Include="Solar\LoadoutsIni.cs" />
-    <Compile Include="Solar\MissionSattelite.cs" />
     <Compile Include="Solar\NonTargetable.cs" />
     <Compile Include="Solar\Planet.cs" />
-    <Compile Include="Solar\Sattelite.cs" />
     <Compile Include="Archetype.cs" />
     <Compile Include="Solar\SolararchIni.cs" />
     <Compile Include="Solar\Star.cs" />
@@ -170,6 +168,8 @@
     <Compile Include="Utf\Vms\Vertices\VertexPositionNormalTextureTwo.cs" />
     <Compile Include="Utf\Vms\VMeshData.cs" />
     <Compile Include="Utf\Vms\VmsFile.cs" />
+    <Compile Include="Solar\MissionSatellite.cs" />
+    <Compile Include="Solar\Satellite.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

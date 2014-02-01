@@ -207,9 +207,9 @@ namespace FLApi
                 case "docking_ring": return new DockingRing(section, data);
                 case "station": return new Station(section, data);
                 case "jump_gate": return new JumpGate(section, data);
-                case "satellite": return new Sattelite(section, data);
+                case "satellite": return new Satellite(section, data);
                 case "jump_hole": return new JumpHole(section, data);
-                case "mission_satellite": return new MissionSattelite(section, data);
+                case "mission_satellite": return new MissionSatellite(section, data);
                 case "non_targetable": return new NonTargetable(section, data);
                 case "weapons_platform": return new WeaponsPlatform(section, data);
                 case "tradelane_ring": return new TradelaneRing(section, data);

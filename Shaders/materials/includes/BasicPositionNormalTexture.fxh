@@ -1,7 +1,8 @@
-float4 PositionNormalTexturePS(PositionNormalTextureOut input) : COLOR0
+float4 PositionNormalTexturePS(in float4 inputPosition : POSITION0, in float3 inputNormal : TEXCOORD0,
+							   in float2 inputTextureCoordinate : TEXCOORD1, in float3 inputWorldPosition : TEXCOORD2 ) : COLOR0
 {
-	float4 dc = tex2D(DtSampler, input.TextureCoordinate);
-	return light(0, dc, input.WorldPosition, input.Normal) * float4(1, 0, 0, 1);
+	float4 dc = tex2D(DtSampler, inputTextureCoordinate);
+	return light(0, dc, inputWorldPosition, inputNormal) * float4(1, 0, 0, 1);
 }
 
 technique PositionNormalTexture
