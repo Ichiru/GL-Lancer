@@ -115,7 +115,7 @@ namespace FLApi.Universe
 
             Rooms = new List<Room>();
 
-            foreach (Section s in parseFile(FreelancerIni.DataPath + file))
+            foreach (Section s in ParseFile(FreelancerIni.DataPath + file))
             {
                 switch (s.Name.ToLowerInvariant())
                 {

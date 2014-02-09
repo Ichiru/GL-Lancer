@@ -31,7 +31,7 @@ namespace FLApi.Solar
         {
             Stars = new List<Star>();
 
-            foreach (Section s in parseFile(path))
+            foreach (Section s in ParseFile(path))
             {
                 switch (s.Name.ToLowerInvariant())
                 {

@@ -31,7 +31,7 @@ namespace FLApi.Solar
         {
             Solars = new List<Archetype>();
 
-            foreach (Section s in parseFile(path))
+            foreach (Section s in ParseFile(path))
             {
                 switch (s.Name.ToLowerInvariant())
                 {

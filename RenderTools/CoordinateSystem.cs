@@ -14,12 +14,11 @@
  * Portions created by the Initial Developer are Copyright (C) 2011, 2012
  * the Initial Developer. All Rights Reserved.
  */
-
+#if false
 using System.Collections.Generic;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+using OpenTK;
+using FLCommon;
 
 namespace RenderTools
 {
@@ -183,3 +182,4 @@ namespace RenderTools
         }
     }
 }
+#endif

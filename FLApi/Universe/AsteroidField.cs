@@ -43,7 +43,7 @@ namespace FLApi.Universe
             DynamicAsteroids = new List<DynamicAsteroids>();
             LootableZones = new List<LootableZone>();
 
-            foreach (Section s in parseFile(FreelancerIni.DataPath + file))
+            foreach (Section s in ParseFile(FreelancerIni.DataPath + file))
             {
                 switch (s.Name.ToLowerInvariant())
                 {

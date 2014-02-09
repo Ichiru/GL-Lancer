@@ -37,7 +37,7 @@ namespace FLApi.Universe
             Bases = new List<Base>();
             Systems = new List<StarSystem>();
 
-            foreach (Section s in parseFile(path))
+            foreach (Section s in ParseFile(path))
             {
                 switch (s.Name.ToLowerInvariant())
                 {

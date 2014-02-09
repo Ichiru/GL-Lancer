@@ -31,7 +31,7 @@ namespace FLParser.Ini
         public const string FileType = "BINI", IniFileType = "INI";
         public const int FileVersion = 1;
 
-        protected List<Section> parseFile(string path)
+        protected List<Section> ParseFile(string path)
         {
             if (path == null) throw new ArgumentNullException("path");
 

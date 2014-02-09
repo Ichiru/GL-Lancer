@@ -7,11 +7,13 @@ namespace GLSLProcessor
 	public class ShaderIni : IniFile
 	{
 		public List<string> ShaderPaths;
+		public List<byte> ShaderTypes;
 		public List<ProgramDescription> Programs;
 		public ShaderIni (string path)
 		{
-			var sections = parseFile (path);
+			var sections = ParseFile (path);
 			ShaderPaths = new List<string> ();
+			ShaderTypes = new List<byte> ();
 			Programs = new List<ProgramDescription> ();
 			foreach (var section in sections) {
 				if (section.Name.ToUpperInvariant () != "PROGRAM") {
@@ -24,10 +26,14 @@ namespace GLSLProcessor
 				Programs.Add (desc);
 			}
 			foreach (var desc in Programs) {
-				if (!ShaderPaths.Contains (desc.FragmentShader))
+				if (!ShaderPaths.Contains (desc.FragmentShader)) {
 					ShaderPaths.Add (desc.FragmentShader);
-				if (!ShaderPaths.Contains (desc.VertexShader))
+					ShaderTypes.Add (ShaderOutput.SOURCE_VERTEX);
+				}
+				if (!ShaderPaths.Contains (desc.VertexShader)) {
 					ShaderPaths.Add (desc.VertexShader);
+					ShaderTypes.Add (ShaderOutput.SOURCE_FRAGMENT);
+				}
 			}
 		}
 		public class ProgramDescription

@@ -33,7 +33,7 @@ namespace FLApi.Characters
             Bodyparts = new List<Bodypart>();
             Accessories = new List<Accessory>();
 
-            foreach (Section s in parseFile(path))
+            foreach (Section s in ParseFile(path))
             {
                 switch (s.Name.ToLowerInvariant())
                 {

@@ -22,6 +22,7 @@ namespace GLSLProcessor
 			var ini = new ShaderIni (args [0]);
 			var output = new ShaderOutput ();
 			output.Sources = new string[ini.ShaderPaths.Count];
+			output.SourceTypes = ini.ShaderTypes.ToArray ();
 			output.Programs = new ShaderOutput.Program[ini.Programs.Count];
 			for (int i = 0; i < ini.ShaderPaths.Count; i++) {
 				output.Sources [i] = File.ReadAllText (Path.Combine(Path.GetDirectoryName(args[0]),ini.ShaderPaths [i]));

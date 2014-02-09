@@ -15,8 +15,8 @@
  * the Initial Developer. All Rights Reserved.
  */
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using OpenTK;
+using FLCommon;
 
 namespace RenderTools
 {
@@ -24,7 +24,7 @@ namespace RenderTools
     {
         private const float MOVE_SPEED = 400;
 
-        public GraphicsDevice GraphicsDevice { get; private set; }
+        public Viewport Viewport { get; private set; }
 
         private Vector3 currentTarget, selectedTarget;
         public Vector3 Target
@@ -38,23 +38,23 @@ namespace RenderTools
         public Vector3 Position { get; set; }
         public Vector3 MoveVector { get; set; }
 
-        public Matrix Projection { get; private set; }
-        public Matrix View { get; private set; }
+        public Matrix4 Projection { get; private set; }
+        public Matrix4 View { get; private set; }
 
         //public Plane ReflectionPlane { get; set; }
         //public Vector3 ReflectionPosition { get; private set; }
-        //public Matrix ReflectionView { get; private set; }
+        //public Matrix4 ReflectionView { get; private set; }
 
         public bool Free { get; set; }
 
-        public Camera(GraphicsDevice device)
+        public Camera(Viewport viewport)
         {
-            this.GraphicsDevice = device;
+            this.Viewport = viewport;
         }
 
         public void UpdateProjection()
         {
-            Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(35f), GraphicsDevice.Viewport.AspectRatio, 0.3f, 100000000f);
+            Projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.ToRadians(35f), Viewport.AspectRatio, 0.3f, 100000000f);
         }
 
         /// <summary>
@@ -64,18 +64,18 @@ namespace RenderTools
         {
             if (Free)
             {
-                Matrix rotationMatrix = Matrix.CreateRotationX(Rotation.Y) * Matrix.CreateRotationY(Rotation.X);
+                Matrix4 rotationMatrix4 = Matrix4.CreateRotationX(Rotation.Y) * Matrix4.CreateRotationY(Rotation.X);
 
-                Vector3 rotatedVector = Vector3.Transform(MoveVector, rotationMatrix);
+                Vector3 rotatedVector = Vector3.Transform(MoveVector, rotationMatrix4);
                 Position += MOVE_SPEED * rotatedVector;
 
                 Vector3 originalTarget = Vector3.Forward;
-                Vector3 rotatedTarget = Vector3.Transform(originalTarget, rotationMatrix);
+                Vector3 rotatedTarget = Vector3.Transform(originalTarget, rotationMatrix4);
                 Vector3 target = Position + rotatedTarget;
 
-                Vector3 upVector = Vector3.Transform(Vector3.Up, rotationMatrix);
+                Vector3 upVector = Vector3.Transform(Vector3.Up, rotationMatrix4);
 
-                View = Matrix.CreateLookAt(Position, target, upVector);
+                View = Matrix4.LookAt(Position, target, upVector);
 
                 MoveVector = Vector3.Zero;
             }
@@ -85,7 +85,7 @@ namespace RenderTools
                 {
                     Vector3 direction = selectedTarget - currentTarget;
 
-                    if (direction.Length() >= MOVE_SPEED)
+                    if (direction.Length >= MOVE_SPEED)
                     {
                         direction.Normalize();
                         currentTarget += direction * MOVE_SPEED;
@@ -93,24 +93,24 @@ namespace RenderTools
                     else currentTarget = selectedTarget;
                 }
 
-                Matrix rotationMatrix = Matrix.CreateRotationX(Rotation.Y) * Matrix.CreateRotationY(Rotation.X);
+                Matrix4 rotationMatrix4 = Matrix4.CreateRotationX(Rotation.Y) * Matrix4.CreateRotationY(Rotation.X);
 
                 Vector3 position = new Vector3(0, 0, Zoom);
-                position = Vector3.Transform(position, rotationMatrix);
+                position = Vector3.Transform(position, rotationMatrix4);
                 Position = currentTarget + position;
 
-                Vector3 upVector = Vector3.Transform(Vector3.Up, rotationMatrix);
+                Vector3 upVector = Vector3.Transform(Vector3.Up, rotationMatrix4);
 
-                View = Matrix.CreateLookAt(Position, currentTarget, upVector);
+                View = Matrix4.LookAt(Position, currentTarget, upVector);
             }
 
             // Reflection
-            /*Matrix reflectionMatrix = Matrix.CreateReflection(ReflectionPlane);
-            ReflectionPosition = Vector3.Transform(Position, reflectionMatrix);
-            Vector3 rtar = Vector3.Transform(target, reflectionMatrix);
-            Vector3 rup = Vector3.Cross(Vector3.Transform(Vector3.Right, rotationMatrix), rtar - ReflectionPosition);
+            /*Matrix4 reflectionMatrix4 = Matrix4.CreateReflection(ReflectionPlane);
+            ReflectionPosition = Vector3.Transform(Position, reflectionMatrix4);
+            Vector3 rtar = Vector3.Transform(target, reflectionMatrix4);
+            Vector3 rup = Vector3.Cross(Vector3.Transform(Vector3.Right, rotationMatrix4), rtar - ReflectionPosition);
 
-            ReflectionView = Matrix.CreateLookAt(ReflectionPosition, rtar, rup);*/
+            ReflectionView = Matrix4.CreateLookAt(ReflectionPosition, rtar, rup);*/
         }
     }
 }

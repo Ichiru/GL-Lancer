@@ -77,7 +77,7 @@ namespace FLApi.Universe
             NebulaLights = new List<NebulaLight>();
             CloudsPuffShape = new List<string>();
 
-            foreach (Section s in parseFile(FreelancerIni.DataPath + file))
+            foreach (Section s in ParseFile(FreelancerIni.DataPath + file))
             {
                 switch (s.Name.ToLowerInvariant())
                 {

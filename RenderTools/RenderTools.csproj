@@ -64,4 +64,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <ProjectReference Include="..\FLCommon\FLCommon.csproj">
+      <Project>{D789B2C5-128E-4B10-B086-374973626911}</Project>
+      <Name>FLCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

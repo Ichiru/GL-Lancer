@@ -34,7 +34,7 @@ namespace FLApi.Solar
 
         public void AddLoadoutsIni(string path, FreelancerIni freelancerIni)
         {
-            foreach (Section s in parseFile(path))
+            foreach (Section s in ParseFile(path))
             {
                 switch (s.Name.ToLowerInvariant())
                 {

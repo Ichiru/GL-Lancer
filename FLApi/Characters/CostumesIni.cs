@@ -32,7 +32,7 @@ namespace FLApi.Characters
         {
             Costumes = new List<Costume>();
 
-            foreach (Section s in parseFile(path))
+            foreach (Section s in ParseFile(path))
             {
                 switch (s.Name.ToLowerInvariant())
                 {

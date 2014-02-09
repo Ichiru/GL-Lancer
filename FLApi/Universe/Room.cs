@@ -49,7 +49,7 @@ namespace FLApi.Universe
                 }
             }
 
-            foreach (Section s in parseFile(FreelancerIni.DataPath + file))
+            foreach (Section s in ParseFile(FreelancerIni.DataPath + file))
             {
                 switch (s.Name.ToLowerInvariant())
                 {

@@ -63,7 +63,7 @@ namespace FLApi
 			FileFinder.Initialize (path);
             ExePath = Path.Combine(path,"EXE") + Path.DirectorySeparatorChar;
 
-            foreach (Section s in parseFile(ExePath + "freelancer.ini"))
+            foreach (Section s in ParseFile(ExePath + "freelancer.ini"))
             {
                 switch (s.Name.ToLowerInvariant())
                 {

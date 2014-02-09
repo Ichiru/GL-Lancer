@@ -173,7 +173,7 @@ namespace FLApi.Universe
                 }
             }
 
-            foreach (Section s in parseFile(FreelancerIni.DataPath + "universe\\" + file))
+            foreach (Section s in ParseFile(FreelancerIni.DataPath + "universe\\" + file))
             {
                 switch (s.Name.ToLowerInvariant())
                 {
