@@ -50,6 +50,10 @@ namespace FLCommon
 				throw new ArgumentOutOfRangeException ();
 			}
 		}
+		public static bool IsTexture (this ActiveUniformType type)
+		{
+			return false;
+		}
 	}
 }
 

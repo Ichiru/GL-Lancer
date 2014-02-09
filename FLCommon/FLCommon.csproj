@@ -41,6 +41,7 @@
     <Compile Include="VertexPositionNormalTexture.cs" />
     <Compile Include="Effect.cs" />
     <Compile Include="ActiveUniformTypeExtensions.cs" />
+    <Compile Include="Texture.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
