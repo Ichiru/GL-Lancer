@@ -1,6 +1,0 @@
-[submodule "Third-Party/MonoGame-SDL2"]
-	path = Third-Party/MonoGame-SDL2
-	url = https://github.com/flibitijibibo/MonoGame.git
-[submodule "Third-Party/2MGFX"]
-	path = Third-Party/2MGFX
-	url = https://github.com/Ichiru/2MGFX-Binaries.git
