@@ -1,0 +1,3 @@
+[submodule "Third-Party/OpenTK"]
+	path = Third-Party/OpenTK
+	url = https://github.com/thefiddler/opentk.git
