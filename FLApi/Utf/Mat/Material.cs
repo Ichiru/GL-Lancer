@@ -156,7 +156,7 @@ namespace FLApi.Utf.Mat
             }
 
             effect = content.Load<Effect>("effects/materials/" + type);
-			Console.WriteLine (type);
+			//Console.WriteLine (type);
             //effect.Parameters["Projection"].SetValue(camera.Projection);
 			effect.SetParameter ("Projection", camera.Projection);
         }
@@ -175,7 +175,10 @@ namespace FLApi.Utf.Mat
 				effect.SetParameter ("CameraPosition", camera.Position);
             }
         }
+		public virtual void DrawPlanet()
+		{
 
+		}
         public virtual void Draw(D3DFVF vertexFormat, PrimitiveType primitiveType, int baseVertex, int numVertices, int startIndex, int primitiveCount, Color ambient, List<LightSource> lights, Matrix world)
         {
             if (effect != null)

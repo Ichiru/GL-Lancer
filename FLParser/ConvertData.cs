@@ -19,8 +19,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using Microsoft.Xna.Framework;
-
+using OpenTK;
+using FLCommon;
 namespace FLParser
 {
     public static class ConvertData
@@ -122,9 +122,9 @@ namespace FLParser
             return result.ToArray();
         }
 
-        public static Matrix ToMatrix3x3(byte[] data)
+        public static Matrix4 ToMatrix3x3(byte[] data)
         {
-            Matrix result = Matrix.Identity;
+            Matrix4 result = Matrix4.Identity;
 
             using (MemoryStream stream = new MemoryStream(data))
             {
@@ -135,9 +135,9 @@ namespace FLParser
             return result;
         }
 
-        public static Matrix ToMatrix3x3(BinaryReader reader)
+        public static Matrix4 ToMatrix3x3(BinaryReader reader)
         {
-            Matrix result = Matrix.Identity;
+            Matrix4 result = Matrix4.Identity;
 
             result.M11 = reader.ReadSingle();
             result.M21 = reader.ReadSingle();
@@ -159,9 +159,9 @@ namespace FLParser
             return result;
         }
 
-        public static Matrix ToMatrix4x3(byte[] data)
+        public static Matrix4 ToMatrix4x3(byte[] data)
         {
-            Matrix result = Matrix.Identity;
+            Matrix4 result = Matrix4.Identity;
 
             using (MemoryStream stream = new MemoryStream(data))
             {
@@ -172,9 +172,9 @@ namespace FLParser
             return result;
         }
 
-        public static Matrix ToMatrix4x3(BinaryReader reader)
+        public static Matrix4 ToMatrix4x3(BinaryReader reader)
         {
-            Matrix result = Matrix.Identity;
+            Matrix4 result = Matrix4.Identity;
 
             result.M11 = reader.ReadSingle();
             result.M21 = reader.ReadSingle();

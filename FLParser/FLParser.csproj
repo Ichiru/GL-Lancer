@@ -40,10 +40,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
-    <Reference Include="MonoGame.Framework">
-      <HintPath>..\Third-Party\MonoGame-SDL2\MonoGame.Framework\bin\SDL2\Release\MonoGame.Framework.dll</HintPath>
-    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="OpenTK">
+      <HintPath>..\Third-Party\OpenTK\Binaries\OpenTK\Debug\OpenTK.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ByteLen.cs" />
@@ -108,4 +108,10 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\FLCommon\FLCommon.csproj">
+      <Project>{D789B2C5-128E-4B10-B086-374973626911}</Project>
+      <Name>FLCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

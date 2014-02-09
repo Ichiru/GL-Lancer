@@ -62,13 +62,13 @@ namespace FLRenderer
 
 		//private BackgroundWorker systemLoader;
 		public event SystemLoadedEventHandler SystemLoaded;
-
-		public SystemRenderer(GraphicsDevice graphicsDevice, ContentManager content, Camera camera)
+		Main starchart;
+		public SystemRenderer(GraphicsDevice graphicsDevice, ContentManager content, Camera camera, Main sc)
 		{
 			this.graphicsDevice = graphicsDevice;
 			this.content = content;
 			this.camera = camera;
-
+			starchart = sc;
 			starSystem = null;
 
 			World = Matrix.Identity;
@@ -158,6 +158,7 @@ namespace FLRenderer
 					if (planet.DaArchetype is SphFile)
 					{
 						PlanetRenderer p = new PlanetRenderer(graphicsDevice, content, camera, World, true, o);
+						//PlanetRenderer p = new PlanetRenderer (starchart, World, o);
 						Planets.Add(p);
 					}
 					else

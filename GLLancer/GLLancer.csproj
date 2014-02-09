@@ -34,8 +34,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="MonoGame.Framework">
-      <HintPath>..\..\MonoGame\MonoGame.Framework\bin\SDL2\Release\MonoGame.Framework.dll</HintPath>
+    <Reference Include="OpenTK">
+      <HintPath>..\Third-Party\OpenTK\Binaries\OpenTK\Debug\OpenTK.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -55,7 +55,7 @@ namespace FLRenderer
 		private Ellipsoid boundingSphere;
 
 		public PlanetRenderer(GraphicsDevice graphicsDevice, ContentManager content, Camera camera, Matrix world, bool useObjectPosAndRotate, SystemObject spaceObject)
-			: base(graphicsDevice, content, camera, world, useObjectPosAndRotate, spaceObject, Color.Blue)
+			: base(graphicsDevice, content, camera, world, useObjectPosAndRotate, spaceObject, Color.White)
 		{
 			//faceQuad = new Quad(graphicsDevice);
 
@@ -64,7 +64,9 @@ namespace FLRenderer
 			SphFile s = Planet.DaArchetype as SphFile;
 
 			boundingSphere = new Ellipsoid(graphicsDevice, new Vector3(s.Radius) * 1.1f, 12, 16);
-
+			Console.WriteLine (Planet.IdsName);
+			Console.WriteLine (s.SideMaterials [0].GetType ());
+			Console.WriteLine (s.SideMaterials [0].Name);
 			spaceObject.Initialize(graphicsDevice, content, camera);
 
 			//Ellipsoid sphere = new Ellipsoid(graphicsDevice, new Vector3(s.Radius), 48, 64);
@@ -180,7 +182,7 @@ namespace FLRenderer
 				//materials[6].Draw(D3DFVF.XYZ | D3DFVF.TEX1, 0, atmosphereVertexBuffer.VertexCount, 0, atmosphereIndexBuffer.IndexCount / 3, World);
 			}
 
-			SpaceObject.Draw(ambientColor, lights, Matrix.Identity);
+			SpaceObject.Draw(Color.White, lights, Matrix.Identity);
 
 			if (DrawBoundingBoxEnabled)
 			{

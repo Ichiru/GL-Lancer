@@ -21,10 +21,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using OpenTK;
+using FLCommon;
 
-using Color = Microsoft.Xna.Framework.Color;
+using Color = FLCommon.Color;
 
 namespace FLParser.Utf
 {
@@ -161,7 +161,7 @@ namespace FLParser.Utf
             }
         }
 
-        public Matrix? MatrixData3x3
+        public Matrix4? MatrixData3x3
         {
             get
             {
@@ -170,7 +170,7 @@ namespace FLParser.Utf
             }
         }
 
-        public Matrix? MatrixData4x3
+        public Matrix4? MatrixData4x3
         {
             get
             {

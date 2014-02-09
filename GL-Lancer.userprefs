@@ -1,20 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FLParser/ConvertData.cs">
-    <Files>
-      <File FileName="GLLancer/Main.cs" Line="1" Column="1" />
-      <File FileName="FLParser/ConvertData.cs" Line="22" Column="17" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Solution Items" expanded="True" />
-          <Node name="FLApi" expanded="True" />
-          <Node name="FLParser" expanded="True">
-            <Node name="Dll" expanded="True" />
-            <Node name="ConvertData.cs" selected="True" />
-          </Node>
-          <Node name="GLLancer" expanded="True" />
+          <Node name="GLLancer" selected="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">

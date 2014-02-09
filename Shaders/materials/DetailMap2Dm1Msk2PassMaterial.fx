@@ -85,7 +85,7 @@ technique PositionTexture
 		ZWriteEnable = true;
 		CullMode = cw;
 
-		VertexShader = compile vs_2_0 PositionTextureVS();
-        PixelShader = compile ps_2_0 PositionTexturePS();
+		VertexShader = compile vs_3_0 PositionTextureVS();
+        PixelShader = compile ps_3_0 PositionTexturePS();
     }
 }

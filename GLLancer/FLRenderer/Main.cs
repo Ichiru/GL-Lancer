@@ -55,7 +55,7 @@ namespace FLRenderer
 			Camera = new Camera(GraphicsDevice);
 			Camera.Zoom = 5000;
 			//SectorMap = new SectorMap(this);
-			SystemMap = new SystemRenderer(GraphicsDevice, Content, Camera);
+			SystemMap = new SystemRenderer(GraphicsDevice, Content, Camera, this);
 			//Hud = new Hud(this);
 			//CoordinateSystem = new CoordinateSystem(Camera, Content);
 		}

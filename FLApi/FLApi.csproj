@@ -41,8 +41,8 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Xml" />
-    <Reference Include="MonoGame.Framework">
-      <HintPath>..\Third-Party\MonoGame-SDL2\MonoGame.Framework\bin\SDL2\Release\MonoGame.Framework.dll</HintPath>
+    <Reference Include="OpenTK">
+      <HintPath>..\Third-Party\OpenTK\Binaries\OpenTK\Debug\OpenTK.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

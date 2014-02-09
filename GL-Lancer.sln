@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShaderCompiler", "ShaderCom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontCompiler", "FontCompiler\FontCompiler.csproj", "{77B99950-0A23-4211-8FA8-E9E04FD9F5AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLSLProcessor", "GLSLProcessor\GLSLProcessor.csproj", "{FA81A81C-3089-4CB1-A32E-0DA8027F130F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FLCommon", "FLCommon\FLCommon.csproj", "{D789B2C5-128E-4B10-B086-374973626911}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -47,14 +51,23 @@ Global
 		{C7A198FE-D725-420F-B04E-0484E12AACF4}.Debug|x86.Build.0 = Debug|Any CPU
 		{C7A198FE-D725-420F-B04E-0484E12AACF4}.Release|x86.ActiveCfg = Release|Any CPU
 		{C7A198FE-D725-420F-B04E-0484E12AACF4}.Release|x86.Build.0 = Release|Any CPU
+		{D789B2C5-128E-4B10-B086-374973626911}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D789B2C5-128E-4B10-B086-374973626911}.Debug|x86.Build.0 = Debug|Any CPU
+		{D789B2C5-128E-4B10-B086-374973626911}.Release|x86.ActiveCfg = Release|Any CPU
+		{D789B2C5-128E-4B10-B086-374973626911}.Release|x86.Build.0 = Release|Any CPU
 		{EA2B65BD-27A6-4709-B5CB-93159BED246F}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{EA2B65BD-27A6-4709-B5CB-93159BED246F}.Debug|x86.Build.0 = Debug|Any CPU
 		{EA2B65BD-27A6-4709-B5CB-93159BED246F}.Release|x86.ActiveCfg = Release|Any CPU
 		{EA2B65BD-27A6-4709-B5CB-93159BED246F}.Release|x86.Build.0 = Release|Any CPU
+		{FA81A81C-3089-4CB1-A32E-0DA8027F130F}.Debug|x86.ActiveCfg = Debug|x86
+		{FA81A81C-3089-4CB1-A32E-0DA8027F130F}.Debug|x86.Build.0 = Debug|x86
+		{FA81A81C-3089-4CB1-A32E-0DA8027F130F}.Release|x86.ActiveCfg = Release|x86
+		{FA81A81C-3089-4CB1-A32E-0DA8027F130F}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{98552C7A-6EAB-4A12-BA73-99EC91E76AB0} = {0BC65FFA-DE25-4F97-AAB1-7515415F5FE2}
 		{77B99950-0A23-4211-8FA8-E9E04FD9F5AA} = {0BC65FFA-DE25-4F97-AAB1-7515415F5FE2}
+		{FA81A81C-3089-4CB1-A32E-0DA8027F130F} = {0BC65FFA-DE25-4F97-AAB1-7515415F5FE2}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = GLLancer\GLLancer.csproj
