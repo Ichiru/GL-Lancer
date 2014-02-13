@@ -42,6 +42,28 @@
     <Compile Include="Effect.cs" />
     <Compile Include="ActiveUniformTypeExtensions.cs" />
     <Compile Include="Texture.cs" />
+    <Compile Include="GraphicsDevice.cs" />
+    <Compile Include="IndexBuffer.cs" />
+    <Compile Include="VertexBuffer.cs" />
+    <Compile Include="MathConvert.cs" />
+    <Compile Include="VertexPositionColor.cs" />
+    <Compile Include="StubEnums.cs" />
+    <Compile Include="VertexPositionTexture.cs" />
+    <Compile Include="VertexDeclaration.cs" />
+    <Compile Include="Bounds\BoundingBox.cs" />
+    <Compile Include="Bounds\BoundingFrustum.cs" />
+    <Compile Include="Bounds\BoundingSphere.cs" />
+    <Compile Include="Bounds\ContainmentType.cs" />
+    <Compile Include="Bounds\Plane.cs" />
+    <Compile Include="Bounds\PlaneIntersectionType.cs" />
+    <Compile Include="Bounds\Ray.cs" />
+    <Compile Include="VectorMath.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Bounds\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Bounds\LICENSE.txt" />
+  </ItemGroup>
 </Project>

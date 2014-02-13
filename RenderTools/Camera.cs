@@ -54,7 +54,7 @@ namespace RenderTools
 
         public void UpdateProjection()
         {
-            Projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.ToRadians(35f), Viewport.AspectRatio, 0.3f, 100000000f);
+            Projection = Matrix4.CreatePerspectiveFieldOfView(MathConvert.ToRadians(35f), Viewport.AspectRatio, 0.3f, 100000000f);
         }
 
         /// <summary>
@@ -69,11 +69,11 @@ namespace RenderTools
                 Vector3 rotatedVector = Vector3.Transform(MoveVector, rotationMatrix4);
                 Position += MOVE_SPEED * rotatedVector;
 
-                Vector3 originalTarget = Vector3.Forward;
+                Vector3 originalTarget = VectorMath.Forward;
                 Vector3 rotatedTarget = Vector3.Transform(originalTarget, rotationMatrix4);
                 Vector3 target = Position + rotatedTarget;
 
-                Vector3 upVector = Vector3.Transform(Vector3.Up, rotationMatrix4);
+                Vector3 upVector = Vector3.Transform(VectorMath.Up, rotationMatrix4);
 
                 View = Matrix4.LookAt(Position, target, upVector);
 
@@ -99,7 +99,7 @@ namespace RenderTools
                 position = Vector3.Transform(position, rotationMatrix4);
                 Position = currentTarget + position;
 
-                Vector3 upVector = Vector3.Transform(Vector3.Up, rotationMatrix4);
+                Vector3 upVector = Vector3.Transform(VectorMath.Up, rotationMatrix4);
 
                 View = Matrix4.LookAt(Position, currentTarget, upVector);
             }

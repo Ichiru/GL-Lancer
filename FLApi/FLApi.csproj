@@ -190,6 +190,10 @@
       <Project>{84C04335-CC8F-4895-82F2-48AC39097623}</Project>
       <Name>RenderTools</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FLCommon\FLCommon.csproj">
+      <Project>{D789B2C5-128E-4B10-B086-374973626911}</Project>
+      <Name>FLCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

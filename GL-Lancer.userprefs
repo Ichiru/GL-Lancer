@@ -1,10 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="FLCommon/Effect.cs">
+    <Files>
+      <File FileName="FLCommon/Effect.cs" Line="82" Column="27" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="GLLancer" selected="True" />
+          <Node name="Tools" expanded="True">
+            <Node name="GLSLProcessor" expanded="True" />
+          </Node>
+          <Node name="FLCommon" expanded="True" selected="True" />
+          <Node name="GLLancer" expanded="True" />
+          <Node name="RenderTools" expanded="True">
+            <Node name="Primitives" expanded="True" />
+          </Node>
         </State>
       </Pad>
       <Pad Id="ClassPad">

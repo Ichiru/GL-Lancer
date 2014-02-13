@@ -17,8 +17,8 @@
 
 using System;
 
-using Microsoft.Xna.Framework;
-
+using FLCommon;
+using OpenTK;
 using FLParser.Ini;
 
 namespace FLApi.Universe
