@@ -1,3 +1,0 @@
-@echo off
-echo Building Shaders...
-ShaderCompiler\bin\Debug\ShaderCompiler

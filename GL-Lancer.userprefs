@@ -1,8 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FLCommon/Effect.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FLApi/Utf/Cmp/CmpFile.cs">
     <Files>
-      <File FileName="FLCommon/Effect.cs" Line="82" Column="27" />
+      <File FileName="FLCommon/Bounds/BoundingSphere.cs" Line="222" Column="30" />
+      <File FileName="FLCommon/VectorMath.cs" Line="14" Column="66" />
+      <File FileName="FLCommon/Bounds/Ray.cs" Line="214" Column="3" />
+      <File FileName="FLApi/Characters/Costume.cs" Line="45" Column="38" />
+      <File FileName="FLApi/Universe/NamedObject.cs" Line="21" Column="14" />
+      <File FileName="FLApi/Utf/Cmp/CmpFile.cs" Line="138" Column="26" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -10,7 +15,18 @@
           <Node name="Tools" expanded="True">
             <Node name="GLSLProcessor" expanded="True" />
           </Node>
-          <Node name="FLCommon" expanded="True" selected="True" />
+          <Node name="FLApi" expanded="True">
+            <Node name="References" expanded="True" />
+            <Node name="Characters" expanded="True" />
+            <Node name="Universe" expanded="True" />
+            <Node name="Utf" expanded="True">
+              <Node name="Cmp" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="FLCommon" expanded="True">
+            <Node name="Bounds" expanded="True" />
+          </Node>
+          <Node name="FLParser" expanded="True" />
           <Node name="GLLancer" expanded="True" />
           <Node name="RenderTools" expanded="True">
             <Node name="Primitives" expanded="True" />
