@@ -18,7 +18,7 @@
 using System;
 using System.Linq;
 
-using Microsoft.Xna.Framework;
+using OpenTK;
 
 using FLParser.Ini;
 using FLParser.Utf;

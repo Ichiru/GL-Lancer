@@ -20,9 +20,8 @@
 using System;
 using System.Collections.Generic;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+using FLCommon;
+using OpenTK;
 
 using FLApi.Universe;
 using FLApi.Utf.Anm;
@@ -79,7 +78,7 @@ namespace FLApi.Utf.Cmp
             Model.Update();
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
         {
             Matrix transform = world;
             if (Construct != null) transform = Construct.Transform * world;

@@ -20,9 +20,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+using OpenTK;
+using FLCommon;
 
 using FLParser.Ini;
 
@@ -416,11 +415,11 @@ namespace FLApi.Universe
             foreach (SystemObject o in Objects) o.Update();
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
         {
             Color ambientColor = AmbientColor ?? ambient;
 
-            Matrix starSphereWorld = Matrix.CreateTranslation(camera.Position);
+            Matrix4 starSphereWorld = Matrix4.CreateTranslation(camera.Position);
             if (BackgroundBasicStars != null) BackgroundBasicStars.Draw(ambientColor, LightSources, starSphereWorld);
             if (BackgroundComplexStars != null) BackgroundComplexStars.Draw(ambientColor, LightSources, starSphereWorld);
             if (BackgroundNebulae != null) BackgroundNebulae.Draw(ambientColor, LightSources, starSphereWorld);

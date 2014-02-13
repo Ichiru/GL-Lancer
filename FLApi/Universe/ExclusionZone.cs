@@ -15,7 +15,7 @@
  * the Initial Developer. All Rights Reserved.
  */
 
-using Microsoft.Xna.Framework;
+using FLCommon;
 
 using FLParser.Utf;
 

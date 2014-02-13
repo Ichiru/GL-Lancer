@@ -19,9 +19,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+using OpenTK;
+using FLCommon;
 
 using FLParser.Ini;
 using FLParser.Utf;
@@ -287,7 +286,7 @@ namespace FLApi.Universe
             throw new NotImplementedException();
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
         {
             throw new NotImplementedException();
         }

@@ -21,9 +21,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+using FLCommon;
+using OpenTK;
 
 using FLParser;
 using FLParser.Utf;
@@ -158,7 +157,7 @@ namespace FLApi.Utf.Cmp
             for (int i = 0; i < Parts.Count; i++) Parts[i].Update();
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
         {
             for (int i = 0; i < Parts.Count; i++) Parts[i].Draw(ambient, lights, world);
 

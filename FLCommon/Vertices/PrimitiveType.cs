@@ -2,11 +2,10 @@ using System;
 
 namespace FLCommon
 {
-	public class PrimitiveType
+	public enum PrimitiveType
 	{
-		public PrimitiveType ()
-		{
-		}
+		TriangleList,
+		TriangleStrip
 	}
 }
 

@@ -19,9 +19,8 @@
 using System;
 using System.Collections.Generic;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+using FLCommon;
+using OpenTK;
 
 using FLParser.Utf;
 
@@ -192,13 +191,13 @@ namespace FLApi.Utf.Cmp
             }
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
         {
             if (ready)
             {
                 Levels[0].Draw(ambient, lights, world);
 
-                /*Matrix tworld = Transform * world;
+                /*Matrix4 tworld = Transform * world;
                 float cameraDistance = Vector3.Distance(tworld.Translation, camera.Position);
 
                 for (int i = 0; i < Switch2.Length; i++)

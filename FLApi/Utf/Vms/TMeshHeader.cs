@@ -20,9 +20,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+using OpenTK;
+using FLCommon;
 
 using FLApi.Utf.Mat;
 using FLApi.Utf.Mat.Materials;
@@ -104,7 +103,7 @@ namespace FLApi.Utf.Vms
             else Material.Update();
         }
 
-        public void Draw(D3DFVF vertexFormat, ushort startVertex, Color ambient, List<LightSource> lights, Matrix world)
+        public void Draw(D3DFVF vertexFormat, ushort startVertex, Color ambient, List<LightSource> lights, Matrix4 world)
         {
             if (Material == null) nullMaterial.Draw(vertexFormat, PrimitiveType.TriangleList, startVertex + StartVertex, numVertices, TriangleStart, primitiveCount, ambient, lights, world);
             else Material.Draw(vertexFormat, PrimitiveType.TriangleList, startVertex + StartVertex, numVertices, TriangleStart, primitiveCount, ambient, lights, world);

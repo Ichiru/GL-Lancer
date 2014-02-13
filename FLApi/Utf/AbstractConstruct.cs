@@ -21,9 +21,8 @@ using System.Linq;
 using System.IO;
 using System.Text;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+using FLCommon;
+using OpenTK;
 
 using FLParser;
 using FLParser.Utf;
@@ -40,9 +39,9 @@ namespace FLApi.Utf
         public string ParentName { get; private set; }
         public string ChildName { get; private set; }
         public Vector3 Origin { get; set; }
-        public Matrix Rotation { get; set; }
+        public Matrix4 Rotation { get; set; }
 
-        public abstract Matrix Transform { get; }
+        public abstract Matrix4 Transform { get; }
 
         protected AbstractConstruct(BinaryReader reader, ConstructCollection constructs)
         {
@@ -64,7 +63,7 @@ namespace FLApi.Utf
             Origin = ConvertData.ToVector3(reader);
         }
 
-        protected Matrix internalGetTransform(Matrix matrix)
+        protected Matrix4 internalGetTransform(Matrix4 matrix)
         {
             AbstractConstruct parent = constructs.Find(ParentName);
             if (parent != null) matrix *= parent.Transform;

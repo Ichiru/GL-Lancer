@@ -2,10 +2,14 @@ using System;
 
 namespace FLCommon
 {
-	public class TextureCube
+	public class TextureCube : Texture
 	{
 		public TextureCube ()
 		{
+		}
+		internal override void Bind ()
+		{
+			throw new NotImplementedException ();
 		}
 	}
 }

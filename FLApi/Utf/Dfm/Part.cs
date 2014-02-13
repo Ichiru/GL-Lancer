@@ -21,9 +21,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+using FLCommon;
+using OpenTK;
 
 using FLParser;
 using FLParser.Utf;
@@ -70,9 +69,9 @@ namespace FLApi.Utf.Dfm
             this.fileName = fileName;
         }
 
-        public void Update(Matrix world)
+        public void Update(Matrix4 world)
         {
-            Matrix transform = world;
+            Matrix4 transform = world;
             if (Construct != null)
             {
                 transform = Construct.Transform * world;

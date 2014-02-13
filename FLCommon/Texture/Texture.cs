@@ -4,7 +4,7 @@ namespace FLCommon
 {
 	public abstract class Texture
 	{
-		public abstract void Bind ();
+		internal abstract void Bind ();
 	}
 }
 

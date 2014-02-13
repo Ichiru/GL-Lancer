@@ -20,9 +20,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+using OpenTK;
+using FLCommon;
 
 using FLParser.Ini;
 
@@ -235,7 +234,7 @@ namespace FLApi
             DaArchetype.Update();
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
         {
             DaArchetype.Draw(ambient, lights, world);
         }

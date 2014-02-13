@@ -20,7 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using Microsoft.Xna.Framework;
+using OpenTK;
 
 using FLParser;
 
@@ -28,7 +28,7 @@ namespace FLApi.Utf
 {
     public class FixConstruct : AbstractConstruct
     {
-        public override Matrix Transform { get { return internalGetTransform(Rotation * Matrix.CreateTranslation(Origin)); } }
+        public override Matrix4 Transform { get { return internalGetTransform(Rotation * Matrix4.CreateTranslation(Origin)); } }
 
         public FixConstruct(BinaryReader reader, ConstructCollection constructs)
             : base(reader, constructs)

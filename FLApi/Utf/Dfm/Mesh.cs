@@ -22,9 +22,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+using FLCommon;
+using OpenTK;
 
 using FLParser.Utf;
 using FLApi.Universe;
@@ -196,7 +195,7 @@ namespace FLApi.Utf.Dfm
             if (ready) foreach (FaceGroup faceGroup in FaceGroups) faceGroup.Update();
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
         {
             if (ready)
             {

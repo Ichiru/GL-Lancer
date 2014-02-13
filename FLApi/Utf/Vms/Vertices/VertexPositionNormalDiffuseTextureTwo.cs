@@ -19,8 +19,8 @@
 using System;
 using System.IO;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using OpenTK;
+using FLCommon;
 
 namespace FLApi.Utf.Vms.Vertices
 {

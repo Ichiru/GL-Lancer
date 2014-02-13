@@ -19,9 +19,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+using OpenTK;
+using FLCommon;
 
 using RenderTools.Primitives;
 
@@ -317,15 +316,15 @@ namespace FLApi.Universe
             if (atmosphere) atmosphereMaterial.Update();
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
         {
             Color ambientColor = /*AmbientColor ??*/ ambient;
 
-            Matrix w = world * Matrix.CreateTranslation(Pos.Value);
+            Matrix4 w = world * Matrix4.CreateTranslation(Pos.Value);
             if (Rotate != null) w =
-                            Matrix.CreateRotationX(MathHelper.ToRadians(Rotate.Value.X)) *
-                            Matrix.CreateRotationY(MathHelper.ToRadians(Rotate.Value.Y)) *
-                            Matrix.CreateRotationZ(MathHelper.ToRadians(Rotate.Value.Z)) *
+                            Matrix4.CreateRotationX(MathConvert.ToRadians(Rotate.Value.X)) *
+                            Matrix4.CreateRotationY(MathConvert.ToRadians(Rotate.Value.Y)) *
+                            Matrix4.CreateRotationZ(MathConvert.ToRadians(Rotate.Value.Z)) *
                             w;
 
             Archetype.Draw(ambientColor, lights, w);

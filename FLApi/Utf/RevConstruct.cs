@@ -19,7 +19,8 @@
 using System.Collections.Generic;
 using System.IO;
 
-using Microsoft.Xna.Framework;
+using OpenTK;
+using FLCommon;
 
 using FLParser;
 
@@ -32,9 +33,9 @@ namespace FLApi.Utf
         public float Min { get; set; }
         public float Max { get; set; }
 
-        private Matrix currentTransform = Matrix.Identity;
+        private Matrix4 currentTransform = Matrix4.Identity;
 
-        public override Matrix Transform { get { return internalGetTransform(currentTransform * Rotation * Matrix.CreateTranslation(Origin + Offset)); } }
+        public override Matrix4 Transform { get { return internalGetTransform(currentTransform * Rotation * Matrix4.CreateTranslation(Origin + Offset)); } }
 
         public RevConstruct(BinaryReader reader, ConstructCollection constructs)
             : base(reader, constructs)
@@ -50,7 +51,7 @@ namespace FLApi.Utf
         public override void Update(float distance)
         {
             Vector3 currentRotation = AxisRotation * distance;
-            currentTransform = Matrix.CreateRotationX(currentRotation.X) * Matrix.CreateRotationY(currentRotation.Y) * Matrix.CreateRotationZ(currentRotation.Z);
+            currentTransform = Matrix4.CreateRotationX(currentRotation.X) * Matrix4.CreateRotationY(currentRotation.Y) * Matrix4.CreateRotationZ(currentRotation.Z);
         }
     }
 }

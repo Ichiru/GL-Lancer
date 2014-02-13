@@ -20,7 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using Microsoft.Xna.Framework;
+using OpenTK;
 
 using FLParser;
 
@@ -36,13 +36,13 @@ namespace FLApi.Utf
         public float Min3 { get; private set; }
         public float Max3 { get; private set; }
 
-        public override Matrix Transform { get { return internalGetTransform(Rotation * Matrix.CreateTranslation(Origin + Offset)); } }
+        public override Matrix4 Transform { get { return internalGetTransform(Rotation * Matrix4.CreateTranslation(Origin + Offset)); } }
 
         public SphereConstruct(BinaryReader reader, ConstructCollection constructs)
             : base(reader, constructs)
         {
             Offset = ConvertData.ToVector3(reader);
-            Rotation = ConvertData.ToMatrix3x3(reader);
+            Rotation = ConvertData.ToMatrix43x3(reader);
 
             Min1 = reader.ReadSingle();
             Max1 = reader.ReadSingle();

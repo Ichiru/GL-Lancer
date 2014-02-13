@@ -17,9 +17,8 @@
 
 using System.Collections.Generic;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+using FLCommon;
+using OpenTK;
 
 using FLParser.Utf;
 
@@ -108,7 +107,7 @@ namespace FLApi.Utf.Mat.Materials
             base.Initialize(device, content, camera);
         }
 
-        public override void Draw(D3DFVF vertexFormat, PrimitiveType primitiveType, int baseVertex, int numVertices, int startIndex, int primitiveCount, Color ambient, List<LightSource> lights, Matrix world)
+        public override void Draw(D3DFVF vertexFormat, PrimitiveType primitiveType, int baseVertex, int numVertices, int startIndex, int primitiveCount, Color ambient, List<LightSource> lights, Matrix4 world)
         {
             if (effect != null)
             {

@@ -21,9 +21,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+using OpenTK;
+using FLCommon;
 
 using FLParser;
 using FLParser.Utf;
@@ -151,32 +150,32 @@ namespace FLApi.Utf.Mat
 			device.SetRenderTarget (renderTarget);
             //device.SetRenderTarget(planetTexture, CubeMapFace.PositiveZ);
             device.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
-            SideMaterials[0].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix.Identity);
+            SideMaterials[0].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix4.Identity);
 			renderTarget.GetData<Color> (data);
 			planetTexture.SetData<Color> (CubeMapFace.PositiveZ, data);
             //device.SetRenderTarget(planetTexture, CubeMapFace.PositiveX);
             device.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
-            SideMaterials[1].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix.Identity);
+            SideMaterials[1].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix4.Identity);
 			renderTarget.GetData<Color> (data);
 			planetTexture.SetData<Color> (CubeMapFace.PositiveX, data);
             //device.SetRenderTarget(planetTexture, CubeMapFace.NegativeZ);
             device.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
-            SideMaterials[2].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix.Identity);
+            SideMaterials[2].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix4.Identity);
 			renderTarget.GetData<Color> (data);
 			planetTexture.SetData<Color> (CubeMapFace.NegativeZ, data);
             //device.SetRenderTarget(planetTexture, CubeMapFace.NegativeX);
             device.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
-            SideMaterials[3].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix.Identity);
+            SideMaterials[3].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix4.Identity);
 			renderTarget.GetData<Color> (data);
 			planetTexture.SetData<Color> (CubeMapFace.NegativeX, data);
             //device.SetRenderTarget(planetTexture, CubeMapFace.PositiveY);
             device.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
-            SideMaterials[4].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix.Identity);
+            SideMaterials[4].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix4.Identity);
 			renderTarget.GetData<Color> (data);
 			planetTexture.SetData<Color> (CubeMapFace.PositiveY, data);
             //device.SetRenderTarget(planetTexture, CubeMapFace.NegativeY);
             device.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
-            SideMaterials[5].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix.Identity);
+            SideMaterials[5].Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Color.White, null, Matrix4.Identity);
 			renderTarget.GetData<Color> (data);
 			planetTexture.SetData<Color> (CubeMapFace.NegativeY, data);
 
@@ -185,7 +184,7 @@ namespace FLApi.Utf.Mat
             updatePlanetTexture = false;
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
         {
             if (ready)
             {

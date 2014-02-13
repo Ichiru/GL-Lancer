@@ -20,9 +20,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+using OpenTK;
+using FLCommon;
 
 using FLParser;
 
@@ -251,7 +250,7 @@ namespace FLApi.Utf.Vms
             }
         }
 
-        public void Draw(ushort startMesh, int endMesh, ushort startVertex, Color ambient, List<LightSource> lights, Matrix world)
+        public void Draw(ushort startMesh, int endMesh, ushort startVertex, Color ambient, List<LightSource> lights, Matrix4 world)
         {
             if (ready)
             {

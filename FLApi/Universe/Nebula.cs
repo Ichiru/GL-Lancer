@@ -18,7 +18,8 @@
 using System;
 using System.Collections.Generic;
 
-using Microsoft.Xna.Framework;
+using OpenTK;
+using FLCommon;
 
 using FLParser.Ini;
 

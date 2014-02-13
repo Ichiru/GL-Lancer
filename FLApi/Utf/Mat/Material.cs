@@ -20,9 +20,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+using OpenTK;
+using FLCommon;
 
 using FLParser.Utf;
 
@@ -179,7 +178,7 @@ namespace FLApi.Utf.Mat
 		{
 
 		}
-        public virtual void Draw(D3DFVF vertexFormat, PrimitiveType primitiveType, int baseVertex, int numVertices, int startIndex, int primitiveCount, Color ambient, List<LightSource> lights, Matrix world)
+        public virtual void Draw(D3DFVF vertexFormat, PrimitiveType primitiveType, int baseVertex, int numVertices, int startIndex, int primitiveCount, Color ambient, List<LightSource> lights, Matrix4 world)
         {
             if (effect != null)
             {

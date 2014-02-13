@@ -21,7 +21,8 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-using Microsoft.Xna.Framework.Graphics;
+using OpenTK;
+using FLCommon;
 
 using FLParser.Utf;
 

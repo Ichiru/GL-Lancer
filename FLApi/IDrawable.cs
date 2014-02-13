@@ -18,9 +18,8 @@
 
 using System.Collections.Generic;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+using OpenTK;
+using FLCommon;
 
 using FLApi.Universe;
 
@@ -31,6 +30,6 @@ namespace FLApi
         void Initialize(GraphicsDevice device, ContentManager content, RenderTools.Camera camera);
         void Resized();
         void Update();
-        void Draw(Color ambient, List<LightSource> lights, Matrix world);
+        void Draw(Color ambient, List<LightSource> lights, Matrix4 world);
     }
 }

@@ -19,7 +19,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-using Microsoft.Xna.Framework;
+using OpenTK;
 
 using FLParser;
 
@@ -32,9 +32,9 @@ namespace FLApi.Utf
         public float Min { get; set; }
         public float Max { get; set; }
 
-        private Matrix currentTransform = Matrix.Identity;
+        private Matrix4 currentTransform = Matrix4.Identity;
 
-        public override Matrix Transform { get { return internalGetTransform(currentTransform * Rotation * Matrix.CreateTranslation(Origin + Offset)); } }
+        public override Matrix4 Transform { get { return internalGetTransform(currentTransform * Rotation * Matrix4.CreateTranslation(Origin + Offset)); } }
 
         public PrisConstruct(BinaryReader reader, ConstructCollection constructs)
             : base(reader, constructs)
