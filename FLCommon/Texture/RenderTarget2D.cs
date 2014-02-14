@@ -25,6 +25,12 @@ namespace FLCommon
 			//unbind the FBO
 			FramebufferMethods.BindFramebuffer (FramebufferTarget.Framebuffer, 0);
 		}
+		public override void Dispose ()
+		{
+			FramebufferMethods.DeleteFramebuffer (FBO);
+			FramebufferMethods.DeleteRenderbuffer (depthbuffer);
+			base.Dispose ();
+		}
 	}
 }
 

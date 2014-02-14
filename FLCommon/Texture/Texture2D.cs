@@ -89,6 +89,11 @@ namespace FLCommon
 		{
 			SetData<T> (0, null, data, 0, data.Length);
 		}
+		public override void Dispose ()
+		{
+			GL.DeleteTexture (ID);
+			base.Dispose ();
+		}
 	}
 }
 

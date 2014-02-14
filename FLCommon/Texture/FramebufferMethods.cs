@@ -74,5 +74,21 @@ namespace FLCommon
 				GL.Ext.RenderbufferStorage (target, storage, width, height);
 			}
 		}
+		public static void DeleteFramebuffer (int fbo)
+		{
+			if (UseARB) {
+				GL.DeleteFramebuffer (fbo);
+			} else {
+				GL.Ext.DeleteFramebuffer (fbo);
+			}
+		}
+		public static void DeleteRenderbuffer (int rbo)
+		{
+			if (UseARB) {
+				GL.DeleteRenderbuffer (rbo);
+			} else {
+				GL.Ext.DeleteRenderbuffer (rbo);
+			}
+		}
 	}
 }

@@ -11,6 +11,10 @@ namespace FLCommon
 		{
 			throw new NotImplementedException ();
 		}
+		public override void Dispose ()
+		{
+			throw new NotImplementedException ();
+		}
 	}
 }
 
