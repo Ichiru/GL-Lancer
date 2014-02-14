@@ -50,7 +50,7 @@ namespace FLApi.Utf
         public override void Update(float distance)
         {
             Vector3 currentRotation = AxisTranslation * distance;
-            currentTransform = Matrix.CreateTranslation(currentRotation);
+            currentTransform = Matrix4.CreateTranslation(currentRotation);
         }
     }
 }

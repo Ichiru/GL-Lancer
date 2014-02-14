@@ -10,5 +10,9 @@ namespace FLCommon
 	{
 		WriteOnly
 	}
+	public enum ClearOptions
+	{
+		Target
+	}
 }
 

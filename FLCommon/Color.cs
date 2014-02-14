@@ -29,7 +29,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using OpenTK;
+using OpenTK.Graphics;
 namespace FLCommon
 {
 	/// <summary>
@@ -139,6 +140,15 @@ namespace FLCommon
 			return unchecked((int)value);
 		}
 
+		public Vector4 ToVector4()
+		{
+			return new Vector4 ((float)R / 255f, (float)G / 255f, (float)B / 255f, (float)A / 255f);
+		}
+
+		public Color4 ToColor4()
+		{
+			return new Color4 ((float)R / 255f, (float)G / 255f, (float)B / 255f, (float)A / 255f);
+		}
 		/// <summary>
 		/// Compares the specified Color structures for equality.
 		/// </summary>

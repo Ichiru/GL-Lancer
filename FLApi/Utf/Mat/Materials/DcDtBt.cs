@@ -75,8 +75,10 @@ namespace FLApi.Utf.Mat.Materials
         {
             if (effect != null)
             {
-                if (Bt == null) effect.Parameters["Bt"].SetValue(nullTexture);
-                else effect.Parameters["Bt"].SetValue(Bt.Texture);
+				if (Bt == null)
+					effect.SetParameter ("Bt", nullTexture);
+				else
+					effect.SetParameter ("Bt", Bt.Texture);
             }
 
             base.Draw(vertexFormat, primitiveType, baseVertex, numVertices, startIndex, primitiveCount, ambient, lights, world);

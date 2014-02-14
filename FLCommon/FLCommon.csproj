@@ -33,6 +33,7 @@
     <Reference Include="OpenTK">
       <HintPath>..\Third-Party\OpenTK\Binaries\OpenTK\Debug\OpenTK.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +66,13 @@
     <Compile Include="Texture\Texture3D.cs" />
     <Compile Include="Texture\TextureCube.cs" />
     <Compile Include="Vertices\VertexPositionColorTexture.cs" />
+    <Compile Include="SurfaceFormat.cs" />
+    <Compile Include="CubeMapFace.cs" />
+    <Compile Include="Texture\FramebufferMethods.cs" />
+    <Compile Include="GLExtensions.cs" />
+    <Compile Include="Texture\SurfaceFormatExtensions.cs" />
+    <Compile Include="Rectangle.cs" />
+    <Compile Include="Texture\RenderTarget2D.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

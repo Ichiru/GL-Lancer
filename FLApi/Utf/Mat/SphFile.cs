@@ -207,11 +207,10 @@ namespace FLApi.Utf.Mat
                     }
                 }
 
-                planetEffect.Parameters["AmbientColor"].SetValue(ambient.ToVector4());
-                planetEffect.Parameters["World"].SetValue(world);
-                planetEffect.Parameters["PlanetTexture"].SetValue(planetTexture);
-
-                planetEffect.CurrentTechnique.Passes[0].Apply();
+				planetEffect.SetParameter ("AmbientColor", ambient.ToVector4 ());
+				planetEffect.SetParameter ("World", world);
+				planetEffect.SetParameter ("PlanetTexture", planetTexture);
+				planetEffect.Apply ();
                 device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, sphere.VertexBuffer.VertexCount, 0, sphere.IndexBuffer.IndexCount / 3);
             }
         }

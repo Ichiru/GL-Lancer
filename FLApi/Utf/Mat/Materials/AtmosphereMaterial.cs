@@ -73,9 +73,9 @@ namespace FLApi.Utf.Mat.Materials
         {
             if (effect != null)
             {
-                effect.Parameters["Alpha"].SetValue(Alpha);
-                effect.Parameters["Fade"].SetValue(Fade);
-                effect.Parameters["Scale"].SetValue(Scale);
+				effect.SetParameter ("Alpha", Alpha);
+				effect.SetParameter ("Fade", Fade);
+				effect.SetParameter ("Scale", Scale);
             }
 
             base.Draw(vertexFormat, primitiveType, baseVertex, numVertices, startIndex, primitiveCount, ambient, lights, world);

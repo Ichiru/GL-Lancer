@@ -65,8 +65,8 @@ namespace FLApi.Utf.Mat.Materials
         {
             if (effect != null)
             {
-                effect.Parameters["FlipU"].SetValue(FlipU);
-                effect.Parameters["FlipV"].SetValue(FlipV);
+				effect.SetParameter ("FlipU", FlipU);
+				effect.SetParameter ("FlipV", FlipV);
             }
 
             base.Draw(vertexFormat, primitiveType, baseVertex, numVertices, startIndex, primitiveCount, ambient, lights, world);

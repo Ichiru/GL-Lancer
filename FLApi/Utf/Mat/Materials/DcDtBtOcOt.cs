@@ -55,7 +55,8 @@ namespace FLApi.Utf.Mat.Materials
 
         public override void Draw(D3DFVF vertexFormat, PrimitiveType primitiveType, int baseVertex, int numVertices, int startIndex, int primitiveCount, Color ambient, List<LightSource> lights, Matrix4 world)
         {
-            if (effect != null) effect.Parameters["Oc"].SetValue(Oc);
+			if (effect != null)
+				effect.SetParameter ("Oc", Oc);
             base.Draw(vertexFormat, primitiveType, baseVertex, numVertices, startIndex, primitiveCount, ambient, lights, world);
         }
     }

@@ -36,7 +36,7 @@ namespace FLCommon
 		Dictionary<string, Uniform> uniforms = new Dictionary<string, Uniform> ();
 		Program activeProgram;
 
-		public string ActiveProgram {
+		public string CurrentTechnique {
 			get {
 				return activeProgram.Name;
 			}
@@ -46,6 +46,51 @@ namespace FLCommon
 					UpdateUniforms ();
 				}
 			}
+		}
+		static StringHack strhack = new StringHack ();
+		public StringHack Techniques
+		{
+			get {
+				return strhack;
+			}
+		}
+		//very dirty hack
+		public class StringHack 
+		{
+			public string this[string index] {
+				get {
+					return index;
+				}
+			}
+		}
+		public void SetParameter(string name, Vector4 vec)
+		{
+
+		}
+
+		public void SetParameter (string name, Matrix4 mat)
+		{
+
+		}
+
+		public void SetParameter (string name, int i)
+		{
+
+		}
+
+		public void SetParameter (string name, Vector3 vec)
+		{
+
+		}
+
+		public void SetParameter (string name, float f)
+		{
+
+		}
+
+		public void SetParameter (string name, Texture tex)
+		{
+
 		}
 
 		public Effect (string filename)

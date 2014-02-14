@@ -162,15 +162,15 @@ namespace FLApi.Utf.Mat
 
         public void Resized()
         {
-            if (effect != null) effect.Parameters["Projection"].SetValue(camera.Projection);
+			if (effect != null)
+				effect.SetParameter ("Projection", camera.Projection);
         }
 
         public void Update()
         {
             if (effect != null)
             {
-                effect.Parameters["View"].SetValue(camera.View);
-                //effect.Parameters["CameraPosition"].SetValue(camera.Position);
+				effect.SetParameter ("View", camera.View);
 				effect.SetParameter ("CameraPosition", camera.Position);
             }
         }
@@ -184,8 +184,7 @@ namespace FLApi.Utf.Mat
             {
                 if (lights != null)
                 {
-                    effect.Parameters["LightCount"].SetValue(lights.Count);
-
+                    effect.Parameters["LightCount"].SetValue(lights.Count);					effect.SetParameter ("LightCount", lights.Count);
                     for (int i = 0; i < 9; i++)
                     {
                         effect.Parameters["LightsPos"].Elements[i].SetValue(i < lights.Count ? lights[i].Pos.Value : Vector3.Zero);
@@ -225,7 +224,8 @@ namespace FLApi.Utf.Mat
                     default: throw new Exception("Invalid vertex format: " + vertexFormat);
                 }
 
-                effect.CurrentTechnique.Passes[0].Apply();
+                //effect.CurrentTechnique.Passes[0].Apply();
+				effect.Apply ();
                 device.DrawIndexedPrimitives(primitiveType, baseVertex, 0, numVertices, startIndex, primitiveCount);
             }
         }

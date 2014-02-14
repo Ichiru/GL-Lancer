@@ -28,7 +28,7 @@ namespace FLApi.Utf
 {
     public class SphereConstruct : AbstractConstruct
     {
-        public Vector3 Offset { get; private set; }
+		public Vector3 Offset { get; private set; }
         public float Min1 { get; private set; }
         public float Max1 { get; private set; }
         public float Min2 { get; private set; }
@@ -42,7 +42,7 @@ namespace FLApi.Utf
             : base(reader, constructs)
         {
             Offset = ConvertData.ToVector3(reader);
-            Rotation = ConvertData.ToMatrix43x3(reader);
+            Rotation = ConvertData.ToMatrix3x3(reader);
 
             Min1 = reader.ReadSingle();
             Max1 = reader.ReadSingle();

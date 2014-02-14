@@ -111,14 +111,14 @@ namespace FLApi.Utf.Mat.Materials
         {
             if (effect != null)
             {
-                if (Dm0 == null) effect.Parameters["Dm0"].SetValue(nullTexture);
-                else effect.Parameters["Dm0"].SetValue(Dm0.Texture);
-                
-                if (Dm1 == null) effect.Parameters["Dm1"].SetValue(nullTexture);
-                else effect.Parameters["Dm1"].SetValue(Dm1.Texture);
+				if (Dm0 == null) effect.SetParameter ("Dm0", nullTexture);
+				else effect.SetParameter ("Dm0", Dm0.Texture);
 
-                effect.Parameters["TileRate0"].SetValue(TileRate0);
-                effect.Parameters["TileRate1"].SetValue(TileRate1);
+				if (Dm1 == null) effect.SetParameter ("Dm1", nullTexture);
+				else effect.SetParameter ("Dm1", Dm1.Texture);
+
+				effect.SetParameter ("TileRate0", TileRate0);
+				effect.SetParameter ("TileRate1", TileRate1);
             }
 
             base.Draw(vertexFormat, primitiveType, baseVertex, numVertices, startIndex, primitiveCount, ambient, lights, world);
