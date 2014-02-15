@@ -1,16 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../MonoGame/MonoGame.Framework/Graphics/Texture2D.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FLApi/Utf/Dfm/Mesh.cs">
     <Files>
-      <File FileName="FLApi/Utf/Dfm/Mesh.cs" Line="180" Column="81" />
-      <File FileName="FLApi/Utf/Mat/SphFile.cs" Line="209" Column="5" />
-      <File FileName="../MonoGame/MonoGame.Framework/Graphics/Texture2D.cs" Line="192" Column="31" />
-      <File FileName="FLCommon/Texture/Texture2D.cs" Line="27" Column="4" />
-      <File FileName="FLCommon/Texture/FramebufferMethods.cs" Line="4" Column="2" />
+      <File FileName="FLApi/Utf/Mat/SphFile.cs" Line="145" Column="29" />
+      <File FileName="FLApi/Utf/Mat/Material.cs" Line="193" Column="32" />
+      <File FileName="FLCommon/Texture/Texture2D.cs" Line="95" Column="20" />
+      <File FileName="FLCommon/Texture/Texture.cs" Line="23" Column="35" />
+      <File FileName="FLApi/Utf/Dfm/Mesh.cs" Line="184" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
+        <State expanded="True" selected="True">
           <Node name="FLApi" expanded="True">
             <Node name="Utf" expanded="True">
               <Node name="Dfm" expanded="True" />
@@ -18,9 +18,8 @@
             </Node>
           </Node>
           <Node name="FLCommon" expanded="True">
-            <Node name="Texture" expanded="True">
-              <Node name="Texture2D.cs" selected="True" />
-            </Node>
+            <Node name="References" expanded="True" />
+            <Node name="Texture" expanded="True" />
           </Node>
           <Node name="GLLancer" expanded="True" />
         </State>

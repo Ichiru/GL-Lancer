@@ -34,20 +34,6 @@ namespace FLApi.Utf.Mat
         private byte[] data;
 
         public Texture Texture { get; private set; }
-        public Image Image
-        {
-            get
-            {
-                if (Texture != null && !Texture.GraphicsDevice.IsDisposed && Texture is Texture2D)
-                {
-                    Stream s = new MemoryStream();
-                    Texture2D t = Texture as Texture2D;
-                    t.SaveAsPng(s, t.Width, t.Height);
-                    return Image.FromStream(s);
-                }
-                else return null;
-            }
-        }
 
         public TextureData(LeafNode node)
         {

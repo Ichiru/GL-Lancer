@@ -13,6 +13,7 @@ namespace FLCommon
 			Normal = normal;
 			TextureCoordinate = texcoord;
 		}
+		public static VertexDeclaration VertexDeclaration = null;
 	}
 }
 

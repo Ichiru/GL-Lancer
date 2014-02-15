@@ -11,6 +11,7 @@ namespace FLCommon
 		PixelType glType;
 		public Texture2D (GraphicsDevice device, int width, int height, bool hasMipMaps, SurfaceFormat format) : this (true)
 		{
+			GraphicsDevice = device;
 			Width = width;
 			Height = height;
 			Format = format;
@@ -93,6 +94,10 @@ namespace FLCommon
 		{
 			GL.DeleteTexture (ID);
 			base.Dispose ();
+		}
+		public static Texture2D FromStream (GraphicsDevice device, System.IO.Stream stream)
+		{
+			return null;
 		}
 	}
 }

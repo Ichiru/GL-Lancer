@@ -4,6 +4,7 @@ namespace FLCommon
 {
 	public class IndexBuffer : IDisposable
 	{
+		public int IndexCount { get; private set; }
 		public IndexBuffer (GraphicsDevice device, IndexElementSize size, int length, BufferUsage usage)
 		{
 		}

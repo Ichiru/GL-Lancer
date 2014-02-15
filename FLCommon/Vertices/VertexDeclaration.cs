@@ -4,7 +4,7 @@ namespace FLCommon
 {
 	public class VertexDeclaration
 	{
-		public VertexDeclaration ()
+		public VertexDeclaration (params VertexElement[] elements)
 		{
 		}
 	}

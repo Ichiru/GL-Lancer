@@ -6,6 +6,7 @@ namespace FLCommon
 	{
 		internal int ID;
 		public SurfaceFormat Format { get; protected set; }
+		public GraphicsDevice GraphicsDevice { get; protected set; }
 		public int LevelCount {
 			get;
 			protected set;

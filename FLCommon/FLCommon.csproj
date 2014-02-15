@@ -39,7 +39,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Color.cs" />
     <Compile Include="Viewport.cs" />
-    <Compile Include="Effect.cs" />
     <Compile Include="ActiveUniformTypeExtensions.cs" />
     <Compile Include="GraphicsDevice.cs" />
     <Compile Include="MathConvert.cs" />
@@ -73,12 +72,17 @@
     <Compile Include="Texture\SurfaceFormatExtensions.cs" />
     <Compile Include="Rectangle.cs" />
     <Compile Include="Texture\RenderTarget2D.cs" />
+    <Compile Include="Effect\Effect.cs" />
+    <Compile Include="Effect\GLUniform.cs" />
+    <Compile Include="Effect\Program.cs" />
+    <Compile Include="Vertices\VertexElement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Bounds\" />
     <Folder Include="Vertices\" />
     <Folder Include="Texture\" />
+    <Folder Include="Effect\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Bounds\LICENSE.txt" />

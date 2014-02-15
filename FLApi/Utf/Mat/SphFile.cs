@@ -116,7 +116,7 @@ namespace FLApi.Utf.Mat
                     m.Initialize(device, content, camera);
 
                 planetEffect = content.Load<Effect>("effects/Planet");
-                planetEffect.Parameters["Projection"].SetValue(camera.Projection);
+				planetEffect.SetParameter ("Projection", camera.Projection);
 
                 ready = true;
             }
@@ -126,7 +126,7 @@ namespace FLApi.Utf.Mat
         {
             if (ready)
             {
-                planetEffect.Parameters["Projection"].SetValue(camera.Projection);
+                planetEffect.SetParameter ("Projection", camera.Projection);
                 updatePlanetTexture = true;
             }
         }
@@ -135,7 +135,7 @@ namespace FLApi.Utf.Mat
         {
             if (ready)
             {
-                planetEffect.Parameters["View"].SetValue(camera.View);
+				planetEffect.SetParameter ("View", camera.View);
             }
         }
 
@@ -196,14 +196,13 @@ namespace FLApi.Utf.Mat
 				lights = null;
                 if (lights != null)
                 {
-                    planetEffect.Parameters["LightCount"].SetValue(lights.Count);
-
+					planetEffect.SetParameter ("LightCount", lights.Count);
                     for (int i = 0; i < 9; i++)
                     {
-						planetEffect.Parameters["LightsPos"].Elements[i].SetValue(i < lights.Count ? lights[i].Pos.Value : Vector3.Zero);
-						planetEffect.Parameters["LightsColor"].Elements[i].SetValue(i < lights.Count ? lights[i].Color.Value.ToVector4() : Vector4.Zero);
-						planetEffect.Parameters["LightsRange"].Elements[i].SetValue(i < lights.Count ? lights[i].Range.Value : 0);
-						planetEffect.Parameters["LightsAttenuation"].Elements[i].SetValue(i < lights.Count ? lights[i].Attenuation ?? new Vector3(1, 0, 0) : Vector3.Zero);
+						planetEffect.SetArrayParameter ("LightsPos", i, i < lights.Count ? lights [i].Pos.Value : Vector3.Zero);
+						planetEffect.SetArrayParameter ("LightsColor", i, i < lights.Count ? lights [i].Color.Value.ToVector4 () : Vector4.Zero);
+						planetEffect.SetArrayParameter ("LightsRange", i, i < lights.Count ? lights [i].Range.Value : 0);
+						planetEffect.SetArrayParameter ("LightsAttenuation", i, i < lights.Count ? lights [i].Attenuation ?? new Vector3 (1, 0, 0) : Vector3.Zero);
                     }
                 }
 

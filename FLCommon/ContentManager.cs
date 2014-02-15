@@ -4,8 +4,9 @@ namespace FLCommon
 {
 	public class ContentManager
 	{
-		public ContentManager ()
+		public T Load<T> (string filename)
 		{
+			return default(T);
 		}
 	}
 }

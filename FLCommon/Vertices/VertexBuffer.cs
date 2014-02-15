@@ -4,6 +4,7 @@ namespace FLCommon
 {
 	public class VertexBuffer : IDisposable
 	{
+		public int VertexCount { get; private set; }
 		public VertexBuffer (GraphicsDevice device, Type type, int length, BufferUsage usage)
 		{
 		}

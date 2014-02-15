@@ -7,7 +7,7 @@ using OpenTK;
 
 namespace FLCommon
 {
-	public class Effect
+	public class Effect : IDisposable
 	{
 		const uint MAGIC = 0xAFECDE03;
 		const byte SOURCE_VERTEX = 0;
@@ -35,6 +35,19 @@ namespace FLCommon
 		Dictionary<string, Program> programs = new Dictionary<string, Program> ();
 		Dictionary<string, Uniform> uniforms = new Dictionary<string, Uniform> ();
 		Program activeProgram;
+		bool isDisposed = false;
+
+		public GraphicsDevice GraphicsDevice {
+			get;
+			private set;
+		}
+
+
+		public bool IsDisposed {
+			get {
+				return isDisposed;
+			}
+		}
 
 		public string CurrentTechnique {
 			get {
@@ -63,38 +76,10 @@ namespace FLCommon
 				}
 			}
 		}
-		public void SetParameter(string name, Vector4 vec)
+
+		public Effect (GraphicsDevice device, string filename)
 		{
-
-		}
-
-		public void SetParameter (string name, Matrix4 mat)
-		{
-
-		}
-
-		public void SetParameter (string name, int i)
-		{
-
-		}
-
-		public void SetParameter (string name, Vector3 vec)
-		{
-
-		}
-
-		public void SetParameter (string name, float f)
-		{
-
-		}
-
-		public void SetParameter (string name, Texture tex)
-		{
-
-		}
-
-		public Effect (string filename)
-		{
+			GraphicsDevice = device;
 			ProgramDescription[] descriptions;
 			string[] sources;
 			string[] hashes;
@@ -140,8 +125,8 @@ namespace FLCommon
 						uniforms.Add (uniform.Name, uniform);
 					compiled.Uniforms.Add (uniform.Name, 
 					                       new GLUniform (uniform.Name, 
-					                                      GL.GetUniformLocation (compiled.ID, uniform.Name), 
-					                                      uniform.Value, type.IsTexture()));
+					               GL.GetUniformLocation (compiled.ID, uniform.Name), 
+					               uniform.Value, type.IsTexture()));
 					name.Clear ();
 				}
 				compiled.SetTextureUniforms ();
@@ -149,6 +134,72 @@ namespace FLCommon
 			}
 		}
 
+		public void SetParameter(string name, Vector4 vec)
+		{
+
+		}
+
+		public void SetParameter (string name, Matrix4 mat)
+		{
+
+		}
+
+		public void SetParameter (string name, int i)
+		{
+
+		}
+
+		public void SetParameter (string name, Vector3 vec)
+		{
+
+		}
+
+		public void SetParameter (string name, float f)
+		{
+
+		}
+
+		public void SetParameter (string name, Texture tex)
+		{
+
+		}
+
+		public void SetArrayParameter (string name, int index, Vector4 vec)
+		{
+
+		}
+
+		public void SetArrayParameter (string name, int index, Matrix4 mat)
+		{
+
+		}
+
+		public void SetArrayParameter (string name, int index, int i)
+		{
+
+		}
+
+		public void SetArrayParameter (string name, int index, Vector3 vec)
+		{
+
+		}
+
+		public void SetArrayParameter (string name, int index, float f)
+		{
+
+		}
+
+		public void Dispose()
+		{
+			if (!isDisposed) {
+				foreach (var program in programs.Values) {
+					GL.DeleteProgram (program.ID);
+				}
+				programs = null;
+				activeProgram = null;
+				isDisposed = true;
+			}
+		}
 		public void Apply ()
 		{
 			activeProgram.ApplyTextures ();
@@ -157,67 +208,6 @@ namespace FLCommon
 		void UpdateUniforms ()
 		{
 
-		}
-
-		class Program
-		{
-			public string Name;
-			public int ID;
-			public Dictionary<string, GLUniform> Uniforms = new Dictionary<string, GLUniform> ();
-
-			public void ApplyTextures ()
-			{
-				int i = 0;
-				foreach (var str in Uniforms.Keys) {
-					var u = Uniforms [str];
-					if (u.IsTexture) {
-						switch (i) {
-						case 0:
-							GL.ActiveTexture (TextureUnit.Texture0);
-							break;
-						case 1:
-							GL.ActiveTexture (TextureUnit.Texture1);
-							break;
-						case 2:
-							GL.ActiveTexture (TextureUnit.Texture2);
-							break;
-						default:
-							throw new ArgumentOutOfRangeException ();
-						}
-						i++;
-						((Texture)u.Value).Bind ();
-					}
-
-				}
-			}
-
-			public void SetTextureUniforms ()
-			{
-				int i = 0;
-				foreach (var str in Uniforms.Keys) {
-					var u = Uniforms [str];
-					if (u.IsTexture) {
-						GL.Uniform1 (u.Location, i);
-						i++;
-					}
-				}
-			}
-		}
-
-		class GLUniform
-		{
-			public string Name;
-			public int Location;
-			public object Value;
-			public bool IsTexture;
-
-			public GLUniform (string name, int loc, object value, bool isTexture)
-			{
-				Name = name;
-				Location = loc;
-				Value = value;
-				IsTexture = isTexture;
-			}
 		}
 
 		class Uniform

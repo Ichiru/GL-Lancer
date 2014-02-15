@@ -183,14 +183,14 @@ namespace FLApi.Utf.Mat
             if (effect != null)
             {
                 if (lights != null)
-                {
-                    effect.Parameters["LightCount"].SetValue(lights.Count);					effect.SetParameter ("LightCount", lights.Count);
+                {			
+					effect.SetParameter ("LightCount", lights.Count);
                     for (int i = 0; i < 9; i++)
                     {
-                        effect.Parameters["LightsPos"].Elements[i].SetValue(i < lights.Count ? lights[i].Pos.Value : Vector3.Zero);
-                        effect.Parameters["LightsColor"].Elements[i].SetValue(i < lights.Count ? lights[i].Color.Value.ToVector4() : Vector4.Zero);
-                        effect.Parameters["LightsRange"].Elements[i].SetValue(i < lights.Count ? lights[i].Range.Value : 0);
-                        effect.Parameters["LightsAttenuation"].Elements[i].SetValue(i < lights.Count ? lights[i].Attenuation ?? new Vector3(1, 0, 0) : Vector3.Zero);
+						effect.SetArrayParameter ("LightsPos", i, i < lights.Count ? lights [i].Pos.Value : Vector3.Zero);
+						effect.SetArrayParameter ("LightsColor", i, i < lights.Count ? lights [i].Color.Value.ToVector4 () : Vector4.Zero);
+						effect.SetArrayParameter ("LightsRange", i, i < lights.Count ? lights [i].Range.Value : 0);
+						effect.SetArrayParameter ("LightsAttenuation", i, i < lights.Count ? lights [i].Attenuation ?? new Vector3 (1, 0, 0) : Vector3.Zero);
                     }
                 }
 
@@ -198,8 +198,10 @@ namespace FLApi.Utf.Mat
 				effect.SetParameter ("AmbientColor", ambient.ToVector4 ());
                 //effect.Parameters["World"].SetValue(world);
 				effect.SetParameter ("World", world);
-                if (Dt == null) effect.Parameters["Dt"].SetValue(nullTexture);
-                else effect.Parameters["Dt"].SetValue(Dt.Texture);
+				if (Dt == null)
+					effect.SetParameter ("Dt", nullTexture);
+				else
+					effect.SetParameter ("Dt", Dt.Texture);
 
                 switch (vertexFormat)
                 {

@@ -2,9 +2,16 @@ using System;
 using OpenTK.Graphics.OpenGL;
 namespace FLCommon
 {
-	public class GraphicsDevice
+	public class GraphicsDevice : IDisposable
 	{
 		Color clearColor = Color.Black;
+		bool isDisposed = false;
+		public bool IsDisposed
+		{
+			get {
+				return isDisposed;
+			}
+		}
 		public IndexBuffer Indices
 		{
 			set {
@@ -48,6 +55,14 @@ namespace FLCommon
 		}
 		public GraphicsDevice ()
 		{
+		}
+		public void DrawIndexedPrimitives(PrimitiveType primitiveType, int baseVertex, int minVertexIndex, int numVertices, int startIndex, int primitiveCount)
+		{
+
+		}
+		public void Dispose()
+		{
+			isDisposed = true;
 		}
 	}
 }
