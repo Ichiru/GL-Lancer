@@ -1,25 +1,25 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FLApi/Utf/Dfm/Mesh.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FLCommon/Effect/Effect.cs">
     <Files>
-      <File FileName="FLApi/Utf/Mat/SphFile.cs" Line="145" Column="29" />
-      <File FileName="FLApi/Utf/Mat/Material.cs" Line="193" Column="32" />
-      <File FileName="FLCommon/Texture/Texture2D.cs" Line="95" Column="20" />
-      <File FileName="FLCommon/Texture/Texture.cs" Line="23" Column="35" />
-      <File FileName="FLApi/Utf/Dfm/Mesh.cs" Line="184" Column="4" />
+      <File FileName="GLSLProcessor/UniformParser.cs" Line="32" Column="13" />
+      <File FileName="GLLancer/MainWindow.cs" Line="5" Column="30" />
+      <File FileName="FLCommon/Effect/UniformTypes.cs" Line="10" Column="11" />
+      <File FileName="FLCommon/Effect/Effect.cs" Line="115" Column="5" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True">
-          <Node name="FLApi" expanded="True">
-            <Node name="Utf" expanded="True">
-              <Node name="Dfm" expanded="True" />
-              <Node name="Mat" expanded="True" />
+        <State expanded="True">
+          <Node name="Tools" expanded="True">
+            <Node name="GLSLProcessor" expanded="True">
+              <Node name="References" expanded="True" />
             </Node>
           </Node>
+          <Node name="FLApi" expanded="True" />
           <Node name="FLCommon" expanded="True">
-            <Node name="References" expanded="True" />
-            <Node name="Texture" expanded="True" />
+            <Node name="Effect" expanded="True">
+              <Node name="Effect.cs" selected="True" />
+            </Node>
           </Node>
           <Node name="GLLancer" expanded="True" />
         </State>
@@ -33,7 +33,9 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/home/callum/src/GL-Lancer/GLLancer/MainWindow.cs" line="29" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

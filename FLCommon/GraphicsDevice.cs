@@ -23,18 +23,10 @@ namespace FLCommon
 		{
 
 		}
-		/*public void SetRenderTarget (CubeMapFace mapFace, TextureCube cube)
-		{
-			if (cube == null) {
-				FramebufferMethods.BindFramebuffer (FramebufferTarget.DrawFramebuffer, 0);
-			} else {
-
-			}
-		}*/
 		public void SetRenderTarget (RenderTarget2D target)
 		{
 			if (target == null) {
-				FramebufferMethods.BindFramebuffer (FramebufferTarget.DrawFramebuffer, 0);
+				FramebufferMethods.BindFramebuffer (FramebufferTarget.Framebuffer, 0);
 			} else {
 				FramebufferMethods.BindFramebuffer (FramebufferTarget.Framebuffer, target.FBO);
 			}

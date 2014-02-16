@@ -1,19 +1,19 @@
 using System;
-
+using OpenTK;
 namespace FLCommon
 {
 	class GLUniform
 	{
-		public string Name;
+		public UniformDescription Description;
 		public int Location;
 		public object Value;
 		public bool IsTexture;
 
-		public GLUniform (string name, int loc, object value, bool isTexture)
+		public GLUniform (UniformDescription description, int loc, bool isTexture)
 		{
-			Name = name;
+			Description = description;
 			Location = loc;
-			Value = value;
+			Value = null;
 			IsTexture = isTexture;
 		}
 	}

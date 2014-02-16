@@ -29,15 +29,15 @@ namespace GLSLProcessor
 			if (m.Success) {
 				string path = m.Captures [0].Value.Substring (10).TrimEnd ('\'');
 				string includeText = File.ReadAllText(Path.Combine(shaderDirectory,path));
-				return FindIncludes (m.Result (includeText), shaderDirectory);
+				text = text.Remove (m.Index, m.Length);
+				text = text.Insert (m.Index, includeText);
+				return FindIncludes (text, shaderDirectory);
 			}
 			return text;
 		}
 		public static string Preprocess(string text, string path)
 		{
-			var stripped = StripComments (FindIncludes (text, Path.GetDirectoryName(path)));
-			Console.WriteLine (stripped);
-			return text;
+			return StripComments (FindIncludes (text, Path.GetDirectoryName(path)));
 		}
 	}
 }

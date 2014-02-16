@@ -25,6 +25,8 @@ namespace GLLancer
 
 			GL.ClearColor(0.1f, 0.2f, 0.5f, 0.0f);
 			GL.Enable(EnableCap.DepthTest);
+			var efx = new FLCommon.Effect (null, "./Assets/effects/basicposition.effect");
+			Console.WriteLine ();
 		}
 
 		/// <summary>

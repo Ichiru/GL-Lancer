@@ -1,3 +1,0 @@
-These are the compiled effect files.
-If you want to edit these, go to the Shaders directory and edit the .fx files
-You'll need to compile them on a windows computer at the moment, however

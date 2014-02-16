@@ -55,71 +55,10 @@
   <ItemGroup>
     <Folder Include="Assets\" />
     <Folder Include="FLRenderer\" />
-    <Folder Include="Assets\effects\materials\" />
     <Folder Include="Assets\fonts\" />
+    <Folder Include="Assets\effects\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\effects\Planet.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\QuadTexture.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\Wireframe.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\NOTES.txt" />
-    <None Include="Assets\effects\materials\AtmosphereMaterial.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\materials\DcDt.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\materials\DcDtBt.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\materials\DcDtOcOtTwo.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\materials\DcDtBtOcOt.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\materials\DcDtBtOcOtTwo.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\materials\DcDtEc.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\materials\DcDtEcEt.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\materials\DcDtEcOcOt.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\materials\DcDtEt.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\materials\DcDtOcOt.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\materials\DcDtTwo.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\materials\DetailMap2Dm1Msk2PassMaterial.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\materials\DetailMapMaterial.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\materials\IllumDetailMapMaterial.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\materials\Masked2DetailMapMaterial.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\effects\materials\Nebula.fxg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Assets\fonts\LiberationSans.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

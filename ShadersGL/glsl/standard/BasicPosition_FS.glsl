@@ -1,4 +1,4 @@
-uniform vec3 AmbientColor;
+#include 'light.glsl'
 varying vec4 position;
 void main(void)
 {

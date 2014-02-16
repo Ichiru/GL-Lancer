@@ -28,11 +28,11 @@ namespace GLSLProcessor
 			foreach (var desc in Programs) {
 				if (!ShaderPaths.Contains (desc.FragmentShader)) {
 					ShaderPaths.Add (desc.FragmentShader);
-					ShaderTypes.Add (ShaderOutput.SOURCE_VERTEX);
+					ShaderTypes.Add (ShaderOutput.SOURCE_FRAGMENT);
 				}
 				if (!ShaderPaths.Contains (desc.VertexShader)) {
 					ShaderPaths.Add (desc.VertexShader);
-					ShaderTypes.Add (ShaderOutput.SOURCE_FRAGMENT);
+					ShaderTypes.Add (ShaderOutput.SOURCE_VERTEX);
 				}
 			}
 		}

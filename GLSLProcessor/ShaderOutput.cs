@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -11,6 +12,7 @@ namespace GLSLProcessor
 		public const byte SOURCE_FRAGMENT = 1;
 		public string[] Sources;
 		public byte[] SourceTypes;
+		public List<Uniform>[] UniformLists;
 		public Program[] Programs;
 		public class Program
 		{
@@ -34,6 +36,15 @@ namespace GLSLProcessor
 					writer.Write (SourceTypes [i]);
 					writer.Write (Sources [i]);
 					writer.Write (md5s [i]);
+					writer.Write ((ushort)UniformLists [i].Count);
+					foreach (Uniform u in UniformLists[i]) {
+						writer.Write (u.Name);
+						writer.Write ((byte)u.Type);
+						if (u.Type == FLCommon.UniformTypes.Array) {
+							writer.Write ((byte)u.ArrayType);
+							writer.Write (u.ArrayLength);
+						}
+					}
 				}
 				writer.Write ((ushort)Programs.Length);
 				for (int i = 0; i < Programs.Length; i++) {

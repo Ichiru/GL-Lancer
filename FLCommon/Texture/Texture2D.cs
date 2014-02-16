@@ -80,6 +80,7 @@ namespace FLCommon
 		}
 		public void SetData<T> (int level, Rectangle? rect, T[] data, int start, int count) where T : struct
 		{
+			GL.BindTexture (TextureTarget.Texture2D, ID);
 			if (glFormat == (PixelFormat)All.CompressedTextureFormats) {
 				GL.CompressedTexImage2D<T> (TextureTarget.Texture2D, level, glInternalFormat,
 				                         Width, Height, 0,

@@ -20,6 +20,7 @@
     <WarningLevel>4</WarningLevel>
     <Externalconsole>true</Externalconsole>
     <PlatformTarget>x86</PlatformTarget>
+    <Commandlineparameters>"../../../ShadersGL/basicposition.ini" "../../../ShadersGL/basicposition.effect"</Commandlineparameters>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>full</DebugType>
@@ -39,12 +40,18 @@
     <Compile Include="ShaderOutput.cs" />
     <Compile Include="ShaderIni.cs" />
     <Compile Include="Preprocessor.cs" />
+    <Compile Include="UniformParser.cs" />
+    <Compile Include="Uniform.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\FLParser\FLParser.csproj">
       <Project>{C7A198FE-D725-420F-B04E-0484E12AACF4}</Project>
       <Name>FLParser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FLCommon\FLCommon.csproj">
+      <Project>{D789B2C5-128E-4B10-B086-374973626911}</Project>
+      <Name>FLCommon</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

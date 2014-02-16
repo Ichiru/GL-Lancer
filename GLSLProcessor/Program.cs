@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 namespace GLSLProcessor
 {
@@ -23,10 +24,13 @@ namespace GLSLProcessor
 			var output = new ShaderOutput ();
 			output.Sources = new string[ini.ShaderPaths.Count];
 			output.SourceTypes = ini.ShaderTypes.ToArray ();
+			output.UniformLists = new List<Uniform>[ini.ShaderPaths.Count];
 			output.Programs = new ShaderOutput.Program[ini.Programs.Count];
 			for (int i = 0; i < ini.ShaderPaths.Count; i++) {
 				var path = Path.Combine (Path.GetDirectoryName (args [0]), ini.ShaderPaths [i]);
-				output.Sources [i] = Preprocessor.Preprocess (File.ReadAllText (path), path);
+				var preprocessed = Preprocessor.Preprocess (File.ReadAllText (path), path);
+				output.UniformLists[i] = UniformParser.FindUniforms (preprocessed);
+				output.Sources [i] = preprocessed;
 			}
 			for (int i = 0; i < ini.Programs.Count; i++) {
 				var source = ini.Programs [i];

@@ -67,7 +67,7 @@ namespace FLCommon
 				return strhack;
 			}
 		}
-		//very dirty hack
+		//very dirty hack for XNA-style syntax
 		public class StringHack 
 		{
 			public string this[string index] {
@@ -84,6 +84,7 @@ namespace FLCommon
 			string[] sources;
 			string[] hashes;
 			ShaderType[] types;
+			List<UniformDescription>[] uniformDescriptions;
 			using (var reader = new BinaryReader(File.OpenRead(filename))) {
 				if (reader.ReadUInt32 () != MAGIC)
 					throw new Exception ("Not a valid effect file");
@@ -91,10 +92,23 @@ namespace FLCommon
 				types = new ShaderType[srcLength];
 				sources = new string[srcLength];
 				hashes = new string[srcLength];
+				uniformDescriptions = new List<UniformDescription>[srcLength];
 				for (int i = 0; i < srcLength; i++) {
 					types [i] = reader.ReadByte () == SOURCE_VERTEX ? ShaderType.VertexShader : ShaderType.FragmentShader;
 					sources [i] = reader.ReadString ();
 					hashes [i] = reader.ReadString ();
+					int uniformsCount = reader.ReadUInt16 ();
+					uniformDescriptions [i] = new List<UniformDescription> (uniformsCount);
+					for (int j = 0; j < uniformsCount; j++) {
+						var name = reader.ReadString ();
+						var type = (UniformTypes)reader.ReadByte ();
+						var u = new UniformDescription (name, type);
+						if (type == UniformTypes.Array) {
+							u.ArrayType = (UniformTypes)reader.ReadByte();
+							u.ArrayLength = reader.ReadInt32 ();
+						}
+						uniformDescriptions [i].Add (u);
+					}
 				}
 				var progLength = reader.ReadUInt16 ();
 				descriptions = new ProgramDescription[progLength];
@@ -111,82 +125,149 @@ namespace FLCommon
 				GL.AttachShader (compiled.ID, fsID);
 				GL.AttachShader (compiled.ID, vsID);
 				GL.LinkProgram (compiled.ID);
-				int numActiveUniforms = 0;
-				int maxActiveUniformLength = 0;
-				GL.GetProgram (compiled.ID, GetProgramParameterName.ActiveUniforms, out numActiveUniforms);
-				GL.GetProgram (compiled.ID, GetProgramParameterName.ActiveUniformMaxLength, out numActiveUniforms);
-				StringBuilder name = new StringBuilder (2 * maxActiveUniformLength);
-				for (int j = 0; j < numActiveUniforms; j++) {
-					int size;
-					ActiveUniformType type;
-					GL.GetActiveUniform (compiled.ID, j, out size, out type);
-					var uniform = new Uniform (name.ToString (), type);
-					if (!uniforms.ContainsKey (uniform.Name))
-						uniforms.Add (uniform.Name, uniform);
-					compiled.Uniforms.Add (uniform.Name, 
-					                       new GLUniform (uniform.Name, 
-					               GL.GetUniformLocation (compiled.ID, uniform.Name), 
-					               uniform.Value, type.IsTexture()));
-					name.Clear ();
+				int status_code;
+				GL.GetProgram (compiled.ID, GetProgramParameterName.LinkStatus, out status_code);
+				if (status_code != 1) {
+					throw new Exception (GL.GetProgramInfoLog (compiled.ID));
+				}
+				for (int j = 0; j < uniformDescriptions[descriptions[i].VSIndex].Count; j++) {
+					var uniform = uniformDescriptions[descriptions[i].VSIndex][j];
+					int loc = GL.GetUniformLocation (compiled.ID, uniform.Name);
+					if (uniforms.ContainsKey (uniform.Name)) {
+						if (uniforms [uniform.Name].Description != uniform)
+							throw new Exception ("Conflicting uniforms");
+					} else {
+						if (uniform.Type == UniformTypes.Array) {
+							var u = new Uniform (uniform);
+							u.Value = new object[uniform.ArrayLength];
+							uniforms.Add (uniform.Name, u);
+						} else {
+							uniforms.Add (uniform.Name, new Uniform (uniform));
+						}
+					}
+					if (loc > 0) {
+						compiled.Uniforms.Add (uniform.Name, new GLUniform (uniform, loc,
+						                                                  uniform.Type == UniformTypes.Sampler2D ||
+						                                                  uniform.Type == UniformTypes.SamplerCube));
+					} else {
+						Console.WriteLine ("Warning: Unused uniform {0}", uniform.Name);
+					}
+				}
+				for (int j = 0; j < uniformDescriptions[descriptions[i].FSIndex].Count; j++) {
+					var uniform = uniformDescriptions[descriptions[i].FSIndex][j];
+					int loc = GL.GetUniformLocation (compiled.ID, uniform.Name);
+					if (uniforms.ContainsKey (uniform.Name)) {
+						if (uniforms [uniform.Name].Description != uniform)
+							throw new Exception ("Conflicting uniforms");
+					} else {
+						if (uniform.Type == UniformTypes.Array) {
+							var u = new Uniform (uniform);
+							u.Value = new object[uniform.ArrayLength];
+							uniforms.Add (uniform.Name, u);
+						} else {
+							uniforms.Add (uniform.Name, new Uniform (uniform));
+						}
+					}
+					if (loc > 0) {
+						compiled.Uniforms.Add (uniform.Name, new GLUniform (uniform, loc,
+						                                                    uniform.Type == UniformTypes.Sampler2D ||
+						                                                    uniform.Type == UniformTypes.SamplerCube));
+					} else {
+						Console.WriteLine ("Warning: Unused uniform {0}", uniform.Name);
+					}
 				}
 				compiled.SetTextureUniforms ();
 				programs.Add (compiled.Name, compiled);
 			}
 		}
 
+		void InternalSetParameter(string name, UniformTypes type, object value)
+		{
+			if (uniforms [name].Description.Type != type)
+				throw new InvalidDataException ();
+			uniforms [name].Value = value;
+			if (activeProgram != null)
+				activeProgram.SetUniform (name, value);
+		}
+
+		void InternalSetArrayParameter (string name,UniformTypes type,int index, object value)
+		{
+			if (uniforms [name].Description.Type != UniformTypes.Array)
+				throw new InvalidOperationException ();
+			if (index >= uniforms [name].Description.ArrayLength)
+				throw new IndexOutOfRangeException ();
+			if (uniforms [name].Description.ArrayType != type)
+				throw new InvalidDataException ();
+			((object[])uniforms [name].Value) [index] = value;
+			if (activeProgram != null)
+				activeProgram.SetArrayUniform (name, index, value);
+		}
 		public void SetParameter(string name, Vector4 vec)
 		{
-
+			InternalSetParameter (name, UniformTypes.Vector4, vec);
 		}
 
 		public void SetParameter (string name, Matrix4 mat)
 		{
-
+			InternalSetParameter (name, UniformTypes.Matrix4, mat);
 		}
 
 		public void SetParameter (string name, int i)
 		{
-
+			InternalSetParameter (name, UniformTypes.Int, i);
 		}
 
 		public void SetParameter (string name, Vector3 vec)
 		{
-
+			InternalSetParameter (name, UniformTypes.Vector3, vec);
 		}
 
 		public void SetParameter (string name, float f)
 		{
-
+			InternalSetParameter (name, UniformTypes.Float, f);
 		}
 
 		public void SetParameter (string name, Texture tex)
 		{
+			if (tex is Texture2D)
+				SetParameter (name, (Texture2D)tex);
+			else
+				SetParameter (name, (TextureCube)tex);
+		}
 
+		public void SetParameter (string name, Texture2D tex)
+		{
+			InternalSetParameter (name, UniformTypes.Sampler2D, tex);
+		}
+
+		public void SetParameter (string name, TextureCube tex)
+		{
+			InternalSetParameter (name, UniformTypes.SamplerCube, tex);
 		}
 
 		public void SetArrayParameter (string name, int index, Vector4 vec)
 		{
-
+			InternalSetArrayParameter (name, UniformTypes.Vector4, index, vec);
 		}
 
 		public void SetArrayParameter (string name, int index, Matrix4 mat)
 		{
-
+			InternalSetArrayParameter (name, UniformTypes.Matrix4, index, mat);
 		}
 
 		public void SetArrayParameter (string name, int index, int i)
 		{
-
+			InternalSetArrayParameter (name, UniformTypes.Int, index, i);
 		}
 
 		public void SetArrayParameter (string name, int index, Vector3 vec)
 		{
-
+			InternalSetArrayParameter (name, UniformTypes.Vector3, index, vec);
 		}
 
 		public void SetArrayParameter (string name, int index, float f)
 		{
-
+			InternalSetArrayParameter (name, UniformTypes.Float, index, f);
 		}
 
 		public void Dispose()
@@ -207,20 +288,31 @@ namespace FLCommon
 
 		void UpdateUniforms ()
 		{
-
+			foreach (var k in uniforms.Keys) {
+				if (uniforms [k].Value != null && activeProgram.Uniforms.ContainsKey (k)) {
+					if (uniforms [k].Description.Type == UniformTypes.Array) {
+						var array = (object[])uniforms [k].Value;
+						for (int i = 0; i < array.Length; i++) {
+							if (array [i] != null) {
+								activeProgram.SetArrayUniform (k, i, array [i]);
+							}
+						}
+					} else {
+						activeProgram.SetUniform (k, uniforms [k].Value);
+					}
+				}
+			}
 		}
 
 		class Uniform
 		{
-			public string Name;
-			public ActiveUniformType Type;
+			public UniformDescription Description;
 			public object Value;
 
-			public Uniform (string name, ActiveUniformType type)
+			public Uniform (UniformDescription description)
 			{
-				Name = name;
-				Type = type;
-				Value = type.GetDefault ();
+				Description = description;
+				Value = null;
 			}
 		}
 
