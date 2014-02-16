@@ -54,7 +54,7 @@ namespace FLApi.Utf.Mat.Materials
             return true;
         }
 
-        public override void Draw(D3DFVF vertexFormat, PrimitiveType primitiveType, int baseVertex, int numVertices, int startIndex, int primitiveCount, Color ambient, List<LightSource> lights, Matrix4 world)
+        public override void Draw(D3DFVF vertexFormat, PrimitiveTypes primitiveType, int baseVertex, int numVertices, int startIndex, int primitiveCount, Color ambient, List<LightSource> lights, Matrix4 world)
         {
 			effect.SetParameter ("TileRate", TileRate);
             base.Draw(vertexFormat, primitiveType, baseVertex, numVertices, startIndex, primitiveCount, ambient, lights, world);

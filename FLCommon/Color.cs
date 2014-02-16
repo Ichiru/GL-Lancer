@@ -145,6 +145,11 @@ namespace FLCommon
 			return new Vector4 ((float)R / 255f, (float)G / 255f, (float)B / 255f, (float)A / 255f);
 		}
 
+		public Vector3 ToVector3()
+		{
+			return new Vector3 ((float)R / 255f, (float)G / 255f, (float)B / 255f);
+		}
+
 		public Color4 ToColor4()
 		{
 			return new Color4 ((float)R / 255f, (float)G / 255f, (float)B / 255f, (float)A / 255f);

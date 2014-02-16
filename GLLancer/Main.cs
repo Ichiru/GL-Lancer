@@ -15,10 +15,9 @@ namespace GLLancer
 			FreelancerDirectory = Console.ReadLine();
 			AssemblyDirectory = Path.GetDirectoryName (Assembly.GetExecutingAssembly ().Location);
 			FLIni = new FreelancerIni (FreelancerDirectory);
-			using (var game = new MainGame()) {
+			using (var game = new MainWindow()) {
 				game.Run ();
 			}
-
 		}
 	}
 }

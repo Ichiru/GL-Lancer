@@ -48,7 +48,6 @@
     <Compile Include="FLRenderer\PlanetRenderer.cs" />
     <Compile Include="FLRenderer\SunRenderer.cs" />
     <Compile Include="FLRenderer\SystemRenderer.cs" />
-    <Compile Include="FLRenderer\ZoneRenderer.cs" />
     <Compile Include="FLRenderer\Main.cs" />
     <Compile Include="MainWindow.cs" />
   </ItemGroup>
@@ -137,6 +136,10 @@
     <ProjectReference Include="..\FLApi\FLApi.csproj">
       <Project>{EA2B65BD-27A6-4709-B5CB-93159BED246F}</Project>
       <Name>FLApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FLCommon\FLCommon.csproj">
+      <Project>{D789B2C5-128E-4B10-B086-374973626911}</Project>
+      <Name>FLCommon</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

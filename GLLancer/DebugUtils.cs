@@ -1,6 +1,5 @@
 using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using FLCommon;
 namespace GLLancer
 {
 	public static class DebugUtils

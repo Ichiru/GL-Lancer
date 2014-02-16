@@ -635,31 +635,6 @@ namespace FLApi.Utf.Mat
             return texture;
         }
 
-        /// <summary>
-        /// Open a dds from file.
-        /// (Supported formats : Dxt1,Dxt2,Dxt3,Dxt4,Dxt5,A8R8G8B8/Color,X8R8G8B8,R8G8B8,A4R4G4B4,A1R5G5B5,R5G6B5,A8,
-        /// FP32/Single,FP16/HalfSingle,FP32x4/Vector4,FP16x4/HalfVector4,CxV8U8/NormalizedByte2/CxVU,Q8VW8V8U8/NormalizedByte4/8888QWVU
-        /// ,HalfVector2/G16R16F/16.16fGR,Vector2/G32R32F,G16R16/RG32/1616GB,B8G8R8,X8B8G8R8,A8B8G8R8/Color,L8,A2B10G10R10/Rgba1010102,A16B16G16R16/Rgba64)
-        /// </summary>
-        /// <param name="fileName">File containing the data.</param>
-        /// <param name="device">Graphic device where you want the texture to be loaded.</param>
-        /// <param name="texture">The reference to the loaded texture.</param>
-        /// <param name="streamOffset">Offset in the stream to where the DDS is located.</param>
-        /// <param name="loadMipMap">If true it will load the mip-map chain for this texture.</param>
-        public static Texture3D DDSFromFile3D(string fileName, GraphicsDevice device, bool loadMipMap)
-        {
-            Stream stream = File.OpenRead(fileName);
-            Texture tex;
-            InternalDDSFromStream(stream, device, 0, loadMipMap, out tex);
-            stream.Close();
-
-            Texture3D texture = tex as Texture3D;
-            if (texture == null)
-            {
-                throw new Exception("The data in the stream contains a Texture2D not TextureCube");
-            }
-            return texture;
-        }
 
         /// <summary>
         /// Open a dds from a stream.
@@ -708,29 +683,6 @@ namespace FLApi.Utf.Mat
             return texture;
         }
 
-        /// <summary>
-        /// Open a dds from a stream.
-        /// (Supported formats : Dxt1,Dxt2,Dxt3,Dxt4,Dxt5,A8R8G8B8/Color,X8R8G8B8,R8G8B8,A4R4G4B4,A1R5G5B5,R5G6B5,A8,
-        /// FP32/Single,FP16/HalfSingle,FP32x4/Vector4,FP16x4/HalfVector4,CxV8U8/NormalizedByte2/CxVU,Q8VW8V8U8/NormalizedByte4/8888QWVU
-        /// ,HalfVector2/G16R16F/16.16fGR,Vector2/G32R32F,G16R16/RG32/1616GB,B8G8R8,X8B8G8R8,A8B8G8R8/Color,L8,A2B10G10R10/Rgba1010102,A16B16G16R16/Rgba64)
-        /// </summary>
-        /// <param name="stream">Stream containing the data.</param>
-        /// <param name="device">Graphic device where you want the texture to be loaded.</param>
-        /// <param name="texture">The reference to the loaded texture.</param>
-        /// <param name="streamOffset">Offset in the stream to where the DDS is located.</param>
-        /// <param name="loadMipMap">If true it will load the mip-map chain for this texture.</param>
-        public static Texture3D DDSFromStream3D(Stream stream, GraphicsDevice device, int streamOffset, bool loadMipMap)
-        {
-            Texture tex;
-            InternalDDSFromStream(stream, device, streamOffset, loadMipMap, out tex);
-
-            Texture3D texture = tex as Texture3D;
-            if (texture == null)
-            {
-                throw new Exception("The data in the stream contains a Texture2D not TextureCube");
-            }
-            return texture;
-        }
 
         [ThreadStatic]
         private static byte[] mipData;
@@ -862,21 +814,7 @@ namespace FLApi.Utf.Mat
             return tx;
         }
 
-        //new 3d-map texture
-        private static Texture3D GenerateNewTexture3D(LoadSurfaceFormat loadSurfaceFormat, FourCC compressionFormat, GraphicsDevice device, int width, int height, int depth, bool hasMipMaps, uint pixelFlags, int rgbBitCount)
-        {
-            SurfaceFormat surfaceFormat = SurfaceFormatFromLoadFormat(loadSurfaceFormat, compressionFormat, pixelFlags, rgbBitCount);
-
-            Texture3D tx = new Texture3D(device, width, height, depth, hasMipMaps, surfaceFormat);
-
-            if (tx.Format != surfaceFormat)
-            {
-                throw new Exception("Can't generate a " + surfaceFormat.ToString() + " surface.");
-            }
-
-            return tx;
-        }
-
+      
         //loads the data from a stream in to a texture object.
         private static void InternalDDSFromStream(Stream stream, GraphicsDevice device, int streamOffset, bool loadMipMap, out Texture texture)
         {
@@ -1156,29 +1094,7 @@ namespace FLApi.Utf.Mat
             }
             else if (isVolumeTexture)
             {
-                Texture3D tex = GenerateNewTexture3D(loadSurfaceFormat, compressionFormat, device, width, height, depth, hasMipMaps, pixelFlags, rgbBitCount);
-
-                int localStreamOffset = streamOffset;
-                for (int i = 0; i < tex.LevelCount; i++)
-                {
-                    int localWidth = MipMapSize(i, width);
-                    int localHeight = MipMapSize(i, height);
-                    int localDepth = MipMapSize(i, depth);
-                    for (int j = 0; j < localDepth; j++)
-                    {
-                        int numBytes = 0;
-
-                        byte[] localMipData = mipData;
-                        GetMipMaps(localStreamOffset, 0, hasAnyMipmaps, localWidth, localHeight, isCompressed, compressionFormat, rgbBitCount, isCubeMap, reader, loadSurfaceFormat, ref localMipData, out numBytes);
-                        localStreamOffset += numBytes;
-                        mipData = localMipData;
-
-                        tex.SetData<byte>(i, 0, 0, localWidth, localHeight, j, j + 1, localMipData, 0, numBytes);
-                    }
-
-                }
-
-                texture = tex;
+				throw new NotImplementedException (); //FL doesn't use volume textures
             }
             else
             {
@@ -1645,14 +1561,7 @@ namespace FLApi.Utf.Mat
             {
                 (texture as Texture2D).GetData<byte>(mipLevel, null, data, 0, size);
             }
-            if (texture is Texture3D)
-            {
-                Texture3D tex = (texture as Texture3D);
-                int localWidth = MipMapSize(mipLevel, width);
-                int localHeight = MipMapSize(mipLevel, height);
-
-                tex.GetData<byte>(mipLevel, 0, 0, localWidth, localHeight, depth, depth + 1, data, 0, size);
-            }
+           
 
 
 #if COLOR_SAVE_TO_ARGB
@@ -1702,7 +1611,7 @@ namespace FLApi.Utf.Mat
             }
 
             Texture2D textureAs2D = texture as Texture2D;
-            Texture3D textureAs3D = texture as Texture3D;
+          
             TextureCube textureAsCube = texture as TextureCube;
 
             BinaryWriter writer = new BinaryWriter(stream);
@@ -1738,11 +1647,8 @@ namespace FLApi.Utf.Mat
                 dwHeaderFlags |= DDSD_MIPMAPCOUNT;
             }
 
-            if (textureAs3D != null)
-            {
-                dwHeaderFlags |= DDSD_DEPTH;
-            }
-
+          
+           
             writer.Write(dwHeaderFlags);
 
             int Width = 1;
@@ -1753,11 +1659,7 @@ namespace FLApi.Utf.Mat
                 Width = textureAs2D.Width;
                 Height = textureAs2D.Height;
             }
-            if (textureAs3D != null)
-            {
-                Width = textureAs3D.Width;
-                Height = textureAs3D.Height;
-            }
+         
             if (textureAsCube != null)
             {
                 Width = textureAsCube.Size;
@@ -1788,14 +1690,7 @@ namespace FLApi.Utf.Mat
             writer.Write(dwPitchOrLinearSize);
 
             //dwDepth
-            if (textureAs3D != null)
-            {
-                writer.Write(textureAs3D.Depth);
-            }
-            else
-            {
-                writer.Write(0);
-            }
+			writer.Write (0);
 
             int dwMipMapCount = texture.LevelCount == 1 ? 0 : (texture.LevelCount);
             if (!saveMipMaps)
@@ -1845,10 +1740,7 @@ namespace FLApi.Utf.Mat
                 dwSurfaceFlags |= DDSCAPS_MIPMAP;
                 dwSurfaceFlags |= DDSCAPS_COMPLEX;
             }
-            if (textureAsCube != null || textureAs3D != null)
-            {
-                dwSurfaceFlags |= DDSCAPS_COMPLEX;
-            }
+          
             writer.Write(dwSurfaceFlags);
 
 
@@ -1864,10 +1756,7 @@ namespace FLApi.Utf.Mat
                 dwCubemapFlags |= DDSCAPS2_CUBEMAP_POSITIVEZ;
             }
 
-            if (textureAs3D != null)
-            {
-                dwCubemapFlags |= DDSCAPS2_VOLUME;
-            }
+          
 
             writer.Write(dwCubemapFlags);
 
@@ -1892,19 +1781,7 @@ namespace FLApi.Utf.Mat
                 WriteTexture(writer, CubeMapFace.NegativeZ, texture, saveMipMaps, Width, Height, isCompressed, (FourCC)fourCC, (int)rgbBitCount);
             }
 
-            //volume texture
-            if (textureAs3D != null)
-            {
-                for (int i = 0; i < textureAs3D.LevelCount; i++)
-                {
-                    int availableDepth = MipMapSize(i, textureAs3D.Depth);
-                    for (int j = 0; j < availableDepth; j++)
-                    {
-                        WriteTexture(writer, CubeMapFace.PositiveX, texture, i, j, Width, Height, isCompressed, (FourCC)fourCC, (int)rgbBitCount);
-                    }
-                }
-            }
-
+            
         }
 
         /// <summary>

@@ -9,6 +9,7 @@ namespace FLCommon
 		PixelInternalFormat glInternalFormat;
 		PixelFormat glFormat;
 		PixelType glType;
+
 		public Texture2D (GraphicsDevice device, int width, int height, bool hasMipMaps, SurfaceFormat format) : this (true)
 		{
 			GraphicsDevice = device;
@@ -22,6 +23,7 @@ namespace FLCommon
 			//initialise the texture data
 			var imageSize = 0;
 			if (glFormat == (PixelFormat)All.CompressedTextureFormats) {
+				CheckCompressed ();
 				switch (Format) {
 				case SurfaceFormat.Dxt1:
 				case SurfaceFormat.Dxt3:

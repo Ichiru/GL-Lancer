@@ -12,6 +12,7 @@ namespace FLCommon
 				return isDisposed;
 			}
 		}
+		public Viewport Viewport { get; set; }
 		public IndexBuffer Indices
 		{
 			set {
@@ -56,7 +57,7 @@ namespace FLCommon
 		public GraphicsDevice ()
 		{
 		}
-		public void DrawIndexedPrimitives(PrimitiveType primitiveType, int baseVertex, int minVertexIndex, int numVertices, int startIndex, int primitiveCount)
+		public void DrawIndexedPrimitives(PrimitiveTypes primitiveType, int baseVertex, int minVertexIndex, int numVertices, int startIndex, int primitiveCount)
 		{
 
 		}

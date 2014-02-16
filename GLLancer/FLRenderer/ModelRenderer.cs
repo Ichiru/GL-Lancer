@@ -20,9 +20,8 @@
 using System;
 using System.Collections.Generic;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+using OpenTK;
+using FLCommon;
 
 using FLApi;
 using FLApi.Utf.Cmp;
@@ -42,7 +41,7 @@ namespace FLRenderer
 
 		private Cuboid[] boundingBoxes;
 
-		public ModelRenderer(GraphicsDevice graphicsDevice, ContentManager content, Camera camera, Matrix world, bool useObjectPosAndRotate, SystemObject spaceObject, Color uiColor)
+		public ModelRenderer(GraphicsDevice graphicsDevice, ContentManager content, Camera camera, Matrix4 world, bool useObjectPosAndRotate, SystemObject spaceObject, Color uiColor)
 			: base(graphicsDevice, content, camera, world, useObjectPosAndRotate, spaceObject, uiColor)
 		{
 			boundingBoxes = new Cuboid[0];
@@ -99,13 +98,13 @@ namespace FLRenderer
 
 				for (int i = 0; i < boundingBoxes.Length; i++)
 				{
-					boundingBoxEffect.Parameters["Dc"].SetValue(UiColor.ToVector3());
-					boundingBoxEffect.Parameters["World"].SetValue(World);
-					boundingBoxEffect.CurrentTechnique.Passes[0].Apply();
+					boundingBoxEffect.SetParameter ("Dc", UiColor.ToVector3 ());
+					boundingBoxEffect.SetParameter ("World", World);
+					boundingBoxEffect.Apply ();
 
 					graphicsDevice.SetVertexBuffer(boundingBoxes[i].VertexBuffer);
 
-					graphicsDevice.DrawIndexedPrimitives(PrimitiveType.LineList, 0, 0, Cuboid.VERTEX_COUNT, 0, Cuboid.PrimitiveCount);
+					graphicsDevice.DrawIndexedPrimitives(PrimitiveTypes.LineList, 0, 0, Cuboid.VERTEX_COUNT, 0, Cuboid.PrimitiveCount);
 				}
 			}
 		}

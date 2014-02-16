@@ -59,10 +59,8 @@
     <Compile Include="Vertices\IndexBuffer.cs" />
     <Compile Include="Vertices\VertexBuffer.cs" />
     <Compile Include="Vertices\IVertexType.cs" />
-    <Compile Include="Vertices\PrimitiveType.cs" />
     <Compile Include="Texture\Texture.cs" />
     <Compile Include="Texture\Texture2D.cs" />
-    <Compile Include="Texture\Texture3D.cs" />
     <Compile Include="Texture\TextureCube.cs" />
     <Compile Include="Vertices\VertexPositionColorTexture.cs" />
     <Compile Include="SurfaceFormat.cs" />
@@ -76,6 +74,7 @@
     <Compile Include="Effect\GLUniform.cs" />
     <Compile Include="Effect\Program.cs" />
     <Compile Include="Vertices\VertexElement.cs" />
+    <Compile Include="Vertices\PrimitiveTypes.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

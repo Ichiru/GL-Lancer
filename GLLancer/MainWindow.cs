@@ -11,9 +11,8 @@ namespace GLLancer
 {
 	class MainWindow : GameWindow
 	{
-		/// <summary>Creates a 800x600 window with the specified title.</summary>
 		public MainWindow()
-			: base(800, 600, GraphicsMode.Default, "OpenTK Quick Start Sample")
+			: base(800, 600, GraphicsMode.Default, "GL-Lancer")
 		{
 			VSync = VSyncMode.On;
 		}
@@ -71,7 +70,7 @@ namespace GLLancer
 			GL.MatrixMode(MatrixMode.Modelview);
 			GL.LoadMatrix(ref modelview);
 
-			GL.Begin(BeginMode.Triangles);
+			GL.Begin(PrimitiveType.Triangles);
 
 			GL.Color3(1.0f, 1.0f, 0.0f); GL.Vertex3(-1.0f, -1.0f, 4.0f);
 			GL.Color3(1.0f, 0.0f, 0.0f); GL.Vertex3(1.0f, -1.0f, 4.0f);

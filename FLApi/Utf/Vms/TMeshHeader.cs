@@ -105,8 +105,8 @@ namespace FLApi.Utf.Vms
 
         public void Draw(D3DFVF vertexFormat, ushort startVertex, Color ambient, List<LightSource> lights, Matrix4 world)
         {
-            if (Material == null) nullMaterial.Draw(vertexFormat, PrimitiveType.TriangleList, startVertex + StartVertex, numVertices, TriangleStart, primitiveCount, ambient, lights, world);
-            else Material.Draw(vertexFormat, PrimitiveType.TriangleList, startVertex + StartVertex, numVertices, TriangleStart, primitiveCount, ambient, lights, world);
+            if (Material == null) nullMaterial.Draw(vertexFormat, PrimitiveTypes.TriangleList, startVertex + StartVertex, numVertices, TriangleStart, primitiveCount, ambient, lights, world);
+            else Material.Draw(vertexFormat, PrimitiveTypes.TriangleList, startVertex + StartVertex, numVertices, TriangleStart, primitiveCount, ambient, lights, world);
         }
     }
 }

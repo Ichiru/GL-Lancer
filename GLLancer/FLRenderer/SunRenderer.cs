@@ -18,9 +18,8 @@
 using System;
 using System.Collections.Generic;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+using OpenTK;
+using FLCommon;
 
 using FLApi.Utf.Mat;
 using FLApi.Universe;
@@ -38,14 +37,14 @@ namespace FLRenderer
 	{
 		public Sun Sun { get; private set; }
 
-		private BasicEffect sunEffect;
+		//private BasicEffect sunEffect;
 		private VertexBuffer vertexBuffer;
 		private IndexBuffer indexBuffer;
 		private int primitiveCount;
 
 		private Ellipsoid boundingSphere;
 
-		public SunRenderer(GraphicsDevice graphicsDevice, ContentManager content, Camera camera, Matrix world, bool useObjectPosAndRotate, SystemObject sun)
+		public SunRenderer(GraphicsDevice graphicsDevice, ContentManager content, Camera camera, Matrix4 world, bool useObjectPosAndRotate, SystemObject sun)
 			: base(graphicsDevice, content, camera, world, useObjectPosAndRotate, sun, Color.Yellow)
 		{
 			Sun = SpaceObject.Archetype as Sun;
@@ -53,7 +52,7 @@ namespace FLRenderer
 
 			boundingSphere = new Ellipsoid(graphicsDevice, new Vector3(s.Radius) * 1.1f, 6, 8);
 
-			sunEffect = new BasicEffect(graphicsDevice);
+			//sunEffect = new BasicEffect(graphicsDevice);
 
 			Ellipsoid sphere = new Ellipsoid(graphicsDevice, new Vector3(s.Radius), 100, 100);
 			vertexBuffer = sphere.VertexBuffer;
@@ -66,25 +65,25 @@ namespace FLRenderer
 		/// Allows the game component to update itself.
 		public override void Update(TimeSpan elapsed)
 		{
-			sunEffect.View = camera.View;
-			sunEffect.Projection = camera.Projection;
+			//sunEffect.View = camera.View;
+			//sunEffect.Projection = camera.Projection;
 
 			base.Update(elapsed);
 		}
 
 		public override void Draw(Color ambientColor, List<LightSource> lights)
 		{
-			sunEffect.World = World;
+			//sunEffect.World = World;
 
-			graphicsDevice.BlendState = BlendState.Opaque;
-			graphicsDevice.RasterizerState = RasterizerState.CullClockwise;
-			graphicsDevice.DepthStencilState = DepthStencilState.Default;
+			//graphicsDevice.BlendState = BlendState.Opaque;
+			//graphicsDevice.RasterizerState = RasterizerState.CullClockwise;
+			//graphicsDevice.DepthStencilState = DepthStencilState.Default;
 
 			graphicsDevice.SetVertexBuffer(vertexBuffer);
 			graphicsDevice.Indices = indexBuffer;
 
-			sunEffect.CurrentTechnique.Passes[0].Apply();
-			graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexBuffer.VertexCount, 0, primitiveCount);
+			//sunEffect.CurrentTechnique.Passes[0].Apply();
+			graphicsDevice.DrawIndexedPrimitives(PrimitiveTypes.TriangleList, 0, 0, vertexBuffer.VertexCount, 0, primitiveCount);
 		}
 
 		public override void Dispose()

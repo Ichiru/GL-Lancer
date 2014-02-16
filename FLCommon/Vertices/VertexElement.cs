@@ -4,8 +4,16 @@ namespace FLCommon
 {
 	public class VertexElement
 	{
-		public VertexElement (int offset, VertexElementFormat format, VertexElementUsage usage, int pos)
+		public int Offset;
+		public VertexElementFormat Format;
+		public VertexElementUsage Usage;
+		public int UsageNumber;
+		public VertexElement (int offset, VertexElementFormat format, VertexElementUsage usage, int usageNumber)
 		{
+			Offset = offset;
+			Format = format;
+			Usage = usage;
+			UsageNumber = usageNumber;
 		}
 	}
 	public enum VertexElementFormat

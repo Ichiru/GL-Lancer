@@ -334,7 +334,7 @@ namespace FLApi.Universe
                 device.SetVertexBuffer(atmosphereVertexBuffer);
                 device.Indices = atmosphereIndexBuffer;
 
-                atmosphereMaterial.Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveType.TriangleList, 0, atmosphereVertexBuffer.VertexCount, 0, atmosphereIndexBuffer.IndexCount / 3, ambientColor, lights, w);
+                atmosphereMaterial.Draw(D3DFVF.XYZ | D3DFVF.TEX1, PrimitiveTypes.TriangleList, 0, atmosphereVertexBuffer.VertexCount, 0, atmosphereIndexBuffer.IndexCount / 3, ambientColor, lights, w);
             }
         }
     }

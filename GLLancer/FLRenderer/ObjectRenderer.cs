@@ -18,9 +18,8 @@
 using System;
 using System.Collections.Generic;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+using OpenTK;
+using FLCommon;
 
 using FLApi.Universe;
 
@@ -34,28 +33,28 @@ namespace FLRenderer
 		protected GraphicsDevice graphicsDevice;
 		protected Camera camera;
 
-		public Matrix World { get; private set; }
+		public Matrix4 World { get; private set; }
 		public SystemObject SpaceObject { get; private set; }
 		public Color UiColor { get; private set; }
 		public bool DrawBoundingBoxEnabled { get; set; }
 
 		protected Effect boundingBoxEffect;
 
-		protected ObjectRenderer(GraphicsDevice graphicsDevice, ContentManager content, Camera camera, Matrix world, bool useObjectPosAndRotate, SystemObject spaceObject, Color uiColor)
+		protected ObjectRenderer(GraphicsDevice graphicsDevice, ContentManager content, Camera camera, Matrix4 world, bool useObjectPosAndRotate, SystemObject spaceObject, Color uiColor)
 		{
 			this.graphicsDevice = graphicsDevice;
 			this.camera = camera;
 
 			if (useObjectPosAndRotate)
 			{
-				World = world * Matrix.CreateTranslation(spaceObject.Pos.Value);
+				World = world * Matrix4.CreateTranslation(spaceObject.Pos.Value);
 				if (spaceObject.Rotate != null) World =
-					Matrix.CreateRotationX(MathHelper.ToRadians(spaceObject.Rotate.Value.X)) *
-						Matrix.CreateRotationY(MathHelper.ToRadians(spaceObject.Rotate.Value.Y)) *
-						Matrix.CreateRotationZ(MathHelper.ToRadians(spaceObject.Rotate.Value.Z)) *
+					Matrix4.CreateRotationX(MathConvert.ToRadians(spaceObject.Rotate.Value.X)) *
+						Matrix4.CreateRotationY(MathConvert.ToRadians(spaceObject.Rotate.Value.Y)) *
+						Matrix4.CreateRotationZ(MathConvert.ToRadians(spaceObject.Rotate.Value.Z)) *
 						World;
 			}
-			else World = Matrix.Identity;
+			else World = Matrix4.Identity;
 
 			SpaceObject = spaceObject;
 			UiColor = uiColor;
@@ -66,8 +65,8 @@ namespace FLRenderer
 
 		public virtual void Update(TimeSpan elapsed)
 		{
-			boundingBoxEffect.Parameters["View"].SetValue(camera.View);
-			boundingBoxEffect.Parameters["Projection"].SetValue(camera.Projection);
+			boundingBoxEffect.SetParameter ("View", camera.View);
+			boundingBoxEffect.SetParameter ("Projection", camera.Projection);
 		}
 
 		public abstract void Draw(Color ambientColor, List<LightSource> lights);

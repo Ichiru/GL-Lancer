@@ -17,9 +17,8 @@
 
 using System;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+using OpenTK;
+using FLCommon;
 
 using RenderTools;
 
@@ -52,7 +51,7 @@ namespace FLRenderer
 			this.GraphicsDevice = graphicsDevice;
 			this.Content = content;
 
-			Camera = new Camera(GraphicsDevice);
+			Camera = new Camera(GraphicsDevice.Viewport);
 			Camera.Zoom = 5000;
 			//SectorMap = new SectorMap(this);
 			SystemMap = new SystemRenderer(GraphicsDevice, Content, Camera, this);

@@ -18,9 +18,8 @@
 using System;
 using System.Collections.Generic;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+using OpenTK;
+using FLCommon;
 
 using FLApi;
 using FLApi.Utf.Mat;
@@ -40,7 +39,7 @@ namespace FLRenderer
 		private ContentManager content;
 		private Camera camera;
 
-		public Matrix World { get; private set; }
+		public Matrix4 World { get; private set; }
 
 		private StarSystem starSystem;
 		public StarSystem StarSystem
@@ -52,7 +51,6 @@ namespace FLRenderer
 		public List<SunRenderer> Suns { get; private set; }
 		public List<PlanetRenderer> Planets { get; private set; }
 		public List<ModelRenderer> Models { get; private set; }
-		public List<ZoneRenderer> Zones { get; private set; }
 
 		private ModelFile[] starSphereModels;
 
@@ -71,12 +69,11 @@ namespace FLRenderer
 			starchart = sc;
 			starSystem = null;
 
-			World = Matrix.Identity;
+			World = Matrix4.Identity;
 
 			Suns = new List<SunRenderer>();
 			Planets = new List<PlanetRenderer>();
 			Models = new List<ModelRenderer>();
-			Zones = new List<ZoneRenderer>();
 
 			starSphereModels = new ModelFile[0];
 		}
@@ -91,9 +88,6 @@ namespace FLRenderer
 
 			foreach (ModelRenderer r in Models) r.Dispose();
 			Models.Clear();
-
-			foreach (ZoneRenderer z in Zones) z.DrawZone = false;
-			Zones.Clear();
 
 			if (starSphereModels != null)
 			{
@@ -191,11 +185,7 @@ namespace FLRenderer
 
 			SelectedObject = Suns.Count > 0 ? Suns[0] : Planets.Count > 0 ? Planets[0] : (ObjectRenderer)Models[0];
 
-			foreach (Zone z in system.Zones)
-			{
-				ZoneRenderer zr = new ZoneRenderer(graphicsDevice, content, camera, World, true, z, Color.Gray);
-				Zones.Add(zr);
-			}
+
 
 			if (SystemLoaded != null)
 				SystemLoaded(this, new EventArgs());
@@ -217,7 +207,6 @@ namespace FLRenderer
 			for (int i = 0; i < Suns.Count; i++) Suns[i].Update(elapsed);
 			for (int i = 0; i < Planets.Count; i++) Planets[i].Update(elapsed);
 			for (int i = 0; i < Models.Count; i++) Models[i].Update(elapsed);
-			for (int i = 0; i < Zones.Count; i++) Zones[i].Update();
 		}
 
 		public void UpdatePlanetTextures()
@@ -231,13 +220,12 @@ namespace FLRenderer
 			//StarSphere
 			for (int i = 0; i < starSphereModels.Length; i++)
 			{
-				starSphereModels[i].Draw(Color.White, new List<LightSource>(), Matrix.CreateTranslation(camera.Position));
+				starSphereModels[i].Draw(Color.White, new List<LightSource>(), Matrix4.CreateTranslation(camera.Position));
 			}
 
 			for (int i = 0; i < Suns.Count; i++) Suns[i].Draw(starSystem.AmbientColor.Value, starSystem.LightSources);
 			for (int i = 0; i < Models.Count; i++) Models[i].Draw(starSystem.AmbientColor.Value, starSystem.LightSources);
 			for (int i = 0; i < Planets.Count; i++) Planets[i].Draw(starSystem.AmbientColor.Value, starSystem.LightSources);
-			for (int i = 0; i < Zones.Count; i++) Zones[i].Draw();
 		}
 	}
 
