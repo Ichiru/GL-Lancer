@@ -75,8 +75,9 @@
     <Compile Include="Effect\Program.cs" />
     <Compile Include="Vertices\VertexElement.cs" />
     <Compile Include="Vertices\PrimitiveTypes.cs" />
-    <Compile Include="Effect\UniformTypes.cs" />
     <Compile Include="Effect\UniformDescription.cs" />
+    <Compile Include="Effect\GLSLTypes.cs" />
+    <Compile Include="Effect\Attributes.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

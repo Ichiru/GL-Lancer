@@ -1,27 +1,23 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FLCommon/Effect/Effect.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FLCommon/Texture/RenderTarget2D.cs">
     <Files>
-      <File FileName="GLSLProcessor/UniformParser.cs" Line="32" Column="13" />
-      <File FileName="GLLancer/MainWindow.cs" Line="5" Column="30" />
-      <File FileName="FLCommon/Effect/UniformTypes.cs" Line="10" Column="11" />
-      <File FileName="FLCommon/Effect/Effect.cs" Line="115" Column="5" />
+      <File FileName="FLCommon/Texture/RenderTarget2D.cs" Line="26" Column="74" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Tools" expanded="True">
-            <Node name="GLSLProcessor" expanded="True">
-              <Node name="References" expanded="True" />
-            </Node>
-          </Node>
           <Node name="FLApi" expanded="True" />
           <Node name="FLCommon" expanded="True">
-            <Node name="Effect" expanded="True">
-              <Node name="Effect.cs" selected="True" />
+            <Node name="Bounds" expanded="True" />
+            <Node name="Effect" expanded="True" />
+            <Node name="Properties" expanded="True" />
+            <Node name="Texture" expanded="True">
+              <Node name="RenderTarget2D.cs" selected="True" />
             </Node>
+            <Node name="Vertices" expanded="True" />
           </Node>
-          <Node name="GLLancer" expanded="True" />
+          <Node name="FLParser" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">

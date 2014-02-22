@@ -2,7 +2,7 @@ using System;
 
 namespace FLCommon
 {
-	public enum UniformTypes : byte
+	public enum GLSLTypes : byte
 	{
 		None,
 		Vector3,
@@ -12,7 +12,8 @@ namespace FLCommon
 		Int,
 		Array,
 		Sampler2D,
-		SamplerCube
+		SamplerCube,
+		Vector2
 	}
 }
 

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using UniformTypes = FLCommon.UniformTypes;
+using FLCommon;
 namespace GLSLProcessor
 {
 	public static class UniformParser
@@ -21,7 +21,7 @@ namespace GLSLProcessor
 					string array = name.Substring (name.IndexOf ('[') + 1);
 					array = array.Replace ("]", "").Trim ();
 					name = name.Substring (0, name.IndexOf ('[')).Trim ();
-					var u = new Uniform (name, UniformTypes.Array);
+					var u = new Uniform (name, GLSLTypes.Array);
 					u.ArrayType = GetType (type);
 					u.ArrayLength = int.Parse (array);
 					l.Add (u);
@@ -31,23 +31,25 @@ namespace GLSLProcessor
 			}
 			return l;
 		}
-		static UniformTypes GetType(string name) 
+		public static GLSLTypes GetType(string name) 
 		{
 			switch (name) {
 			case "vec4":
-				return UniformTypes.Vector4;
+				return GLSLTypes.Vector4;
 			case "vec3":
-				return UniformTypes.Vector3;
+				return GLSLTypes.Vector3;
 			case "mat4":
-				return UniformTypes.Matrix4;
+				return GLSLTypes.Matrix4;
 			case "sampler2D":
-				return UniformTypes.Sampler2D;
+				return GLSLTypes.Sampler2D;
 			case "samplerCube":
-				return UniformTypes.SamplerCube;
+				return GLSLTypes.SamplerCube;
 			case "int":
-				return UniformTypes.Int;
+				return GLSLTypes.Int;
 			case "float":
-				return UniformTypes.Float;
+				return GLSLTypes.Float;
+			case "vec2":
+				return GLSLTypes.Vector2;
 			default:
 				throw new NotImplementedException (name);
 			}

@@ -42,6 +42,7 @@
     <Compile Include="Preprocessor.cs" />
     <Compile Include="UniformParser.cs" />
     <Compile Include="Uniform.cs" />
+    <Compile Include="AttributeChecker.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

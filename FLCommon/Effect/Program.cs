@@ -45,28 +45,28 @@ namespace FLCommon
 			var u = Uniforms [name];
 			u.Value = value;
 			switch (u.Description.Type) {
-			case UniformTypes.Vector3:
+			case GLSLTypes.Vector3:
 				GL.Uniform3 (u.Location, (Vector3)value);
 				break;
-			case UniformTypes.Vector4:
+			case GLSLTypes.Vector4:
 				GL.Uniform4 (u.Location, (Vector4)value);
 				break;
-			case UniformTypes.Matrix4:
+			case GLSLTypes.Matrix4:
 				var m = (Matrix4)value;
 				GL.UniformMatrix4 (u.Location, false, ref m);
 				break;
-			case UniformTypes.Float:
+			case GLSLTypes.Float:
 				GL.Uniform1 (u.Location, (float)value);
 				break;
-			case UniformTypes.Int:
+			case GLSLTypes.Int:
 				GL.Uniform1 (u.Location, (int)value);
 				break;
-			case UniformTypes.Array:
+			case GLSLTypes.Array:
 				SetArrayUniform (name, 0, value);
 				break;
-			case UniformTypes.Sampler2D:
+			case GLSLTypes.Sampler2D:
 				break; //set in applytextures
-			case UniformTypes.SamplerCube:
+			case GLSLTypes.SamplerCube:
 				break; //set in applytextures
 			default:
 				throw new ArgumentOutOfRangeException ();
@@ -78,28 +78,28 @@ namespace FLCommon
 				return;
 			var u = Uniforms [name];
 			switch (u.Description.Type) {
-				case UniformTypes.Vector3:
+				case GLSLTypes.Vector3:
 				GL.Uniform3 (u.Location + index, (Vector3)value);
 				break;
-				case UniformTypes.Vector4:
+				case GLSLTypes.Vector4:
 				GL.Uniform4 (u.Location + index, (Vector4)value);
 				break;
-			case UniformTypes.Matrix4:
+			case GLSLTypes.Matrix4:
 				var m = (Matrix4)value;
 				GL.UniformMatrix4 (u.Location + index, false, ref m);
 				break;
-				case UniformTypes.Float:
+				case GLSLTypes.Float:
 				GL.Uniform1 (u.Location + index, (float)value);
 				break;
-				case UniformTypes.Int:
+				case GLSLTypes.Int:
 				GL.Uniform1 (u.Location + index, (int)value);
 				break;
-				case UniformTypes.Array:
+				case GLSLTypes.Array:
 				SetArrayUniform (name, 0, value);
 				break;
-				case UniformTypes.Sampler2D:
+				case GLSLTypes.Sampler2D:
 				break; //set in applytextures
-				case UniformTypes.SamplerCube:
+				case GLSLTypes.SamplerCube:
 				break; //set in applytextures
 				default:
 				throw new ArgumentOutOfRangeException ();

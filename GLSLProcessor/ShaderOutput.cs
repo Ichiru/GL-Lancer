@@ -40,7 +40,7 @@ namespace GLSLProcessor
 					foreach (Uniform u in UniformLists[i]) {
 						writer.Write (u.Name);
 						writer.Write ((byte)u.Type);
-						if (u.Type == FLCommon.UniformTypes.Array) {
+						if (u.Type == FLCommon.GLSLTypes.Array) {
 							writer.Write ((byte)u.ArrayType);
 							writer.Write (u.ArrayLength);
 						}
