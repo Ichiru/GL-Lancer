@@ -9,7 +9,7 @@ namespace FLCommon
 		public string Name;
 		public int ID;
 		public Dictionary<string, GLUniform> Uniforms = new Dictionary<string, GLUniform> ();
-
+		public List<SupportedAttribute> Attributes;
 		public void ApplyTextures ()
 		{
 			int i = 0;

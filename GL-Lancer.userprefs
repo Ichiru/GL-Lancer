@@ -1,23 +1,26 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FLCommon/Texture/RenderTarget2D.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FLCommon/Effect/Attributes.cs">
     <Files>
-      <File FileName="FLCommon/Texture/RenderTarget2D.cs" Line="26" Column="74" />
+      <File FileName="FLCommon/Effect/Attributes.cs" Line="27" Column="5" />
+      <File FileName="FLCommon/Effect/Effect.cs" Line="95" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
+        <State expanded="True" selected="True">
           <Node name="FLApi" expanded="True" />
           <Node name="FLCommon" expanded="True">
-            <Node name="Bounds" expanded="True" />
             <Node name="Effect" expanded="True" />
-            <Node name="Properties" expanded="True" />
-            <Node name="Texture" expanded="True">
-              <Node name="RenderTarget2D.cs" selected="True" />
-            </Node>
-            <Node name="Vertices" expanded="True" />
           </Node>
-          <Node name="FLParser" expanded="True" />
+          <Node name="FLParser" expanded="True">
+            <Node name="Dll" expanded="True" />
+            <Node name="Ini" expanded="True" />
+            <Node name="Properties" expanded="True" />
+            <Node name="Utf" expanded="True" />
+          </Node>
+          <Node name="GLLancer" expanded="True">
+            <Node name="FLRenderer" expanded="True" />
+          </Node>
         </State>
       </Pad>
       <Pad Id="ClassPad">

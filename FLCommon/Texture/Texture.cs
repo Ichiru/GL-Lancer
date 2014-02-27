@@ -11,9 +11,11 @@ namespace FLCommon
 		protected static void CheckCompressed()
 		{
 			if (!compressedChecked) {
-				if (!GLExtensions.ExtensionList.Contains ("GL_ARB_texture_compression") ||
-				    !GLExtensions.ExtensionList.Contains ("GL_EXT_texture_compression_s3tc")) {
-					throw new Exception ("Texture Compression isn't supported by your driver");
+				if (!(GLExtensions.ExtensionList.Contains ("GL_EXT_texture_compression_s3tc") ||
+				    GLExtensions.ExtensionList.Contains ("GL_OES_texture_compression_S3TC") ||
+				    GLExtensions.ExtensionList.Contains ("GL_EXT_texture_compression_dxt3") ||
+				    GLExtensions.ExtensionList.Contains ("GL_EXT_texture_compression_dxt5"))) {
+					throw new Exception ("Texture Compression not supported");
 				}
 				compressedChecked = true;
 			}

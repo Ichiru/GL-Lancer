@@ -14,7 +14,6 @@ namespace FLCommon
 		const byte SOURCE_FRAGMENT = 1;
 		//glsl caching
 		static Dictionary<string,int> glslCompiled = new Dictionary<string, int> ();
-
 		static int CompileGLSL (string hash, string source, ShaderType type)
 		{
 			if (!glslCompiled.ContainsKey (hash)) {
@@ -34,7 +33,7 @@ namespace FLCommon
 
 		Dictionary<string, Program> programs = new Dictionary<string, Program> ();
 		Dictionary<string, Uniform> uniforms = new Dictionary<string, Uniform> ();
-		Program activeProgram;
+		internal Program ActiveProgram;
 		bool isDisposed = false;
 
 		public GraphicsDevice GraphicsDevice {
@@ -51,11 +50,11 @@ namespace FLCommon
 
 		public string CurrentTechnique {
 			get {
-				return activeProgram.Name;
+				return ActiveProgram.Name;
 			}
 			set {
-				if (value != activeProgram.Name) {
-					activeProgram = programs [value];
+				if (value != ActiveProgram.Name) {
+					ActiveProgram = programs [value];
 					UpdateUniforms ();
 				}
 			}
@@ -177,6 +176,7 @@ namespace FLCommon
 					}
 				}
 				compiled.SetTextureUniforms ();
+				compiled.Attributes = Attributes.GetVertexAttributes (compiled.ID);
 				programs.Add (compiled.Name, compiled);
 			}
 		}
@@ -186,8 +186,8 @@ namespace FLCommon
 			if (uniforms [name].Description.Type != type)
 				throw new InvalidDataException ();
 			uniforms [name].Value = value;
-			if (activeProgram != null)
-				activeProgram.SetUniform (name, value);
+			if (ActiveProgram != null)
+				ActiveProgram.SetUniform (name, value);
 		}
 
 		void InternalSetArrayParameter (string name,GLSLTypes type,int index, object value)
@@ -199,8 +199,8 @@ namespace FLCommon
 			if (uniforms [name].Description.ArrayType != type)
 				throw new InvalidDataException ();
 			((object[])uniforms [name].Value) [index] = value;
-			if (activeProgram != null)
-				activeProgram.SetArrayUniform (name, index, value);
+			if (ActiveProgram != null)
+				ActiveProgram.SetArrayUniform (name, index, value);
 		}
 		public void SetParameter(string name, Vector4 vec)
 		{
@@ -277,28 +277,29 @@ namespace FLCommon
 					GL.DeleteProgram (program.ID);
 				}
 				programs = null;
-				activeProgram = null;
+				ActiveProgram = null;
 				isDisposed = true;
 			}
 		}
 		public void Apply ()
 		{
-			activeProgram.ApplyTextures ();
+			ActiveProgram.ApplyTextures ();
+			GraphicsDevice.CurrentEffect = this;
 		}
 
 		void UpdateUniforms ()
 		{
 			foreach (var k in uniforms.Keys) {
-				if (uniforms [k].Value != null && activeProgram.Uniforms.ContainsKey (k)) {
+				if (uniforms [k].Value != null && ActiveProgram.Uniforms.ContainsKey (k)) {
 					if (uniforms [k].Description.Type == GLSLTypes.Array) {
 						var array = (object[])uniforms [k].Value;
 						for (int i = 0; i < array.Length; i++) {
 							if (array [i] != null) {
-								activeProgram.SetArrayUniform (k, i, array [i]);
+								ActiveProgram.SetArrayUniform (k, i, array [i]);
 							}
 						}
 					} else {
-						activeProgram.SetUniform (k, uniforms [k].Value);
+						ActiveProgram.SetUniform (k, uniforms [k].Value);
 					}
 				}
 			}
