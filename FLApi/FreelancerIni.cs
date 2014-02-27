@@ -124,7 +124,7 @@ namespace FLApi
 
         public string GetStringResource(int id)
         {
-            int fileId = (id >> 16) - 1;
+			int fileId = id % 65536;
             if (fileId >= 0 && fileId < Resources.Count)
             {
                 ushort resId = (ushort)id;
@@ -135,7 +135,7 @@ namespace FLApi
 
         public XmlDocument GetXmlResource(int id)
         {
-            int fileId = (id >> 16) - 1;
+			int fileId = id % 65536;
             if (fileId >= 0 && fileId < Resources.Count)
             {
                 ushort resId = (ushort)id;

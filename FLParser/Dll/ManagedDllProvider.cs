@@ -136,14 +136,14 @@ namespace FLParser.Dll
 
 			}
 		}
-#warning TODO: These don't work, why? Possibly something wrong in FreelancerIni.cs?
+
 		public XmlDocument GetXml (ushort resourceId)
 		{
 
 			try {
 				return infocardTable[(int)resourceId];
 			} catch (Exception) {
-				Console.WriteLine ("Infocard Load Failed " + resourceId);
+				Console.WriteLine ("[Infocards] Failed to load ID: " + resourceId);
 				return null;
 			}
 
@@ -154,7 +154,7 @@ namespace FLParser.Dll
 			try {
 				return stringTable[(int)resourceId];
 			} catch (Exception) {
-				Console.WriteLine ("String load failed " + resourceId);
+				Console.WriteLine ("[Strings] Failed to load ID: " + resourceId);
 				return "";
 			}
 		}

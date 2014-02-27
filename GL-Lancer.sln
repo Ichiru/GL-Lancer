@@ -63,6 +63,6 @@ Global
 		{FA81A81C-3089-4CB1-A32E-0DA8027F130F} = {0BC65FFA-DE25-4F97-AAB1-7515415F5FE2}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = GLSLProcessor\GLSLProcessor.csproj
+		StartupItem = GLLancer\GLLancer.csproj
 	EndGlobalSection
 EndGlobal
