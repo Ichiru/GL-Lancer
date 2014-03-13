@@ -6,11 +6,14 @@ using OpenTK.Graphics.OpenGL;
 using OpenTK.Audio;
 using OpenTK.Audio.OpenAL;
 using OpenTK.Input;
-
+using FLCommon;
 namespace GLLancer
 {
 	class MainWindow : GameWindow
 	{
+		FLRenderer.Main starchart;
+		GraphicsDevice device;
+		ContentManager content;
 		public MainWindow()
 			: base(800, 600, GraphicsMode.Default, "GL-Lancer")
 		{
@@ -25,7 +28,14 @@ namespace GLLancer
 
 			GL.ClearColor(0.1f, 0.2f, 0.5f, 0.0f);
 			GL.Enable(EnableCap.DepthTest);
-			var efx = new FLCommon.Effect (null, "./Assets/effects/basicposition.effect");
+			GL.Enable (EnableCap.Texture2D);
+			device = new GraphicsDevice ();
+			content = new ContentManager (device);
+			content.RootDirectory = "Assets";
+			starchart = new FLRenderer.Main (MainClass.FLIni);
+			starchart.Initialize (device, content);
+			starchart.LoadContent ();
+			starchart.SystemMap.StarSystem = MainClass.FLIni.Universe.FindSystem ("Li01");
 			Console.WriteLine ();
 		}
 
@@ -41,9 +51,8 @@ namespace GLLancer
 
 			GL.Viewport(ClientRectangle.X, ClientRectangle.Y, ClientRectangle.Width, ClientRectangle.Height);
 
-			Matrix4 projection = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, Width / (float)Height, 1.0f, 64.0f);
-			GL.MatrixMode(MatrixMode.Projection);
-			GL.LoadMatrix(ref projection);
+
+			
 		}
 
 		/// <summary>
@@ -68,17 +77,7 @@ namespace GLLancer
 
 			GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-			Matrix4 modelview = Matrix4.LookAt(Vector3.Zero, Vector3.UnitZ, Vector3.UnitY);
-			GL.MatrixMode(MatrixMode.Modelview);
-			GL.LoadMatrix(ref modelview);
 
-			GL.Begin(PrimitiveType.Triangles);
-
-			GL.Color3(1.0f, 1.0f, 0.0f); GL.Vertex3(-1.0f, -1.0f, 4.0f);
-			GL.Color3(1.0f, 0.0f, 0.0f); GL.Vertex3(1.0f, -1.0f, 4.0f);
-			GL.Color3(0.2f, 0.9f, 1.0f); GL.Vertex3(0.0f, 1.0f, 4.0f);
-
-			GL.End();
 
 			SwapBuffers();
 		}

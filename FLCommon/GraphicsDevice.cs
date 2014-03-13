@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using OpenTK.Graphics.OpenGL;
 namespace FLCommon
 {
@@ -52,16 +53,20 @@ namespace FLCommon
 		public GraphicsDevice ()
 		{
 		}
+		int[] enabledAtt = new int[20];
 		public void DrawIndexedPrimitives(PrimitiveTypes primitiveType, int baseVertex, int minVertexIndex, int numVertices, int startIndex, int primitiveCount)
 		{
 			if (CurrentEffect == null)
 				throw new Exception ("An effect has not been bound");
 			if (buf == null)
 				throw new Exception ("No Vertex Buffer bound");
+			if (ind == null)
+				throw new Exception ("No Index Buffer bound");
 			GL.UseProgram (CurrentEffect.ActiveProgram.ID);
 			GL.BindBuffer (BufferTarget.ArrayBuffer, buf.ID);
 			GL.BindBuffer (BufferTarget.ElementArrayBuffer, ind.ID);
 			int offset = buf.Declaration.VertexStride * (buf.VertexOffset + baseVertex);
+			int enabledCount = 0;
 			for (int i = 0; i < buf.Declaration.Elements.Length; i++) {
 				for (int j = 0; j < CurrentEffect.ActiveProgram.Attributes.Count; j++) {
 					var decl = buf.Declaration.Elements [i];
@@ -73,6 +78,9 @@ namespace FLCommon
 						                       decl.Normalized,
 						                       buf.Declaration.VertexStride,
 						                       (IntPtr)(offset + decl.Offset));
+						GL.EnableVertexAttribArray (att.Location);
+						enabledAtt [enabledCount] = att.Location;
+						enabledCount++;
 						break;
 					}
 				}
@@ -83,6 +91,9 @@ namespace FLCommon
 			                     primitiveType.GetArrayLength (primitiveCount),
 			                     DrawElementsType.UnsignedShort,
 			                     (IntPtr)(startIndex * 2));
+			for (int i = 0; i < enabledCount; i++) {
+				GL.DisableVertexAttribArray (enabledAtt [i]);
+			}
 		}
 		public void Dispose()
 		{

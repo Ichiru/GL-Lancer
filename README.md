@@ -13,7 +13,7 @@ Right now I need people who can do the following:
 System requirements
 =========
 * Windows Vista+ / Recent Linux with SDL2 installed
-* A card capable of OpenGL 3.0 (most cards, make sure drivers are updated)
+* A card capable of OpenGL 2.1 (needs framebuffer object, texture compression + texture cube support)
 * .NET Framework 4.0+ / Mono 2.10+
 * MonoDevelop 4+ / Non-express version of Visual Studio 2010 
 
