@@ -14,7 +14,7 @@ vec4 light(vec4 ec, vec4 dc, vec3 position, vec3 normal)
 			float lightAttenuation = clamp(1 / (LightsAttenuation[i].x + LightsAttenuation[i].y * dist + LightsAttenuation[i].z * dist * dist), 0.0, 1.0);
 			vec3 lightDirection = normalize(LightsPos[i] - position);
 			float lightAngle = max(0, dot(lightDirection, normal));
-			light += lightAttenuation * lightAngle * LightsColor[i];
+			result += lightAttenuation * lightAngle * LightsColor[i];
 		}
 	}
 	return ec + (dc * clamp (result, 0.0, 1.0));

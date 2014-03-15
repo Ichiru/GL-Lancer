@@ -133,8 +133,9 @@ namespace FLCommon
 					var uniform = uniformDescriptions[descriptions[i].VSIndex][j];
 					int loc = GL.GetUniformLocation (compiled.ID, uniform.Name);
 					if (uniforms.ContainsKey (uniform.Name)) {
-						if (uniforms [uniform.Name].Description != uniform)
+						if (uniforms [uniform.Name].Description != uniform) {
 							throw new Exception ("Conflicting uniforms");
+						}
 					} else {
 						if (uniform.Type == GLSLTypes.Array) {
 							var u = new Uniform (uniform);

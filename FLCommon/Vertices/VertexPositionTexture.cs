@@ -2,7 +2,7 @@ using System;
 using OpenTK;
 namespace FLCommon
 {
-	public struct VertexPositionTexture
+	public struct VertexPositionTexture : IVertexType
 	{
 		public Vector3 Position;
 		public Vector2 TextureCoordinate;
@@ -12,6 +12,12 @@ namespace FLCommon
 			TextureCoordinate = texcoord;
 		}
 		public static VertexDeclaration VertexDeclaration = null;
+
+		VertexDeclaration IVertexType.VertexDeclaration {
+			get {
+				return VertexDeclaration;
+			}
+		}
 	}
 }
 
