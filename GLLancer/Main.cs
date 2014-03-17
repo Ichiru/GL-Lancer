@@ -15,6 +15,7 @@ namespace GLLancer
 			FreelancerDirectory = Console.ReadLine();
 			AssemblyDirectory = Path.GetDirectoryName (Assembly.GetExecutingAssembly ().Location);
 			FLIni = new FreelancerIni (FreelancerDirectory);
+			//var file = new ThnFile (Path.Combine (FreelancerDirectory, "DATA/SCRIPTS/INTRO/intro_planetchunks.thn"));
 			using (var game = new MainWindow()) {
 				game.Run ();
 			}

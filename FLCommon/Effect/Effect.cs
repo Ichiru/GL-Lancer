@@ -150,7 +150,7 @@ namespace FLCommon
 						                                                  uniform.Type == GLSLTypes.Sampler2D ||
 						                                                  uniform.Type == GLSLTypes.SamplerCube));
 					} else {
-						Console.WriteLine ("Warning: Unused uniform {0}", uniform.Name);
+						//Console.WriteLine ("Warning: Unused uniform {0}", uniform.Name);
 					}
 				}
 				for (int j = 0; j < uniformDescriptions[descriptions[i].FSIndex].Count; j++) {
@@ -173,7 +173,7 @@ namespace FLCommon
 						                                                    uniform.Type == GLSLTypes.Sampler2D ||
 						                                                    uniform.Type == GLSLTypes.SamplerCube));
 					} else {
-						Console.WriteLine ("Warning: Unused uniform {0}", uniform.Name);
+						//Console.WriteLine ("Warning: Unused uniform {0}", uniform.Name);
 					}
 				}
 				compiled.SetTextureUniforms ();

@@ -201,6 +201,9 @@ namespace FLApi.Universe
                                     if (RpopSolarDetection != null) throw new Exception("Duplicate " + e.Name + " Entry in " + s.Name);
                                     RpopSolarDetection = e[0].ToBoolean();
                                     break;
+						case "space_farclip":
+							Console.WriteLine ("[StarSystem]Unimplemented INI thing space_farclip");
+							break;
                                 default:
                                     throw new Exception("Invalid Entry in " + section.Name + ": " + e.Name);
                             }

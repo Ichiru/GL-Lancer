@@ -72,10 +72,19 @@ namespace FLApi.Universe
                         if (e.Count > 2) size.Z = e[2].ToSingle();
                         Size = size;
                         break;
-                    case "spin":
-                        if (e.Count != 3) throw new Exception("Invalid number of values in " + section.Name + " Entry " + e.Name + ": " + e.Count);
-                        if (Spin != null) throw new Exception("Duplicate " + e.Name + " Entry in " + section.Name);
-                        Spin = new Vector3(e[0].ToSingle(), e[1].ToSingle(), e[2].ToSingle());
+				case "spin":
+					if (e.Count > 3)
+						throw new Exception ("Invalid number of values in " + section.Name + " Entry " + e.Name + ": " + e.Count);
+					if (Spin != null)
+						throw new Exception ("Duplicate " + e.Name + " Entry in " + section.Name);
+					float x = 0f, y = 0f, z = 0f;
+					if (e.Count > 0)
+						x = e [0].ToSingle ();
+					if (e.Count > 1)
+						y = e [1].ToSingle ();
+					if (e.Count > 2)
+						z = e [2].ToSingle ();
+					Spin = new Vector3(x, y, z);
                         break;
                     case "reputation":
                         if (e.Count != 1) throw new Exception("Invalid number of values in " + section.Name + " Entry " + e.Name + ": " + e.Count);

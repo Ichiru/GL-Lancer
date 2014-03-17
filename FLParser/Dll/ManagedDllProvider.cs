@@ -131,7 +131,7 @@ namespace FLParser.Dll
 					xmlDocument.Load (new MemoryStream (xmlBytes));
 					infocardTable.Add ((int)entries [j].Name, xmlDocument);
 				} catch (Exception) {
-					Console.WriteLine ("Failed to load Infocard: {0}", entries [j].Name);
+					Console.WriteLine ("[Infocards] Infocard Corrupt: {0}", entries [j].Name);
 				}
 
 			}
@@ -143,7 +143,7 @@ namespace FLParser.Dll
 			try {
 				return infocardTable[(int)resourceId];
 			} catch (Exception) {
-				Console.WriteLine ("[Infocards] Failed to load ID: " + resourceId);
+				Console.WriteLine ("[Infocards] Not Found: " + resourceId);
 				return null;
 			}
 
@@ -154,7 +154,7 @@ namespace FLParser.Dll
 			try {
 				return stringTable[(int)resourceId];
 			} catch (Exception) {
-				Console.WriteLine ("[Strings] Failed to load ID: " + resourceId);
+				Console.WriteLine ("[Strings] Not Found: " + resourceId);
 				return "";
 			}
 		}

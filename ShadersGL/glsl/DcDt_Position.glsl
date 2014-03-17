@@ -1,6 +1,6 @@
 #include 'standard/light.glsl'
 varying vec4 position;
-varying float4 Dc;
+varying vec4 Dc;
 
 void main(void)
 {

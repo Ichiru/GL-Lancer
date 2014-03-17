@@ -9,7 +9,7 @@ vec4 light(vec4 ec, vec4 dc, vec3 position, vec3 normal)
 {
 	vec4 result = AmbientColor;
 	for (int i = 0; i < LightCount; i++) {
-		int dist = distance(LightsPos[i], position);
+		int dist = int(distance(LightsPos[i], position));
 		if(LightsRange[i] >= dist) {
 			float lightAttenuation = clamp(1 / (LightsAttenuation[i].x + LightsAttenuation[i].y * dist + LightsAttenuation[i].z * dist * dist), 0.0, 1.0);
 			vec3 lightDirection = normalize(LightsPos[i] - position);

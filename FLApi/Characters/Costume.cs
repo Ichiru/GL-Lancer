@@ -117,6 +117,9 @@ namespace FLApi.Characters
                         //if (leftHandName != null) throw new Exception("Duplicate " + e.Name + " Entry in " + s.Name);
                         leftHandName = e[0].ToString();
                         break;
+				case "accessory":
+					Console.WriteLine ("[Costume]Accessories not implemented");
+					break;
                     default: throw new Exception("Invalid Entry in " + s.Name + ": " + e.Name);
                 }
             }

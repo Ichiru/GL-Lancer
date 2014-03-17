@@ -37,7 +37,7 @@ namespace GLSLProcessor
 		}
 		public static string Preprocess(string text, string path)
 		{
-			return StripComments (FindIncludes (text, Path.GetDirectoryName(path)));
+			return "#version 130\n" + StripComments (FindIncludes (text, Path.GetDirectoryName(path)));
 		}
 	}
 }
