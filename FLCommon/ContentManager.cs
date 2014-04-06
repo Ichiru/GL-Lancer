@@ -17,6 +17,7 @@ namespace FLCommon
 				if (!File.Exists (path + ".effect")) {
 					throw new FileNotFoundException (filename);
 				}
+				Console.WriteLine (Path.GetFileName (path));
 				return (T)(object)new Effect (device, path + ".effect");
 			} else {
 				throw new NotImplementedException ();

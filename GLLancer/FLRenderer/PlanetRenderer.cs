@@ -183,7 +183,7 @@ namespace FLRenderer
 
 			SpaceObject.Draw(Color.White, lights, Matrix4.Identity);
 
-			if (DrawBoundingBoxEnabled)
+			/*if (DrawBoundingBoxEnabled)
 			{
 				boundingBoxEffect.SetParameter ("Dc", UiColor.ToVector3 ());
 				boundingBoxEffect.SetParameter ("World", World);
@@ -193,7 +193,7 @@ namespace FLRenderer
 				graphicsDevice.Indices = boundingSphere.IndexBuffer;
 
 				graphicsDevice.DrawIndexedPrimitives(PrimitiveTypes.LineList, 0, 0, boundingSphere.VertexBuffer.VertexCount, 0, boundingSphere.IndexBuffer.IndexCount / 2);
-			}
+			}*/
 		}
 
 		public override void Dispose()

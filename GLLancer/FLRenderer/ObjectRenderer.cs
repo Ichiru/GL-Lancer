@@ -38,7 +38,7 @@ namespace FLRenderer
 		public Color UiColor { get; private set; }
 		public bool DrawBoundingBoxEnabled { get; set; }
 
-		protected Effect boundingBoxEffect;
+		//protected Effect boundingBoxEffect;
 
 		protected ObjectRenderer(GraphicsDevice graphicsDevice, ContentManager content, Camera camera, Matrix4 world, bool useObjectPosAndRotate, SystemObject spaceObject, Color uiColor)
 		{
@@ -58,15 +58,15 @@ namespace FLRenderer
 
 			SpaceObject = spaceObject;
 			UiColor = uiColor;
-			boundingBoxEffect = content.Load<Effect>("effects/Wireframe");
+			//boundingBoxEffect = content.Load<Effect>("effects/Wireframe");
 
 			DrawBoundingBoxEnabled = false;
 		}
 
 		public virtual void Update(TimeSpan elapsed)
 		{
-			boundingBoxEffect.SetParameter ("View", camera.View);
-			boundingBoxEffect.SetParameter ("Projection", camera.Projection);
+			//boundingBoxEffect.SetParameter ("View", camera.View);
+			//boundingBoxEffect.SetParameter ("Projection", camera.Projection);
 		}
 
 		public abstract void Draw(Color ambientColor, List<LightSource> lights);

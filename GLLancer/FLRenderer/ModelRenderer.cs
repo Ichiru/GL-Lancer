@@ -92,7 +92,7 @@ namespace FLRenderer
 			if (Model != null) Model.Draw(ambientColor, lights, World);
 			else if (Cmp != null) Cmp.Draw(ambientColor, lights, World);
 
-			if (DrawBoundingBoxEnabled)
+			/*if (DrawBoundingBoxEnabled)
 			{
 				graphicsDevice.Indices = Cuboid.IndexBuffer;
 
@@ -106,7 +106,7 @@ namespace FLRenderer
 
 					graphicsDevice.DrawIndexedPrimitives(PrimitiveTypes.LineList, 0, 0, Cuboid.VERTEX_COUNT, 0, Cuboid.PrimitiveCount);
 				}
-			}
+			}*/
 		}
 
 		public override void Dispose()

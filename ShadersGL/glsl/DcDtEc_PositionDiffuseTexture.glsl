@@ -1,6 +1,6 @@
 #include 'standard/light.glsl'
 uniform sampler2D DtSampler;
-uniform vec4 Dt;
+uniform vec4 Dc;
 uniform vec4 Ec;
 varying vec4 position;
 varying vec2 texcoord;

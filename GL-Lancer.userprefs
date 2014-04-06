@@ -1,6 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="FLApi/Utf/Mat/SphFile.cs">
+    <Files>
+      <File FileName="FLCommon/Effect/Effect.cs" Line="28" Column="1" />
+      <File FileName="FLCommon/ContentManager.cs" Line="14" Column="4" />
+      <File FileName="FLApi/Utf/Mat/SphFile.cs" Line="207" Column="18" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
