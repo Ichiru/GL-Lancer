@@ -53,13 +53,9 @@ namespace FLApi.Utf.Mat
                     }
                     else if (type.StartsWith("mip", StringComparison.OrdinalIgnoreCase))
                     {
-                        Bitmap b = TGALib.TGAFromStream(stream);
-                        if (b != null)
-                        {
-                            Stream s = new MemoryStream();
-                            b.Save(s, ImageFormat.Png);
-                            Texture = Texture2D.FromStream(graphicsDevice, s);
-                        }
+						var tex = TGALib.TGAFromStream (graphicsDevice, stream);
+						if (tex != null)
+							Texture = tex;
                     }
                     else if (type.Equals("cube", StringComparison.OrdinalIgnoreCase))
                     {

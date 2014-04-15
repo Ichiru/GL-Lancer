@@ -1,0 +1,3 @@
+[Technique1]
+fragment_shader=./glsl/Planet/FragmentShader.glsl
+vertex_shader=./glsl/Planet/VertexShader.glsl

@@ -20,7 +20,7 @@ vertex_shader=./glsl/standard/PositionNormalTexture.glsl
 
 [Program]
 name=PositionDiffuseTexture
-fragment_shader=./glsl/stadnard/BasicPositionDiffuseTexture.glsl
+fragment_shader=./glsl/standard/BasicPositionDiffuseTexture.glsl
 vertex_shader=./glsl/standard/PositionDiffuseTexture.glsl
 
 [Program]

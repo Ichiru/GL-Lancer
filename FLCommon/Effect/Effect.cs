@@ -176,6 +176,7 @@ namespace FLCommon
 						//Console.WriteLine ("Warning: Unused uniform {0}", uniform.Name);
 					}
 				}
+				GL.UseProgram (compiled.ID);
 				compiled.SetTextureUniforms ();
 				compiled.Attributes = Attributes.GetVertexAttributes (compiled.ID);
 				programs.Add (compiled.Name, compiled);

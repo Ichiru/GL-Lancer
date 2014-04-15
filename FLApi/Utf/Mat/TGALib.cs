@@ -18,17 +18,14 @@
 
 using System;
 using System.IO;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Text;
-
-using System.Runtime.InteropServices;
+using FLCommon;
 
 namespace FLApi.Utf.Mat
 {
     public static class TGALib
     {
-        public static Bitmap TGAFromStream(Stream stream)
+		public static Texture2D TGAFromStream(GraphicsDevice device, Stream stream)
         {
             byte[] buffer = new byte[2];
 
@@ -109,11 +106,8 @@ namespace FLApi.Utf.Mat
             {
                 throw new Exception(); //return null;
             }
-
-            Bitmap bm = new Bitmap(imageWidth, imageHeight);
-            Rectangle rect = new Rectangle(0, 0, imageWidth, imageHeight);
-            BitmapData bmdata = bm.LockBits(rect, ImageLockMode.WriteOnly, bm.PixelFormat);
-            int bytes = bmdata.Stride * imageHeight;
+			int stride = 4 * imageWidth;
+			int bytes = stride * imageHeight;
             byte[] pdata = new byte[bytes];
 
             // Process the image data depending on its type.
@@ -125,7 +119,7 @@ namespace FLApi.Utf.Mat
 
                 for (int y = imageHeight; --y >= 0; )
                 {
-                    int p = y * bmdata.Stride;
+                    int p = y * stride;
                     for (int x = 0; x < imageWidth; ++x)
                     {
                         stream.Seek(streampos, SeekOrigin.Begin);
@@ -144,7 +138,7 @@ namespace FLApi.Utf.Mat
             {
                 for (int y = imageHeight; --y >= 0; )
                 {
-                    int p = y * bmdata.Stride;
+                    int p = y * stride;
                     for (int x = 0; x < imageWidth; ++x)
                     {
                         stream.Read(buffer, 0, 2);
@@ -163,7 +157,7 @@ namespace FLApi.Utf.Mat
             {
                 for (int y = imageHeight; --y >= 0; )
                 {
-                    int p = y * bmdata.Stride;
+                    int p = y * stride;
                     for (int x = 0; x < imageWidth; ++x)
                     {
                         pdata[p++] = (byte)stream.ReadByte();
@@ -180,10 +174,9 @@ namespace FLApi.Utf.Mat
                     }
                 }
             }
-
-            Marshal.Copy(pdata, 0, bmdata.Scan0, bytes);
-            bm.UnlockBits(bmdata);
-            return bm;
+			var tex = new Texture2D (device, imageWidth, imageHeight);
+			tex.SetData (pdata);
+			return tex;
         }
 
         // Method from Freelancer UTF Editor
@@ -294,7 +287,7 @@ namespace FLApi.Utf.Mat
                 byte[] index = null;
                 Rectangle rect = new Rectangle(0, 0, width, height);
                 BitmapData bmdata = tex[level].LockBits(rect, ImageLockMode.WriteOnly, tex[level].PixelFormat);
-                int bytes = bmdata.Stride * height;
+                int bytes = 256 * height;
                 byte[] pdata = new byte[bytes];
 
                 if (pFlags == 4)
@@ -309,7 +302,7 @@ namespace FLApi.Utf.Mat
 
                             for (int y1 = 0; y1 < 4; ++y1)
                             {
-                                int p = (y + y1) * bmdata.Stride + x * 4;
+                                int p = (y + y1) * 4 + x * 4;
                                 byte val = reader.ReadByte();
                                 for (int x1 = 0; x1 < 4; ++x1)
                                 {
@@ -435,17 +428,17 @@ namespace FLApi.Utf.Mat
             {
                 alpha[2] = (byte)((6 * alpha[0] + 1 * alpha[1]) / 7);
                 alpha[3] = (byte)((5 * alpha[0] + 2 * alpha[1]) / 7);
-                alpha[4] = (byte)((4 * alpha[0] + 3 * alpha[1]) / 7);
-                alpha[5] = (byte)((3 * alpha[0] + 4 * alpha[1]) / 7);
+                alpha[4] = (byte)((256 * alpha[0] + 3 * alpha[1]) / 7);
+                alpha[5] = (byte)((3 * alpha[0] + 256 * alpha[1]) / 7);
                 alpha[6] = (byte)((2 * alpha[0] + 5 * alpha[1]) / 7);
                 alpha[7] = (byte)((1 * alpha[0] + 6 * alpha[1]) / 7);
             }
             else
             {
-                alpha[2] = (byte)((4 * alpha[0] + 1 * alpha[1]) / 5);
+                alpha[2] = (byte)((256 * alpha[0] + 1 * alpha[1]) / 5);
                 alpha[3] = (byte)((3 * alpha[0] + 2 * alpha[1]) / 5);
                 alpha[4] = (byte)((2 * alpha[0] + 3 * alpha[1]) / 5);
-                alpha[5] = (byte)((1 * alpha[0] + 4 * alpha[1]) / 5);
+                alpha[5] = (byte)((1 * alpha[0] + 256 * alpha[1]) / 5);
                 alpha[6] = 0x00;
                 alpha[7] = 0xFF;
             }

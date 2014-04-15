@@ -1,6 +1,6 @@
 [Program]
 name=Position
-fragment_shader=./glsl/DcDt/Position.glsl
+fragment_shader=./glsl/DcDt_Position.glsl
 vertex_shader=./glsl/standard/Position.glsl
 
 [Program]
@@ -10,12 +10,12 @@ vertex_shader=./glsl/standard/PositionNormal.glsl
 
 [Program]
 name=PositionTexture
-fragment_shader=./glsl/DcDt/PositionTexture.glsl
+fragment_shader=./glsl/DcDt_PositionTexture.glsl
 vertex_shader=./glsl/standard/PositionTexture.glsl
 
 [Program]
 name=PositionNormalTexture
-fragment_shader=./glsl/DcDt/PositionNormalTexture.glsl
+fragment_shader=./glsl/DcDt_PositionNormalTexture.glsl
 vertex_shader=./glsl/standard/PositionNormalTexture.glsl
 
 [Program]
@@ -25,6 +25,6 @@ vertex_shader=./glsl/standard/PositionDiffuseTexture.glsl
 
 [Program]
 name=PositionNormalTextureTwo
-fragment_shader=./glsl/DcDt/PositionNormalTextureTwo.glsl
+fragment_shader=./glsl/DcDt_PositionNormalTextureTwo.glsl
 vertex_shader=./glsl/standard/PositionNormalTextureTwo.glsl
 

@@ -1,4 +1,5 @@
 using System;
+using OpenTK.Graphics.OpenGL;
 
 namespace FLCommon
 {
@@ -8,6 +9,7 @@ namespace FLCommon
 
 		public TextureCube (GraphicsDevice device, int size, bool hasMips, SurfaceFormat format)
 		{
+			ID = GL.GenTexture ();
 			GraphicsDevice = device;
 			Size = size;
 		}

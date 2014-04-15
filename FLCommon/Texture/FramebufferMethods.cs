@@ -7,16 +7,8 @@ namespace FLCommon
 	/// </summary>
 	static class FramebufferMethods
 	{
-		static bool UseARB;
-		static FramebufferMethods()
-		{
-			if (GLExtensions.ExtensionList.Contains ("GL_ARB_framebuffer_object"))
-				UseARB = true;
-			else if (GLExtensions.ExtensionList.Contains ("GL_EXT_framebuffer_object"))
-				UseARB = false;
-			else
-				throw new Exception ("Hardware doesn't support GL_EXT_framebuffer_object or OpenGL 3.0");
-		}
+		internal static bool UseARB;
+
 		public static void FramebufferTexture2D(FramebufferTarget fbTarget, FramebufferAttachment attachment, TextureTarget texTarget,
 		                                         int texture, int level)
 		{

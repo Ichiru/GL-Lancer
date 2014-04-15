@@ -52,6 +52,7 @@ namespace FLCommon
 		}
 		public GraphicsDevice ()
 		{
+			GLExtensions.CheckExtensions ();
 		}
 		int[] enabledAtt = new int[20];
 		public void DrawIndexedPrimitives(PrimitiveTypes primitiveType, int baseVertex, int minVertexIndex, int numVertices, int startIndex, int primitiveCount)
