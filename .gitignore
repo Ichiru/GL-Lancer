@@ -6,3 +6,5 @@ obj/
 # Files
 *.suo
 *.userprefs
+# Gedit backups
+*~

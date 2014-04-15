@@ -1,4 +1,0 @@
-[Program]
-name=PositionTexture
-fragment_shader=./glsl/Masked2DetailMapMaterial_FragmentShader.glsl
-vertex_shader=./glsl/Masked2DetailMapMaterial_VertexShader.glsl
