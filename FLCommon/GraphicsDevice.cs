@@ -53,6 +53,9 @@ namespace FLCommon
 		public GraphicsDevice ()
 		{
 			GLExtensions.CheckExtensions ();
+			//enable texturing
+			GL.Enable (EnableCap.Texture2D);
+			GL.Enable (EnableCap.TextureCubeMap);
 		}
 		int[] enabledAtt = new int[20];
 		public void DrawIndexedPrimitives(PrimitiveTypes primitiveType, int baseVertex, int minVertexIndex, int numVertices, int startIndex, int primitiveCount)

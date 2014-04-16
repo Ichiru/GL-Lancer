@@ -86,7 +86,7 @@ namespace FLApi.Utf.Dfm
             this.device = device;
 
             triangleStripIndexBuffer = new IndexBuffer(device, IndexElementSize.SixteenBits, TriangleStripIndices.Length, BufferUsage.WriteOnly);
-            triangleStripIndexBuffer.SetData<ushort>(TriangleStripIndices);
+            triangleStripIndexBuffer.SetData(TriangleStripIndices);
 
             Material.Initialize(device, content, camera);
 

@@ -199,9 +199,9 @@ namespace FLApi.Utf.Mat
                 //effect.Parameters["World"].SetValue(world);
 				effect.SetParameter ("World", world);
 				if (Dt == null)
-					effect.SetParameter ("Dt", nullTexture);
+					effect.SetParameter ("DtSampler", nullTexture);
 				else
-					effect.SetParameter ("Dt", Dt.Texture);
+					effect.SetParameter ("DtSampler", Dt.Texture);
 
                 switch (vertexFormat)
                 {

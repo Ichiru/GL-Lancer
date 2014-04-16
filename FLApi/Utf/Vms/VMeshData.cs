@@ -178,7 +178,7 @@ namespace FLApi.Utf.Vms
             this.device = device;
 
             IndexBuffer = new IndexBuffer(device, IndexElementSize.SixteenBits, IndexCount, BufferUsage.WriteOnly);
-            IndexBuffer.SetData<ushort>(indices);
+            IndexBuffer.SetData(indices);
 
             switch (FlexibleVertexFormat)
             {

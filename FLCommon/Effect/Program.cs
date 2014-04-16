@@ -72,12 +72,12 @@ namespace FLCommon
 				throw new ArgumentOutOfRangeException ();
 			}
 		}
-		public void SetArrayUniform (string name, int index, object value)
+		public void SetArrayUniform (string name, int index, object value, bool overrideType = false, GLSLTypes overidden = GLSLTypes.Int)
 		{
 			if (!Uniforms.ContainsKey (name))
 				return;
 			var u = Uniforms [name];
-			switch (u.Description.Type) {
+			switch (overrideType ? overidden : u.Description.Type) {
 				case GLSLTypes.Vector3:
 				GL.Uniform3 (u.Location + index, (Vector3)value);
 				break;
@@ -94,8 +94,10 @@ namespace FLCommon
 				case GLSLTypes.Int:
 				GL.Uniform1 (u.Location + index, (int)value);
 				break;
-				case GLSLTypes.Array:
-				SetArrayUniform (name, 0, value);
+			case GLSLTypes.Array:
+
+				SetArrayUniform (name, 0, value, true, u.Description.ArrayType);
+				//SetUniform (name, value);
 				break;
 				case GLSLTypes.Sampler2D:
 				break; //set in applytextures

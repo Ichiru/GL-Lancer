@@ -55,13 +55,7 @@
   <ItemGroup>
     <Folder Include="Assets\" />
     <Folder Include="FLRenderer\" />
-    <Folder Include="Assets\fonts\" />
     <Folder Include="Assets\effects\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\fonts\LiberationSans.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FLParser\FLParser.csproj">

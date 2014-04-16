@@ -81,6 +81,20 @@ namespace FLCommon
 			throw new ArgumentException ();
 		}
 
+		public  static int Size(this VertexElementFormat elementFormat)
+		{
+			switch (elementFormat)
+			{
+			case VertexElementFormat.Vector2:
+				return 8;
+			case VertexElementFormat.Vector3:
+				return 12;
+			case VertexElementFormat.Byte4:
+				return 4;
+			}
+			return 0;
+		}
+
 		public static VertexAttribPointerType GetAttribPointerType (this VertexElementFormat elementFormat)
 		{
 			switch (elementFormat) {

@@ -62,7 +62,7 @@ namespace GLLancer
 		protected override void OnUpdateFrame(FrameEventArgs e)
 		{
 			base.OnUpdateFrame(e);
-
+			starchart.Update (TimeSpan.FromSeconds (e.Time));
 			if (Keyboard[Key.Escape])
 				Exit();
 		}
@@ -76,7 +76,7 @@ namespace GLLancer
 			base.OnRenderFrame(e);
 
 			GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-
+			starchart.Draw ();
 
 
 			SwapBuffers();

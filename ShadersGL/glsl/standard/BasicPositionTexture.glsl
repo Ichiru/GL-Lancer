@@ -1,11 +1,10 @@
-#include '../standard/light.glsl'
+#include 'light.glsl'
+//varyings
 uniform sampler2D DtSampler;
-uniform vec4 Dc;
 varying vec4 position;
 varying vec2 texcoord;
-
 void main(void)
 {
 	vec4 dc = texture(DtSampler, texcoord);
-	gl_FragColor = dc * AmbientColor;
+	dc = vec4(dc.xyz * AmbientColor.xyz * vec3(1,0,0),dc.w);
 }

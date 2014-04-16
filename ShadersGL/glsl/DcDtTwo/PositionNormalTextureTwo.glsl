@@ -10,5 +10,6 @@ varying vec2 texcoord2;
 void main(void)
 {
 	vec4 dc = texture(DtSampler, texcoord);
+	dc *= Dc;
 	gl_FragColor = light(vec4(0.0,0.0,0.0,0.0), dc, worldPosition.xyz, normal.xyz);
 }

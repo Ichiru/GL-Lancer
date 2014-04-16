@@ -25,11 +25,12 @@ namespace FLCommon
 		}
 		public void SetData<T>(T[] data) where T: struct
 		{
-
+			GL.BindBuffer (BufferTarget.ArrayBuffer, ID);
+			GL.BufferData (BufferTarget.ArrayBuffer, new IntPtr(data.Length * Declaration.VertexStride), data, BufferUsageHint.StaticDraw);
 		}
 		public void Dispose()
 		{
-
+			GL.DeleteBuffer (ID);
 		}
 	}
 }

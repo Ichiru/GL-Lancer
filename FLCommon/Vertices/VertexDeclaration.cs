@@ -9,6 +9,7 @@ namespace FLCommon
 		public VertexDeclaration (params VertexElement[] elements)
 		{
 			Elements = elements;
+			VertexStride = CalculateStride ();
 		}
 		internal static VertexDeclaration FromType(Type vertexType)
 		{
@@ -24,6 +25,21 @@ namespace FLCommon
 				throw new Exception("VertexDeclaration cannot be null");
 			return vertexDeclaration;
 		}
+
+		int CalculateStride()
+		{
+			int max = 0;
+			for (int i = 0; i < Elements.Length; i += 1)
+			{
+				int start = Elements [i].Offset + Elements [i].Format.Size ();
+				if (max < start)
+				{
+					max = start;
+				}
+			}
+			return max;
+		}
+
 	}
 }
 

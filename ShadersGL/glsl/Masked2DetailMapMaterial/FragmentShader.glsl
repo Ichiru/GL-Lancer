@@ -7,6 +7,7 @@ uniform float TileRate0;
 uniform float TileRate1;
 uniform vec4 Dc;
 uniform vec4 Ac;
+uniform vec4 AmbientColor;
 
 varying vec4 position;
 varying vec2 texcoord;

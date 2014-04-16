@@ -66,7 +66,7 @@ namespace RenderTools.Primitives
             VertexBuffer.SetData<VertexPositionColor>(vertices);
 
             IndexBuffer = new IndexBuffer(graphicsDevice, IndexElementSize.SixteenBits, indices.Length, BufferUsage.WriteOnly);
-            IndexBuffer.SetData<ushort>(indices);
+            IndexBuffer.SetData(indices);
         }
 
         public void Dispose()

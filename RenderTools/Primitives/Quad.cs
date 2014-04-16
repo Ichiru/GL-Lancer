@@ -42,7 +42,7 @@ namespace RenderTools.Primitives
             if (IndexBuffer == null)
             {
                 IndexBuffer = new IndexBuffer(graphicsDevice, IndexElementSize.SixteenBits, indices.Length, BufferUsage.WriteOnly);
-                IndexBuffer.SetData<short>(indices);
+                IndexBuffer.SetData(indices);
             }
 
             VertexPositionTexture[] vertices = new VertexPositionTexture[VERTEX_COUNT];

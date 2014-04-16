@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using OpenTK.Graphics.OpenGL;
@@ -53,7 +54,7 @@ namespace FLCommon
 				return ActiveProgram.Name;
 			}
 			set {
-				if (value != ActiveProgram.Name) {
+				if (ActiveProgram == null || value != ActiveProgram.Name) {
 					ActiveProgram = programs [value];
 					UpdateUniforms ();
 				}
@@ -185,15 +186,22 @@ namespace FLCommon
 
 		void InternalSetParameter(string name, GLSLTypes type, object value)
 		{
+			if (!uniforms.ContainsKey (name))
+				throw new KeyNotFoundException (name);
 			if (uniforms [name].Description.Type != type)
 				throw new InvalidDataException ();
 			uniforms [name].Value = value;
-			if (ActiveProgram != null)
+			if (ActiveProgram != null) {
+				GL.UseProgram (ActiveProgram.ID);
 				ActiveProgram.SetUniform (name, value);
+			}
 		}
+
 
 		void InternalSetArrayParameter (string name,GLSLTypes type,int index, object value)
 		{
+			if (!uniforms.ContainsKey (name))
+				throw new KeyNotFoundException (name);
 			if (uniforms [name].Description.Type != GLSLTypes.Array)
 				throw new InvalidOperationException ();
 			if (index >= uniforms [name].Description.ArrayLength)
@@ -201,8 +209,10 @@ namespace FLCommon
 			if (uniforms [name].Description.ArrayType != type)
 				throw new InvalidDataException ();
 			((object[])uniforms [name].Value) [index] = value;
-			if (ActiveProgram != null)
+			if (ActiveProgram != null) {
+				GL.UseProgram (ActiveProgram.ID);
 				ActiveProgram.SetArrayUniform (name, index, value);
+			}
 		}
 		public void SetParameter(string name, Vector4 vec)
 		{
@@ -285,12 +295,17 @@ namespace FLCommon
 		}
 		public void Apply ()
 		{
+			if(ActiveProgram == null) {
+				Console.WriteLine ("technique not set, defaulting to {0}", programs.Keys.First());
+				CurrentTechnique = programs.Keys.First();
+			}
 			ActiveProgram.ApplyTextures ();
 			GraphicsDevice.CurrentEffect = this;
 		}
 
 		void UpdateUniforms ()
 		{
+			GL.UseProgram (ActiveProgram.ID);
 			foreach (var k in uniforms.Keys) {
 				if (uniforms [k].Value != null && ActiveProgram.Uniforms.ContainsKey (k)) {
 					if (uniforms [k].Description.Type == GLSLTypes.Array) {

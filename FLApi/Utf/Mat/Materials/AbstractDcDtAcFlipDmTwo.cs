@@ -111,11 +111,11 @@ namespace FLApi.Utf.Mat.Materials
         {
             if (effect != null)
             {
-				if (Dm0 == null) effect.SetParameter ("Dm0", nullTexture);
-				else effect.SetParameter ("Dm0", Dm0.Texture);
+				if (Dm0 == null) effect.SetParameter ("Dm0Sampler", nullTexture);
+				else effect.SetParameter ("Dm0Sampler", Dm0.Texture);
 
-				if (Dm1 == null) effect.SetParameter ("Dm1", nullTexture);
-				else effect.SetParameter ("Dm1", Dm1.Texture);
+				if (Dm1 == null) effect.SetParameter ("Dm1Sampler", nullTexture);
+				else effect.SetParameter ("Dm1Sampler", Dm1.Texture);
 
 				effect.SetParameter ("TileRate0", TileRate0);
 				effect.SetParameter ("TileRate1", TileRate1);
