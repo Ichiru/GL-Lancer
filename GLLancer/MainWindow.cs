@@ -19,7 +19,7 @@ namespace GLLancer
 		{
 			VSync = VSyncMode.On;
 		}
-
+		bool mouseinput = false;
 		/// <summary>Load resources here.</summary>
 		/// <param name="e">Not used.</param>
 		protected override void OnLoad(EventArgs e)
@@ -35,6 +35,13 @@ namespace GLLancer
 			starchart.LoadContent ();
 			starchart.Camera.Free = true;
 			starchart.SystemMap.StarSystem = MainClass.FLIni.Universe.FindSystem ("Li01");
+			Mouse.ButtonDown += delegate(object sender, MouseButtonEventArgs ev) {
+				if(ev.Button == MouseButton.Left) {
+					mouseinput = true;
+				} else if (ev.Button == MouseButton.Right) {
+					mouseinput = false;
+				}
+		};
 			//GL.PolygonMode (MaterialFace.FrontAndBack, PolygonMode.Line);
 		}
 
@@ -81,14 +88,16 @@ namespace GLLancer
 
 			if (Keyboard[Key.ControlLeft] || Keyboard[Key.ControlRight])
 				starchart.Camera.MoveVector *= 5;
-			float xDifference = (ClientRectangle.Width / 2) - Mouse.X;
-			float yDifference = (ClientRectangle.Height / 2) - Mouse.Y;
+			if (mouseinput) {
+				float xDifference = (ClientRectangle.Width / 2) - Mouse.X;
+				float yDifference = (ClientRectangle.Height / 2) - Mouse.Y;
 
 
-			float amount = (float)e.Time / 100.0f;
+				float amount = (float)e.Time / 100.0f;
 				starchart.Camera.Rotation = new Vector2 (starchart.Camera.Rotation.X - ROTATION_SPEED * xDifference * amount, starchart.Camera.Rotation.Y - ROTATION_SPEED * yDifference * amount);
-			OpenTK.Input.Mouse.SetPosition (ClientRectangle.X + (ClientRectangle.Width / 2),
-				ClientRectangle.Y + (ClientRectangle.Height / 2));
+				OpenTK.Input.Mouse.SetPosition (ClientRectangle.X + (ClientRectangle.Width / 2),
+					ClientRectangle.Y + (ClientRectangle.Height / 2));
+			}
 
 		}
 
