@@ -223,9 +223,9 @@ namespace FLRenderer
 				starSphereModels[i].Draw(Color.White, new List<LightSource>(), Matrix4.CreateTranslation(camera.Position));
 			}
 
-			for (int i = 0; i < Suns.Count; i++) Suns[i].Draw(starSystem.AmbientColor.Value, starSystem.LightSources);
-			for (int i = 0; i < Models.Count; i++) Models[i].Draw(starSystem.AmbientColor.Value, starSystem.LightSources);
-			for (int i = 0; i < Planets.Count; i++) Planets[i].Draw(starSystem.AmbientColor.Value, starSystem.LightSources);
+			//for (int i = 0; i < Suns.Count; i++) Suns[i].Draw(starSystem.AmbientColor.Value, starSystem.LightSources);
+			//for (int i = 0; i < Models.Count; i++) Models[i].Draw(starSystem.AmbientColor.Value, starSystem.LightSources);
+			//for (int i = 0; i < Planets.Count; i++) Planets[i].Draw(starSystem.AmbientColor.Value, starSystem.LightSources);
 		}
 	}
 

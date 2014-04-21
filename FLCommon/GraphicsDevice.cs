@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using OpenTK.Graphics.OpenGL;
+using Microsoft.VisualBasic;
+
+
 namespace FLCommon
 {
 	public class GraphicsDevice : IDisposable
@@ -16,7 +19,16 @@ namespace FLCommon
 				return isDisposed;
 			}
 		}
-		public Viewport Viewport { get; set; }
+		Viewport vp;
+		public Viewport Viewport {
+			get {
+				return vp;
+			}
+			set {
+				vp = value;
+				GL.Viewport (vp.X, vp.Y, vp.Width, vp.Height);
+			}
+		}
 		public IndexBuffer Indices
 		{
 			set {
@@ -53,9 +65,16 @@ namespace FLCommon
 		public GraphicsDevice ()
 		{
 			GLExtensions.CheckExtensions ();
-			//enable texturing
+			//enable caps
+			GL.Enable(EnableCap.DepthTest);
 			GL.Enable (EnableCap.Texture2D);
 			GL.Enable (EnableCap.TextureCubeMap);
+			GL.Enable (EnableCap.Blend);
+
+		}
+		public void SetViewport(Viewport vp)
+		{
+
 		}
 		int[] enabledAtt = new int[20];
 		public void DrawIndexedPrimitives(PrimitiveTypes primitiveType, int baseVertex, int minVertexIndex, int numVertices, int startIndex, int primitiveCount)
@@ -89,6 +108,8 @@ namespace FLCommon
 					}
 				}
 			}
+			CurrentEffect.ActiveProgram.ApplyTextures ();
+			CurrentEffect.ActiveProgram.SetTextureUniforms ();
 			GL.DrawRangeElements (primitiveType.GLType (),
 			                     minVertexIndex,
 			                     numVertices,

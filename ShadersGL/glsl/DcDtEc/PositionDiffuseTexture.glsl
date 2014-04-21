@@ -8,6 +8,6 @@ varying vec4 diffuse;
 
 void main(void)
 {
-	vec4 dc = texture(DtSampler, texcoord);
+	vec4 dc = texture2D(DtSampler, texcoord);
 	gl_FragColor = dc + Ec;
 }

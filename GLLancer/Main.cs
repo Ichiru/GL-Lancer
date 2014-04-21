@@ -6,16 +6,14 @@ namespace GLLancer
 {
 	class MainClass
 	{
-		public static string FreelancerDirectory = "";
 		public static string AssemblyDirectory;
 		public static FreelancerIni FLIni;
+		public static ConfigIni Configuration;
 		public static void Main (string[] args)
 		{
-			Console.Write ("Enter Freelancer Directory: ");
-			FreelancerDirectory = Console.ReadLine();
+			Configuration = new ConfigIni ("config.ini");
 			AssemblyDirectory = Path.GetDirectoryName (Assembly.GetExecutingAssembly ().Location);
-			FLIni = new FreelancerIni (FreelancerDirectory);
-			//var file = new ThnFile (Path.Combine (FreelancerDirectory, "DATA/SCRIPTS/INTRO/intro_planetchunks.thn"));
+			FLIni = new FreelancerIni (Configuration.FreelancerDirectory);
 			using (var game = new MainWindow()) {
 				game.Run ();
 			}

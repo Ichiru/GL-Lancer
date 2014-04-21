@@ -16,9 +16,9 @@ void main(void)
 	    tex.x = 1 - tex.x;
 	if(FlipV > 0)
 	    tex.y = 1 - tex.y;
-	vec4 dc = texture(DtSampler, tex);
+	vec4 dc = texture2D(DtSampler, tex);
 	dc *= Dc;
 	tex *= vec2(TileRate, TileRate);
-	dc *= texture(DmSampler, tex);
+	dc *= texture2D(DmSampler, tex);
 	gl_FragColor = Ac * dc;
 }

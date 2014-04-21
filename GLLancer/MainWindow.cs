@@ -25,18 +25,15 @@ namespace GLLancer
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
-
-			GL.ClearColor(0.1f, 0.2f, 0.5f, 0.0f);
-			GL.Enable(EnableCap.DepthTest);
-			GL.Enable (EnableCap.Texture2D);
 			device = new GraphicsDevice ();
+			device.Viewport = new Viewport (ClientRectangle.X, ClientRectangle.Y, ClientRectangle.Width, ClientRectangle.Height);
 			content = new ContentManager (device);
 			content.RootDirectory = "Assets";
 			starchart = new FLRenderer.Main (MainClass.FLIni);
 			starchart.Initialize (device, content);
+			starchart.DeviceReset ();
 			starchart.LoadContent ();
 			starchart.SystemMap.StarSystem = MainClass.FLIni.Universe.FindSystem ("Li01");
-			Console.WriteLine ();
 		}
 
 		/// <summary>
@@ -74,8 +71,6 @@ namespace GLLancer
 		protected override void OnRenderFrame(FrameEventArgs e)
 		{
 			base.OnRenderFrame(e);
-
-			GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 			starchart.Draw ();
 
 

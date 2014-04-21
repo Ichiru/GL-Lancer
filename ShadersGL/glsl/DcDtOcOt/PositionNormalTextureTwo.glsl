@@ -10,7 +10,7 @@ varying vec2 texcoord;
 varying vec2 texcoord2;
 void main(void)
 {
-	vec4 dc = texture(DtSampler, texcoord);
+	vec4 dc = texture2D(DtSampler, texcoord);
 	if(dc.w <= Oc) {
 	    discard;
 	}

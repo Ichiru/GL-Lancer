@@ -4,10 +4,14 @@ namespace FLCommon
 {
 	public struct Viewport
 	{
+		public int X;
+		public int Y;
 		public int Width;
 		public int Height;
-		public Viewport(int width, int height)
+		public Viewport(int x, int y, int width, int height)
 		{
+			X = x;
+			Y = y;
 			Width = width;
 			Height = height;
 		}

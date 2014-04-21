@@ -50,6 +50,7 @@
     <Compile Include="FLRenderer\SystemRenderer.cs" />
     <Compile Include="FLRenderer\Main.cs" />
     <Compile Include="MainWindow.cs" />
+    <Compile Include="ConfigIni.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -74,5 +75,10 @@
       <Project>{D789B2C5-128E-4B10-B086-374973626911}</Project>
       <Name>FLCommon</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="config.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

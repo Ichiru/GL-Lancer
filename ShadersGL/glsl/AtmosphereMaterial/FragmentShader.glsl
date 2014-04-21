@@ -11,7 +11,7 @@ uniform float Fade;
 uniform float Scale;
 void main(void)
 {
-	vec4 result = texture(DtSampler, texcoord);
+	vec4 result = texture2D(DtSampler, texcoord);
     result.xyz *= Dc * Ac;
     result.w = Alpha;
     gl_FragColor = mix(vec4(Ac, Alpha), result, Scale);

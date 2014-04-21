@@ -8,6 +8,6 @@ varying vec4 worldPosition;
 
 void main(void)
 {
-    vec4 dc = texture(PlanetTexture, texcoord);
+    vec4 dc = textureCube(PlanetTexture, texcoord);
     gl_FragColor = light(vec4(0,0,0,0), dc, worldPosition.xyz, normal.xyz);
 }

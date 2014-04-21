@@ -16,12 +16,12 @@ void main(void)
     vec2 result_texcoord = texcoord;
     if (FlipU == 1) result_texcoord.x = 1 - result_texcoord.x;
     if (FlipV == 1) result_texcoord.y = 1 - result_texcoord.y;
-    vec4 dc = texture(DtSampler, result_texcoord);
+    vec4 dc = texture2D(DtSampler, result_texcoord);
     dc *= Dc;
     vec2 texcoord0 = result_texcoord * TileRate0;
-    vec4 detail0 = texture(Dm0Sampler, texcoord0);
+    vec4 detail0 = texture2D(Dm0Sampler, texcoord0);
     vec2 texcoord1 = result_texcoord * TileRate1;
-    vec4 detail1 = texture(Dm1Sampler, texcoord1);
+    vec4 detail1 = texture2D(Dm1Sampler, texcoord1);
     vec4 detail = mix(detail0, detail1, dc.w);
     dc *= detail;
     gl_FragColor = Ac * dc;
