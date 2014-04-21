@@ -234,7 +234,7 @@ namespace FLApi
             DaArchetype.Update();
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
         {
             DaArchetype.Draw(ambient, lights, world);
         }

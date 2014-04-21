@@ -23,7 +23,7 @@ using System.IO;
 using OpenTK;
 
 using FLParser;
-
+using FLCommon;
 namespace FLApi.Utf
 {
     public class SphereConstruct : AbstractConstruct
@@ -36,7 +36,7 @@ namespace FLApi.Utf
         public float Min3 { get; private set; }
         public float Max3 { get; private set; }
 
-        public override Matrix4 Transform { get { return internalGetTransform(Rotation * Matrix4.CreateTranslation(Origin + Offset)); } }
+        public override Matrix Transform { get { return internalGetTransform(Rotation * Matrix.CreateTranslation(Origin + Offset)); } }
 
         public SphereConstruct(BinaryReader reader, ConstructCollection constructs)
             : base(reader, constructs)

@@ -117,7 +117,7 @@ namespace FLApi.Utf.Cmp
             if (ready) Mesh.Update(StartMesh, endMesh);
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
         {
             if (ready) Mesh.Draw(StartMesh, endMesh, StartVertex, ambient, lights, world);
         }

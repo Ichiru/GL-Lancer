@@ -195,7 +195,7 @@ namespace FLApi.Utf.Dfm
             if (ready) foreach (FaceGroup faceGroup in FaceGroups) faceGroup.Update();
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
         {
             if (ready)
             {

@@ -194,7 +194,7 @@ namespace FLApi.Utf.Dfm
             //foreach (VMeshRef level in Levels.Values) level.Update();
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
         {
             Levels[0].Draw(ambient, lights, world);
 

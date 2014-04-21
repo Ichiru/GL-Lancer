@@ -25,6 +25,26 @@ namespace FLCommon
 			return (float)Math.Sqrt(result);
 		}
 
+		public static Vector3 Transform(Vector3 position, Matrix matrix)
+		{
+			Transform(ref position, ref matrix, out position);
+			return position;
+		}
+
+		public static void Transform(
+			ref Vector3 position,
+			ref Matrix matrix,
+			out Vector3 result
+		) {
+			result = new Vector3(
+				(position.X * matrix.M11) + (position.Y * matrix.M21) +
+				(position.Z * matrix.M31) + matrix.M41,
+				(position.X * matrix.M12) + (position.Y * matrix.M22) +
+				(position.Z * matrix.M32) + matrix.M42,
+				(position.X * matrix.M13) + (position.Y * matrix.M23) +
+				(position.Z * matrix.M33) + matrix.M43
+			);
+		}
 	}
 }
 

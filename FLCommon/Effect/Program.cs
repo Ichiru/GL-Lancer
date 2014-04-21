@@ -38,8 +38,9 @@ namespace FLCommon
 				GL.Uniform4 (u.Location, (Vector4)value);
 				break;
 			case GLSLTypes.Matrix4:
-				var m = (Matrix4)value;
-				GL.UniformMatrix4 (u.Location, false, ref m);
+				var m = (Matrix)value;
+				var array = Matrix.ToFloatArray (m);
+				GL.UniformMatrix4 (u.Location, 1, false, array);
 				break;
 			case GLSLTypes.Float:
 				GL.Uniform1 (u.Location, (float)value);

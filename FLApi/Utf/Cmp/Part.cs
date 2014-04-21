@@ -78,9 +78,9 @@ namespace FLApi.Utf.Cmp
             Model.Update();
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
         {
-            Matrix4 transform = world;
+            Matrix transform = world;
             if (Construct != null) transform = Construct.Transform * world;
             Model.Draw(ambient, lights, transform);
         }

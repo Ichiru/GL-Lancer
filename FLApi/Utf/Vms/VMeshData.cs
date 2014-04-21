@@ -1,4 +1,4 @@
-﻿/* The contents of this file are subject to the Mozilla Public License
+/* The contents of this file are subject to the Mozilla Public License
  * Version 1.1 (the "License"); you may not use this file except in
  * compliance with the License. You may obtain a copy of the License at
  * http://www.mozilla.org/MPL/
@@ -119,7 +119,7 @@ namespace FLApi.Utf.Vms
                         for (int i = 0; i < VertexCount; i++)
                         {
                             Vector3 position = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
-                            Vector2 textureCoordinate = new Vector2(reader.ReadSingle(), reader.ReadSingle());
+						Vector2 textureCoordinate = new Vector2(reader.ReadSingle(), 1 - reader.ReadSingle());
 
                             verticesVertexPositionTexture[i] = new VertexPositionTexture(position, textureCoordinate);
                         }
@@ -130,7 +130,7 @@ namespace FLApi.Utf.Vms
                         {
                             Vector3 position = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
                             Vector3 normal = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
-                            Vector2 textureCoordinate = new Vector2(reader.ReadSingle(), reader.ReadSingle());
+						Vector2 textureCoordinate = new Vector2(reader.ReadSingle(), 1 - reader.ReadSingle());
 
                             verticesVertexPositionNormalTexture[i] = new VertexPositionNormalTexture(position, normal, textureCoordinate);
                         }
@@ -147,7 +147,7 @@ namespace FLApi.Utf.Vms
                             int a = reader.ReadByte();
                             Color diffuse = new Color(r, g, b, a);
 
-                            Vector2 textureCoordinate = new Vector2(reader.ReadSingle(), reader.ReadSingle());
+						Vector2 textureCoordinate = new Vector2(reader.ReadSingle(), 1 - reader.ReadSingle());
 
                             verticesVertexPositionColorTexture[i] = new VertexPositionColorTexture(position, diffuse, textureCoordinate);
                         }
@@ -250,7 +250,7 @@ namespace FLApi.Utf.Vms
             }
         }
 
-        public void Draw(ushort startMesh, int endMesh, ushort startVertex, Color ambient, List<LightSource> lights, Matrix4 world)
+        public void Draw(ushort startMesh, int endMesh, ushort startVertex, Color ambient, List<LightSource> lights, Matrix world)
         {
             if (ready)
             {

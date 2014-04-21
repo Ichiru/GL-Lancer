@@ -22,7 +22,7 @@ using System.IO;
 using OpenTK;
 
 using FLParser;
-
+using FLCommon;
 namespace FLApi.Utf
 {
     public class PrisConstruct : AbstractConstruct
@@ -32,9 +32,9 @@ namespace FLApi.Utf
         public float Min { get; set; }
         public float Max { get; set; }
 
-        private Matrix4 currentTransform = Matrix4.Identity;
+        private Matrix currentTransform = Matrix.Identity;
 
-        public override Matrix4 Transform { get { return internalGetTransform(currentTransform * Rotation * Matrix4.CreateTranslation(Origin + Offset)); } }
+        public override Matrix Transform { get { return internalGetTransform(currentTransform * Rotation * Matrix.CreateTranslation(Origin + Offset)); } }
 
         public PrisConstruct(BinaryReader reader, ConstructCollection constructs)
             : base(reader, constructs)
@@ -50,7 +50,7 @@ namespace FLApi.Utf
         public override void Update(float distance)
         {
             Vector3 currentRotation = AxisTranslation * distance;
-            currentTransform = Matrix4.CreateTranslation(currentRotation);
+            currentTransform = Matrix.CreateTranslation(currentRotation);
         }
     }
 }

@@ -53,7 +53,7 @@ namespace FLRenderer
 
 		private Ellipsoid boundingSphere;
 
-		public PlanetRenderer(GraphicsDevice graphicsDevice, ContentManager content, Camera camera, Matrix4 world, bool useObjectPosAndRotate, SystemObject spaceObject)
+		public PlanetRenderer(GraphicsDevice graphicsDevice, ContentManager content, Camera camera, Matrix world, bool useObjectPosAndRotate, SystemObject spaceObject)
 			: base(graphicsDevice, content, camera, world, useObjectPosAndRotate, spaceObject, Color.White)
 		{
 			//faceQuad = new Quad(graphicsDevice);
@@ -125,27 +125,27 @@ namespace FLRenderer
 
                 graphicsDevice.SetRenderTarget(planetTexture, CubeMapFace.PositiveZ);
                 graphicsDevice.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
-                materials[0].Draw(D3DFVF.XYZ | D3DFVF.TEX1, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Matrix4.Identity);
+                materials[0].Draw(D3DFVF.XYZ | D3DFVF.TEX1, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Matrix.Identity);
 
                 graphicsDevice.SetRenderTarget(planetTexture, CubeMapFace.PositiveX);
                 graphicsDevice.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
-                materials[1].Draw(D3DFVF.XYZ | D3DFVF.TEX1, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Matrix4.Identity);
+                materials[1].Draw(D3DFVF.XYZ | D3DFVF.TEX1, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Matrix.Identity);
 
                 graphicsDevice.SetRenderTarget(planetTexture, CubeMapFace.NegativeZ);
                 graphicsDevice.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
-                materials[2].Draw(D3DFVF.XYZ | D3DFVF.TEX1, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Matrix4.Identity);
+                materials[2].Draw(D3DFVF.XYZ | D3DFVF.TEX1, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Matrix.Identity);
 
                 graphicsDevice.SetRenderTarget(planetTexture, CubeMapFace.NegativeX);
                 graphicsDevice.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
-                materials[3].Draw(D3DFVF.XYZ | D3DFVF.TEX1, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Matrix4.Identity);
+                materials[3].Draw(D3DFVF.XYZ | D3DFVF.TEX1, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Matrix.Identity);
 
                 graphicsDevice.SetRenderTarget(planetTexture, CubeMapFace.PositiveY);
                 graphicsDevice.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
-                materials[4].Draw(D3DFVF.XYZ | D3DFVF.TEX1, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Matrix4.Identity);
+                materials[4].Draw(D3DFVF.XYZ | D3DFVF.TEX1, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Matrix.Identity);
 
                 graphicsDevice.SetRenderTarget(planetTexture, CubeMapFace.NegativeY);
                 graphicsDevice.Clear(ClearOptions.Target, Color.Magenta, 0, 0);
-                materials[5].Draw(D3DFVF.XYZ | D3DFVF.TEX1, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Matrix4.Identity);
+                materials[5].Draw(D3DFVF.XYZ | D3DFVF.TEX1, 0, Quad.VERTEX_COUNT, 0, Quad.PrimitiveCount, Matrix.Identity);
             }
             else planetTexture = new RenderTargetCube(graphicsDevice, 512, false, SurfaceFormat.Dxt5, DepthFormat.None);
 
@@ -181,7 +181,7 @@ namespace FLRenderer
 				//materials[6].Draw(D3DFVF.XYZ | D3DFVF.TEX1, 0, atmosphereVertexBuffer.VertexCount, 0, atmosphereIndexBuffer.IndexCount / 3, World);
 			}
 
-			SpaceObject.Draw(Color.White, lights, Matrix4.Identity);
+			SpaceObject.Draw(Color.White, lights, Matrix.Identity);
 
 			/*if (DrawBoundingBoxEnabled)
 			{

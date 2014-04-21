@@ -122,9 +122,9 @@ namespace FLParser
             return result.ToArray();
         }
 
-        public static Matrix4 ToMatrix3x3(byte[] data)
+        public static Matrix ToMatrix3x3(byte[] data)
         {
-            Matrix4 result = Matrix4.Identity;
+            Matrix result = Matrix.Identity;
 
             using (MemoryStream stream = new MemoryStream(data))
             {
@@ -135,9 +135,9 @@ namespace FLParser
             return result;
         }
 
-        public static Matrix4 ToMatrix3x3(BinaryReader reader)
+        public static Matrix ToMatrix3x3(BinaryReader reader)
         {
-            Matrix4 result = Matrix4.Identity;
+            Matrix result = Matrix.Identity;
 
             result.M11 = reader.ReadSingle();
             result.M21 = reader.ReadSingle();
@@ -159,22 +159,22 @@ namespace FLParser
             return result;
         }
 
-        public static Matrix4 ToMatrix4x3(byte[] data)
+		public static Matrix ToMatrix4x3(byte[] data)
         {
-            Matrix4 result = Matrix4.Identity;
+            Matrix result = Matrix.Identity;
 
             using (MemoryStream stream = new MemoryStream(data))
             {
                 BinaryReader reader = new BinaryReader(stream);
-                result = ToMatrix4x3(reader);
+				result = ToMatrix4x3(reader);
             }
 
             return result;
         }
 
-        public static Matrix4 ToMatrix4x3(BinaryReader reader)
+		public static Matrix ToMatrix4x3(BinaryReader reader)
         {
-            Matrix4 result = Matrix4.Identity;
+            Matrix result = Matrix.Identity;
 
             result.M11 = reader.ReadSingle();
             result.M21 = reader.ReadSingle();

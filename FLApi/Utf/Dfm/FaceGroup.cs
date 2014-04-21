@@ -103,7 +103,7 @@ namespace FLApi.Utf.Dfm
             if (ready) Material.Update();
         }
 
-        public void Draw(int vertexCount, Color ambient, List<LightSource> lights, Matrix4 world)
+        public void Draw(int vertexCount, Color ambient, List<LightSource> lights, Matrix world)
         {
             if (ready)
             {

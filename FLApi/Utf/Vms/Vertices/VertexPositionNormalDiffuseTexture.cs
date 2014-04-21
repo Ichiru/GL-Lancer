@@ -37,7 +37,7 @@ namespace FLApi.Utf.Vms.Vertices
             this.Position = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
             this.Normal = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
             this.Diffuse = reader.ReadUInt32();
-            this.TextureCoordinate = new Vector2(reader.ReadSingle(), reader.ReadSingle());
+			this.TextureCoordinate = new Vector2(reader.ReadSingle(), 1 - reader.ReadSingle());
         }
 
         public VertexDeclaration VertexDeclaration

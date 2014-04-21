@@ -79,6 +79,8 @@
     <Compile Include="Texture\TextureCube.cs" />
     <Compile Include="Effect\EffectInstance.cs" />
     <Compile Include="Effect\Effect.cs" />
+    <Compile Include="Matrix.cs" />
+    <Compile Include="Quaternion.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

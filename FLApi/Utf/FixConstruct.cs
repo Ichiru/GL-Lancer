@@ -23,12 +23,12 @@ using System.IO;
 using OpenTK;
 
 using FLParser;
-
+using FLCommon;
 namespace FLApi.Utf
 {
     public class FixConstruct : AbstractConstruct
     {
-        public override Matrix4 Transform { get { return internalGetTransform(Rotation * Matrix4.CreateTranslation(Origin)); } }
+        public override Matrix Transform { get { return internalGetTransform(Rotation * Matrix.CreateTranslation(Origin)); } }
 
         public FixConstruct(BinaryReader reader, ConstructCollection constructs)
             : base(reader, constructs)

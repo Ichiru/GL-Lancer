@@ -191,13 +191,13 @@ namespace FLApi.Utf.Cmp
             }
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
         {
             if (ready)
             {
                 Levels[0].Draw(ambient, lights, world);
 
-                /*Matrix4 tworld = Transform * world;
+                /*Matrix tworld = Transform * world;
                 float cameraDistance = Vector3.Distance(tworld.Translation, camera.Position);
 
                 for (int i = 0; i < Switch2.Length; i++)

@@ -30,12 +30,12 @@ namespace FLApi.Utf.Dfm
 {
     public class Bone
     {
-        public Matrix4 BoneToRoot { get; private set; }
+        public Matrix BoneToRoot { get; private set; }
         public byte LodBits { get; private set; }
         public List<Hardpoint> Hardpoints { get; private set; }
 
-        protected Matrix4 transform = Matrix4.Identity;
-        public Matrix4 Transform { get { return transform; } }
+        protected Matrix transform = Matrix.Identity;
+        public Matrix Transform { get { return transform; } }
 
         public Bone(IntermediateNode node)
         {
@@ -74,7 +74,7 @@ namespace FLApi.Utf.Dfm
             }
         }
 
-        public void Update(Matrix4 world)
+        public void Update(Matrix world)
         {
             transform = world * BoneToRoot;
         }

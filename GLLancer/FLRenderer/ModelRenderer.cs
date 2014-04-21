@@ -41,7 +41,7 @@ namespace FLRenderer
 
 		private Cuboid[] boundingBoxes;
 
-		public ModelRenderer(GraphicsDevice graphicsDevice, ContentManager content, Camera camera, Matrix4 world, bool useObjectPosAndRotate, SystemObject spaceObject, Color uiColor)
+		public ModelRenderer(GraphicsDevice graphicsDevice, ContentManager content, Camera camera, Matrix world, bool useObjectPosAndRotate, SystemObject spaceObject, Color uiColor)
 			: base(graphicsDevice, content, camera, world, useObjectPosAndRotate, spaceObject, uiColor)
 		{
 			boundingBoxes = new Cuboid[0];

@@ -69,9 +69,9 @@ namespace FLApi.Utf.Dfm
             this.fileName = fileName;
         }
 
-        public void Update(Matrix4 world)
+        public void Update(Matrix world)
         {
-            Matrix4 transform = world;
+            Matrix transform = world;
             if (Construct != null)
             {
                 transform = Construct.Transform * world;

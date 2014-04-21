@@ -44,7 +44,7 @@ namespace FLRenderer
 
 		private Ellipsoid boundingSphere;
 
-		public SunRenderer(GraphicsDevice graphicsDevice, ContentManager content, Camera camera, Matrix4 world, bool useObjectPosAndRotate, SystemObject sun)
+		public SunRenderer(GraphicsDevice graphicsDevice, ContentManager content, Camera camera, Matrix world, bool useObjectPosAndRotate, SystemObject sun)
 			: base(graphicsDevice, content, camera, world, useObjectPosAndRotate, sun, Color.Yellow)
 		{
 			Sun = SpaceObject.Archetype as Sun;

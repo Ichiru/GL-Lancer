@@ -161,7 +161,7 @@ namespace FLParser.Utf
             }
         }
 
-        public Matrix4? MatrixData3x3
+        public Matrix? MatrixData3x3
         {
             get
             {
@@ -170,7 +170,7 @@ namespace FLParser.Utf
             }
         }
 
-        public Matrix4? MatrixData4x3
+        public Matrix? MatrixData4x3
         {
             get
             {

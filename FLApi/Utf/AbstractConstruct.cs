@@ -39,9 +39,9 @@ namespace FLApi.Utf
         public string ParentName { get; private set; }
         public string ChildName { get; private set; }
         public Vector3 Origin { get; set; }
-        public Matrix4 Rotation { get; set; }
+        public Matrix Rotation { get; set; }
 
-        public abstract Matrix4 Transform { get; }
+        public abstract Matrix Transform { get; }
 
         protected AbstractConstruct(BinaryReader reader, ConstructCollection constructs)
         {
@@ -63,7 +63,7 @@ namespace FLApi.Utf
             Origin = ConvertData.ToVector3(reader);
         }
 
-        protected Matrix4 internalGetTransform(Matrix4 matrix)
+        protected Matrix internalGetTransform(Matrix matrix)
         {
             AbstractConstruct parent = constructs.Find(ParentName);
             if (parent != null) matrix *= parent.Transform;

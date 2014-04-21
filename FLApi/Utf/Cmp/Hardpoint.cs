@@ -21,13 +21,13 @@ using System;
 using OpenTK;
 
 using FLParser.Utf;
-
+using FLCommon;
 namespace FLApi.Utf.Cmp
 {
     public abstract class Hardpoint
     {
         public string Name { get; private set; }
-        public Matrix4 Orientation { get; private set; }
+        public Matrix Orientation { get; private set; }
         public Vector3 Position { get; private set; }
 
         public Hardpoint(IntermediateNode root)

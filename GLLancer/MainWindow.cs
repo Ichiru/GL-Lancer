@@ -33,7 +33,9 @@ namespace GLLancer
 			starchart.Initialize (device, content);
 			starchart.DeviceReset ();
 			starchart.LoadContent ();
+			starchart.Camera.Free = true;
 			starchart.SystemMap.StarSystem = MainClass.FLIni.Universe.FindSystem ("Li01");
+			//GL.PolygonMode (MaterialFace.FrontAndBack, PolygonMode.Line);
 		}
 
 		/// <summary>
@@ -51,7 +53,8 @@ namespace GLLancer
 
 			
 		}
-
+		private const float ROTATION_SPEED = 3f;
+	
 		/// <summary>
 		/// Called when it is time to setup the next frame. Add you game logic here.
 		/// </summary>
@@ -62,6 +65,31 @@ namespace GLLancer
 			starchart.Update (TimeSpan.FromSeconds (e.Time));
 			if (Keyboard[Key.Escape])
 				Exit();
+
+			if (Keyboard[Key.Up] || Keyboard[Key.W])
+				starchart.Camera.MoveVector += VectorMath.Forward;
+				if (Keyboard[Key.Down] || Keyboard[Key.S])
+				starchart.Camera.MoveVector += VectorMath.Backward;
+					if (Keyboard[Key.Right] || Keyboard[Key.D])
+				starchart.Camera.MoveVector += VectorMath.Right;
+						if (Keyboard[Key.Left] || Keyboard[Key.A])
+				starchart.Camera.MoveVector += VectorMath.Left;
+							if (Keyboard[Key.PageUp])
+				starchart.Camera.MoveVector += VectorMath.Up;
+								if (Keyboard[Key.PageDown])
+				starchart.Camera.MoveVector += VectorMath.Down;
+
+			if (Keyboard[Key.ControlLeft] || Keyboard[Key.ControlRight])
+				starchart.Camera.MoveVector *= 5;
+			float xDifference = (ClientRectangle.Width / 2) - Mouse.X;
+			float yDifference = (ClientRectangle.Height / 2) - Mouse.Y;
+
+
+			float amount = (float)e.Time / 100.0f;
+				starchart.Camera.Rotation = new Vector2 (starchart.Camera.Rotation.X - ROTATION_SPEED * xDifference * amount, starchart.Camera.Rotation.Y - ROTATION_SPEED * yDifference * amount);
+			OpenTK.Input.Mouse.SetPosition (ClientRectangle.X + (ClientRectangle.Width / 2),
+				ClientRectangle.Y + (ClientRectangle.Height / 2));
+
 		}
 
 		/// <summary>

@@ -66,10 +66,10 @@ namespace FLCommon
 		{
 			GLExtensions.CheckExtensions ();
 			//enable caps
-			GL.Enable(EnableCap.DepthTest);
+			//GL.Enable(EnableCap.DepthTest);
 			GL.Enable (EnableCap.Texture2D);
 			GL.Enable (EnableCap.TextureCubeMap);
-			GL.Enable (EnableCap.Blend);
+			//GL.Enable (EnableCap.Blend);
 
 		}
 		static int currentProgram = 0;
@@ -95,8 +95,10 @@ namespace FLCommon
 			if (ind == null)
 				throw new Exception ("No Index Buffer bound");
 			GL.UseProgram (CurrentEffect.ActiveProgram.ID);
+			CurrentEffect.ActiveProgram.ApplyTextures ();
 			int offset = buf.Declaration.VertexStride * (buf.VertexOffset + baseVertex);
 			int enabledCount = 0;
+			bool firstEnabled = false;
 			for (int i = 0; i < buf.Declaration.Elements.Length; i++) {
 				for (int j = 0; j < CurrentEffect.ActiveProgram.Attributes.Count; j++) {
 					var decl = buf.Declaration.Elements [i];
@@ -105,17 +107,26 @@ namespace FLCommon
 						GL.EnableVertexAttribArray (att.Location);
 						enabledAtt [enabledCount] = att.Location;
 						enabledCount++;
+						firstEnabled = true;
 						break;
 					}
 				}
+				if (firstEnabled)
+					break;
 			}
+			firstEnabled = false;
 			GL.BindBuffer (BufferTarget.ArrayBuffer, buf.ID);
-			GL.BindBuffer (BufferTarget.ElementArrayBuffer, ind.ID);
 			for (int i = 0; i < buf.Declaration.Elements.Length; i++) {
 				for (int j = 0; j < CurrentEffect.ActiveProgram.Attributes.Count; j++) {
 					var decl = buf.Declaration.Elements [i];
 					var att = CurrentEffect.ActiveProgram.Attributes [j];
 					if (decl.Usage == att.Usage && decl.UsageNumber == att.UsageNumber) {
+						if (firstEnabled) {
+							GL.EnableVertexAttribArray (att.Location);
+							enabledAtt [enabledCount] = att.Location;
+							enabledCount++;
+						} else
+							firstEnabled = true;
 						GL.VertexAttribPointer (att.Location,
 							decl.GLNumberOfElements,
 							decl.GLAttribPointerType,
@@ -126,7 +137,8 @@ namespace FLCommon
 					}
 				}
 			}
-			CurrentEffect.ActiveProgram.ApplyTextures ();
+
+			GL.BindBuffer (BufferTarget.ElementArrayBuffer, ind.ID);
 			GL.DrawRangeElements (primitiveType.GLType (),
 			                     minVertexIndex,
 			                     numVertices,

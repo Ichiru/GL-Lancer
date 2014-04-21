@@ -286,7 +286,7 @@ namespace FLApi.Universe
             throw new NotImplementedException();
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
         {
             throw new NotImplementedException();
         }

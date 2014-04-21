@@ -39,7 +39,7 @@ namespace FLRenderer
 		private ContentManager content;
 		private Camera camera;
 
-		public Matrix4 World { get; private set; }
+		public Matrix World { get; private set; }
 
 		private StarSystem starSystem;
 		public StarSystem StarSystem
@@ -69,7 +69,7 @@ namespace FLRenderer
 			starchart = sc;
 			starSystem = null;
 
-			World = Matrix4.Identity;
+			World = Matrix.Identity;
 
 			Suns = new List<SunRenderer>();
 			Planets = new List<PlanetRenderer>();
@@ -220,7 +220,7 @@ namespace FLRenderer
 			//StarSphere
 			for (int i = 0; i < starSphereModels.Length; i++)
 			{
-				starSphereModels[i].Draw(Color.White, new List<LightSource>(), Matrix4.CreateTranslation(camera.Position));
+				starSphereModels[i].Draw(Color.White, new List<LightSource>(), Matrix.CreateTranslation(camera.Position));
 			}
 
 			//for (int i = 0; i < Suns.Count; i++) Suns[i].Draw(starSystem.AmbientColor.Value, starSystem.LightSources);

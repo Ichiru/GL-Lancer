@@ -418,11 +418,11 @@ namespace FLApi.Universe
             foreach (SystemObject o in Objects) o.Update();
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
         {
             Color ambientColor = AmbientColor ?? ambient;
 
-            Matrix4 starSphereWorld = Matrix4.CreateTranslation(camera.Position);
+            Matrix starSphereWorld = Matrix.CreateTranslation(camera.Position);
             if (BackgroundBasicStars != null) BackgroundBasicStars.Draw(ambientColor, LightSources, starSphereWorld);
             if (BackgroundComplexStars != null) BackgroundComplexStars.Draw(ambientColor, LightSources, starSphereWorld);
             if (BackgroundNebulae != null) BackgroundNebulae.Draw(ambientColor, LightSources, starSphereWorld);

@@ -123,7 +123,7 @@ namespace FLCommon
 			InternalSetParameter (name, GLSLTypes.Vector4, vec);
 		}
 
-		public void SetParameter (string name, Matrix4 mat)
+		public void SetParameter (string name, Matrix mat)
 		{
 			InternalSetParameter (name, GLSLTypes.Matrix4, mat);
 		}

@@ -157,7 +157,7 @@ namespace FLApi.Utf.Cmp
             for (int i = 0; i < Parts.Count; i++) Parts[i].Update();
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
         {
             for (int i = 0; i < Parts.Count; i++) Parts[i].Draw(ambient, lights, world);
 

@@ -316,15 +316,15 @@ namespace FLApi.Universe
             if (atmosphere) atmosphereMaterial.Update();
         }
 
-        public void Draw(Color ambient, List<LightSource> lights, Matrix4 world)
+        public void Draw(Color ambient, List<LightSource> lights, Matrix world)
         {
             Color ambientColor = /*AmbientColor ??*/ ambient;
 
-            Matrix4 w = world * Matrix4.CreateTranslation(Pos.Value);
+            Matrix w = world * Matrix.CreateTranslation(Pos.Value);
             if (Rotate != null) w =
-                            Matrix4.CreateRotationX(MathConvert.ToRadians(Rotate.Value.X)) *
-                            Matrix4.CreateRotationY(MathConvert.ToRadians(Rotate.Value.Y)) *
-                            Matrix4.CreateRotationZ(MathConvert.ToRadians(Rotate.Value.Z)) *
+                            Matrix.CreateRotationX(MathConvert.ToRadians(Rotate.Value.X)) *
+                            Matrix.CreateRotationY(MathConvert.ToRadians(Rotate.Value.Y)) *
+                            Matrix.CreateRotationZ(MathConvert.ToRadians(Rotate.Value.Z)) *
                             w;
 
             Archetype.Draw(ambientColor, lights, w);
