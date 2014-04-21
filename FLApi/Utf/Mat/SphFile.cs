@@ -45,7 +45,7 @@ namespace FLApi.Utf.Mat
 
         private Quad quad;
         private Ellipsoid sphere;
-        private Effect planetEffect;
+        private EffectInstance planetEffect;
         private TextureCube planetTexture;
         private bool ready, updatePlanetTexture;
 
@@ -115,7 +115,7 @@ namespace FLApi.Utf.Mat
                 foreach (Material m in SideMaterials)
                     m.Initialize(device, content, camera);
 
-                planetEffect = content.Load<Effect>("effects/Planet");
+                planetEffect = content.Load<EffectInstance>("effects/Planet");
 				planetEffect.SetParameter ("Projection", camera.Projection);
 
                 ready = true;

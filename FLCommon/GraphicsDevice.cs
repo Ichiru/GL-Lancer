@@ -10,7 +10,7 @@ namespace FLCommon
 	{
 		Color clearColor = Color.Black;
 		bool isDisposed = false;
-		internal Effect CurrentEffect = null;
+		internal EffectInstance CurrentEffect = null;
 		VertexBuffer buf = null;
 		IndexBuffer ind = null;
 		public bool IsDisposed

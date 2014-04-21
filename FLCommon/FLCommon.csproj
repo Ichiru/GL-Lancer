@@ -69,7 +69,6 @@
     <Compile Include="Texture\SurfaceFormatExtensions.cs" />
     <Compile Include="Rectangle.cs" />
     <Compile Include="Texture\RenderTarget2D.cs" />
-    <Compile Include="Effect\Effect.cs" />
     <Compile Include="Effect\GLUniform.cs" />
     <Compile Include="Effect\Program.cs" />
     <Compile Include="Vertices\VertexElement.cs" />
@@ -78,6 +77,8 @@
     <Compile Include="Effect\GLSLTypes.cs" />
     <Compile Include="Effect\Attributes.cs" />
     <Compile Include="Texture\TextureCube.cs" />
+    <Compile Include="Effect\EffectInstance.cs" />
+    <Compile Include="Effect\Effect.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

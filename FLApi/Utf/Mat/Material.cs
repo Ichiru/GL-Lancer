@@ -41,7 +41,7 @@ namespace FLApi.Utf.Mat
         protected static Texture2D nullTexture;
         protected ILibFile textureLibrary;
 
-        protected Effect effect;
+        protected EffectInstance effect;
 
         public bool IsDisposed { get { return effect == null || effect.IsDisposed || effect.GraphicsDevice.IsDisposed; } }
 
@@ -154,7 +154,7 @@ namespace FLApi.Utf.Mat
                 nullTexture.SetData<Color>(colors);
             }
 
-            effect = content.Load<Effect>("effects/materials/" + type);
+            effect = content.Load<EffectInstance>("effects/materials/" + type);
 			//Console.WriteLine (type);
             //effect.Parameters["Projection"].SetValue(camera.Projection);
 			effect.SetParameter ("Projection", camera.Projection);

@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GLLancer/Main.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FLCommon/Effect/EffectInstance.cs">
     <Files>
       <File FileName="GLLancer/Main.cs" Line="23" Column="1" />
+      <File FileName="FLCommon/Effect/EffectInstance.cs" Line="84" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
