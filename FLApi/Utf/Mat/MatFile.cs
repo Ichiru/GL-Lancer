@@ -32,6 +32,7 @@ namespace FLApi.Utf.Mat
 {
     public class MatFile : UtfFile, ILibFile
     {
+		static Dictionary<string, MatFile> loaded = new Dictionary<string, MatFile> ();
         private ILibFile additionalTextureLibrary;
 
         public Dictionary<uint, Material> Materials { get; private set; }
@@ -48,26 +49,32 @@ namespace FLApi.Utf.Mat
             : this(additionalTextureLibrary)
         {
             if (path == null) throw new ArgumentNullException("path");
-
-            foreach (Node node in parseFile(path))
-            {
-                switch (node.Name.ToLowerInvariant())
-                {
-                    case "material library":
-                        IntermediateNode materialLibraryNode = node as IntermediateNode;
-                        setMaterials(materialLibraryNode);
-                        break;
-                    case "texture library":
-                        IntermediateNode textureLibraryNode = node as IntermediateNode;
-                        if (TextureLibrary == null) TextureLibrary = new TxmFile(textureLibraryNode);
-                        else throw new Exception("Multiple texture library nodes in mat root");
-                        break;
-                    case "exporter version":
-                        break;
-                    default:
-                        throw new Exception("Invalid node in mat root: " + node.Name);
-                }
-            }
+			if (loaded.ContainsKey (path)) {
+				additionalTextureLibrary = loaded [path].additionalTextureLibrary;
+				Materials = loaded [path].Materials;
+				TextureLibrary = loaded [path].TextureLibrary;
+			} else {
+				foreach (Node node in parseFile(path)) {
+					switch (node.Name.ToLowerInvariant ()) {
+					case "material library":
+						IntermediateNode materialLibraryNode = node as IntermediateNode;
+						setMaterials (materialLibraryNode);
+						break;
+					case "texture library":
+						IntermediateNode textureLibraryNode = node as IntermediateNode;
+						if (TextureLibrary == null)
+							TextureLibrary = new TxmFile (textureLibraryNode);
+						else
+							throw new Exception ("Multiple texture library nodes in mat root");
+						break;
+					case "exporter version":
+						break;
+					default:
+						throw new Exception ("Invalid node in mat root: " + node.Name);
+					}
+				}
+				loaded.Add (path, this);
+			}
         }
 
         public MatFile(IntermediateNode materialLibraryNode, ILibFile additionalTextureLibrary)
