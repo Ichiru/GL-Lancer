@@ -1,7 +1,11 @@
 @echo off
+
 SET PROCESSOR=GLSLProcessor\bin\Debug\GLSLProcessor.exe
 SET SHADER_DIR=ShadersGL
 SET OUTPUT_DIR=Debug\Assets\effects
+setlocal enableextensions
+if not exist %OUTPUT_DIR% md %OUTPUT_DIR%
+endlocal
 REM materials
 %PROCESSOR% %SHADER_DIR%/DcDt.ini %OUTPUT_DIR%/materials/DcDt.effect
 %PROCESSOR% %SHADER_DIR%/DcDtEc.ini %OUTPUT_DIR%/materials/DcDtEc.effect
@@ -17,3 +21,4 @@ REM materials
 %PROCESSOR% %SHADER_DIR%/AtmosphereMaterial.ini %OUTPUT_DIR%/materials/AtmosphereMaterial.effect
 REM other effects
 %PROCESSOR% %SHADER_DIR%/Planet.ini %OUTPUT_DIR%/Planet.effect
+

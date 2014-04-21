@@ -5,13 +5,17 @@ namespace GLSLProcessor
 {
 	class MainClass
 	{
+		public static bool debug;
 		static void PrintUsage()
 		{
 			Console.WriteLine ("Usage GLSLProcessor.exe input output");
 		}
 		public static int Main (string[] args)
 		{
-			if (args.Length != 2) {
+			if (args.Length == 3 && args[2] == "--debug") {
+				debug = true;
+			}
+			if (args.Length < 2) {
 				Console.WriteLine ("Error: Wrong number of arguments");
 				PrintUsage ();
 				return 1;
@@ -29,6 +33,8 @@ namespace GLSLProcessor
 			for (int i = 0; i < ini.ShaderPaths.Count; i++) {
 				var path = Path.Combine (Path.GetDirectoryName (args [0]), ini.ShaderPaths [i]);
 				var preprocessed = Preprocessor.Preprocess (File.ReadAllText (path), path);
+				if (debug)
+					Console.WriteLine (ini.ShaderPaths [i]);
 				output.UniformLists[i] = UniformParser.FindUniforms (preprocessed);
 				output.Sources [i] = preprocessed;
 			}
@@ -37,6 +43,7 @@ namespace GLSLProcessor
 				output.Programs [i] = new ShaderOutput.Program ();
 				output.Programs [i].Name = source.Name;
 				output.Programs [i].VSIndex = ini.ShaderPaths.IndexOf (source.VertexShader);
+				AttributeChecker.CheckAttributes (ini.ShaderPaths [output.Programs [i].VSIndex]);
 				output.Programs [i].FSIndex = ini.ShaderPaths.IndexOf (source.FragmentShader);
 			}
 			output.Save (args [1]);

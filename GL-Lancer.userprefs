@@ -1,13 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FLCommon/Effect/EffectInstance.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FLCommon/Effect/Effect.cs">
     <Files>
-      <File FileName="GLLancer/Main.cs" Line="23" Column="1" />
-      <File FileName="FLCommon/Effect/EffectInstance.cs" Line="84" Column="9" />
+      <File FileName="FLCommon/Effect/Effect.cs" Line="113" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/home/callum/src/GL-Lancer/GLLancer/Main.cs" line="23" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

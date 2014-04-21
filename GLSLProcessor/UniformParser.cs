@@ -27,6 +27,8 @@ namespace GLSLProcessor
 					l.Add (u);
 				} else {
 					l.Add (new Uniform (name, GetType (type)));
+					if (MainClass.debug)
+						Console.WriteLine ("Uniform {0} {1}", type, name);
 				}
 			}
 			return l;

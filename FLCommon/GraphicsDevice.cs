@@ -72,6 +72,15 @@ namespace FLCommon
 			GL.Enable (EnableCap.Blend);
 
 		}
+		static int currentProgram = 0;
+		internal static void UseProgram_Cached(int program)
+		{
+			if(program != currentProgram) {
+				GL.UseProgram (program);
+				currentProgram = program;
+			}
+		}
+
 		public void SetViewport(Viewport vp)
 		{
 
@@ -86,8 +95,6 @@ namespace FLCommon
 			if (ind == null)
 				throw new Exception ("No Index Buffer bound");
 			GL.UseProgram (CurrentEffect.ActiveProgram.ID);
-			GL.BindBuffer (BufferTarget.ArrayBuffer, buf.ID);
-			GL.BindBuffer (BufferTarget.ElementArrayBuffer, ind.ID);
 			int offset = buf.Declaration.VertexStride * (buf.VertexOffset + baseVertex);
 			int enabledCount = 0;
 			for (int i = 0; i < buf.Declaration.Elements.Length; i++) {
@@ -95,12 +102,6 @@ namespace FLCommon
 					var decl = buf.Declaration.Elements [i];
 					var att = CurrentEffect.ActiveProgram.Attributes [j];
 					if (decl.Usage == att.Usage && decl.UsageNumber == att.UsageNumber) {
-						GL.VertexAttribPointer (att.Location,
-						                       decl.GLNumberOfElements,
-						                       decl.GLAttribPointerType,
-						                       decl.Normalized,
-						                       buf.Declaration.VertexStride,
-						                       (IntPtr)(offset + decl.Offset));
 						GL.EnableVertexAttribArray (att.Location);
 						enabledAtt [enabledCount] = att.Location;
 						enabledCount++;
@@ -108,8 +109,24 @@ namespace FLCommon
 					}
 				}
 			}
+			GL.BindBuffer (BufferTarget.ArrayBuffer, buf.ID);
+			GL.BindBuffer (BufferTarget.ElementArrayBuffer, ind.ID);
+			for (int i = 0; i < buf.Declaration.Elements.Length; i++) {
+				for (int j = 0; j < CurrentEffect.ActiveProgram.Attributes.Count; j++) {
+					var decl = buf.Declaration.Elements [i];
+					var att = CurrentEffect.ActiveProgram.Attributes [j];
+					if (decl.Usage == att.Usage && decl.UsageNumber == att.UsageNumber) {
+						GL.VertexAttribPointer (att.Location,
+							decl.GLNumberOfElements,
+							decl.GLAttribPointerType,
+							decl.Normalized,
+							buf.Declaration.VertexStride,
+							(IntPtr)(offset + decl.Offset));
+						break;
+					}
+				}
+			}
 			CurrentEffect.ActiveProgram.ApplyTextures ();
-			CurrentEffect.ActiveProgram.SetTextureUniforms ();
 			GL.DrawRangeElements (primitiveType.GLType (),
 			                     minVertexIndex,
 			                     numVertices,

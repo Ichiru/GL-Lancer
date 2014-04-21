@@ -27,6 +27,8 @@ namespace GLSLProcessor
 				}
 				if (!Attributes.Recognised (name, gl_type))
 					throw new Exception (string.Format ("Unrecognised attribute '{0}'", m));
+				if (MainClass.debug)
+					Console.WriteLine ("Attribute {0} {1}", type, name);
 			}
 		}
 

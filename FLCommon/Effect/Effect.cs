@@ -107,7 +107,8 @@ namespace FLCommon
 							uniform.Type == GLSLTypes.Sampler2D ||
 							uniform.Type == GLSLTypes.SamplerCube));
 					} else {
-						//Console.WriteLine ("Warning: Unused uniform {0}", uniform.Name);
+
+
 					}
 				}
 				for (int j = 0; j < uniformDescriptions[descriptions[i].FSIndex].Count; j++) {
@@ -125,16 +126,15 @@ namespace FLCommon
 							Uniforms.Add (uniform.Name, new Uniform (uniform));
 						}
 					}
-					if (loc > 0) {
+					if (loc != -1) {
 						compiled.Uniforms.Add (uniform.Name, new GLUniform (uniform, loc,
 							uniform.Type == GLSLTypes.Sampler2D ||
 							uniform.Type == GLSLTypes.SamplerCube));
 					} else {
-						//Console.WriteLine ("Warning: Unused uniform {0}", uniform.Name);
+
 					}
 				}
 				GL.UseProgram (compiled.ID);
-				compiled.SetTextureUniforms ();
 				compiled.Attributes = Attributes.GetVertexAttributes (compiled.ID);
 				Programs.Add (compiled.Name, compiled);
 			}

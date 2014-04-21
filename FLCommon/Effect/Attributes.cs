@@ -17,6 +17,7 @@ namespace FLCommon
 		internal static List<SupportedAttribute> GetVertexAttributes(int programID)
 		{
 			var supported = new List<SupportedAttribute> ();
+
 			for (int i = 0; i < attributes.Length; i++) {
 				var att = attributes [i];
 				int loc = GL.GetAttribLocation (programID, att.Name);

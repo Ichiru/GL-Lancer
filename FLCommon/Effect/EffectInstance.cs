@@ -43,8 +43,14 @@ namespace FLCommon
 				}
 			}
 		}
+		#if DEBUG
+		string effect_filename;
+		#endif
 		public EffectInstance(GraphicsDevice device, string filename)
 		{
+			#if DEBUG
+			effect_filename = filename;
+			#endif
 			GraphicsDevice = device;
 			if (loaded.ContainsKey (filename)) {
 				effectInternal = loaded [filename];
